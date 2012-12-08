@@ -36,7 +36,7 @@ set winwidth=100
 set winheight=5
 set winminheight=5
 au FileType coffee set softtabstop=2 tabstop=2 shiftwidth=2
-"colorscheme railscasts 
+colorscheme railscasts 
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -56,28 +56,15 @@ Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'https://github.com/altercation/vim-colors-solarized.git'
-Bundle 'https://github.com/tpope/vim-fugitive.git'
 Bundle 'https://github.com/Lokaltog/vim-powerline.git'
 Bundle 'https://github.com/tpope/vim-surround.git'
 Bundle 'https://github.com/tpope/vim-haml.git'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'bufexplorer.zip'
-Bundle 'https://github.com/ludovicPelle/vim-xdebug.git'
-Bundle 'https://github.com/vim-scripts/php.vim--Garvin.git'
-Bundle 'phpcomplete.vim'
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 filetype plugin indent on     " required! 
 syntax enable
-colorscheme solarized
-if has('gui_running')
-    set background=light
-else
-    set background=dark
-    colorscheme desert
-endif
-
 set fileencodings=utf-8,cp1251,koi8-r,cp866
-
 
 menu Encoding.koi8-r :e ++enc=koi8-r ++ff=unix<CR>
 menu Encoding.windows-1251 :e ++enc=cp1251 ++ff=dos<CR>
@@ -86,6 +73,3 @@ menu Encoding.utf-8 :e ++enc=utf8<CR>
 menu Encoding.koi8-u :e ++enc=koi8-u ++ff=unix<CR>
 
 map <F8> :emenu Encoding.<TAB>
-
-
-
