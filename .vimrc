@@ -19,6 +19,8 @@ Bundle 'bufexplorer.zip'
 Bundle 'git://github.com/kien/ctrlp.vim.git'
 Bundle 'git://github.com/altercation/vim-colors-solarized.git'
 Bundle 'git://github.com/chriskempson/vim-tomorrow-theme.git'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-rake'
 syntax on
 filetype plugin indent on
 set number
@@ -61,6 +63,5 @@ menu Encoding.cp866 :e ++enc=cp866 ++ff=dos<CR>
 menu Encoding.utf-8 :e ++enc=utf8<CR>
 menu Encoding.koi8-u :e ++enc=koi8-u ++ff=unix<CR>
 map <F8> :emenu Encoding.<TAB>
-colorscheme Tomorrow-Night
+colorscheme  Tomorrow-Night-Bright
 set gfn=Ubuntu\ Mono\ 14
-
