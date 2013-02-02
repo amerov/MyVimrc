@@ -21,6 +21,9 @@ Bundle 'git://github.com/altercation/vim-colors-solarized.git'
 Bundle 'git://github.com/chriskempson/vim-tomorrow-theme.git'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-rake'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'vim-ruby/vim-ruby'
+set tags+=gems.tags
 syntax on
 filetype plugin indent on
 set number
