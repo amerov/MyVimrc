@@ -41,7 +41,7 @@ set shiftwidth=4
 set softtabstop=4 
 set expandtab 
 set cursorline 
-"set wrap 
+set wrap 
 set linebreak 
 set hlsearch 
 set incsearch 
@@ -61,6 +61,7 @@ set backspace=indent,eol,start
 "set winheight=5
 "set winminheight=5
 au FileType coffee set softtabstop=2 tabstop=2 shiftwidth=2
+au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 set fileencodings=utf-8,cp1251,koi8-r,cp866
 menu Encoding.koi8-r :e ++enc=koi8-r ++ff=unix<CR>
