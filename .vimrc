@@ -26,6 +26,10 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'Shougo/neocomplcache'
+if has('gui_running')
+    Bundle 'astashov/vim-ruby-debugger'
+    set gfn=Ubuntu\ Mono\ 12
+endif
 set tags+=gems.tags
 syntax on
 filetype plugin indent on
