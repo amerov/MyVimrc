@@ -11,7 +11,6 @@ Bundle 'L9'
 Bundle 'mileszs/ack.vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'https://github.com/Lokaltog/vim-powerline.git'
 Bundle 'https://github.com/tpope/vim-surround.git'
@@ -36,10 +35,11 @@ Bundle 'git@github.com:mattn/zencoding-vim.git'
 Bundle 'git@github.com:tpope/vim-endwise.git'
 Bundle 'git@github.com:chrisbra/NrrwRgn.git'
 Bundle 'git@github.com:tpope/vim-ragtag.git'
-Bundle 'git@github.com:ervandew/supertab.git'
+Bundle 'ervandew/supertab'
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
+
 set tags+=gems.tags
 syntax on
 filetype plugin indent on
@@ -176,7 +176,7 @@ set background=dark
 if !has("gui_running") && $DISPLAY == '' || !has("gui")
   set mouse=
 endif
-set gfn=Ubuntu\ Mono\ 13
+set gfn=Ubuntu\ Mono\ 14
 
 "Enabling Zencoding
 let g:user_zen_settings = {
@@ -198,3 +198,5 @@ let g:user_zen_settings = {
 let coffee_compiler = '/usr/local/bin/coffee'
 
 colorscheme Tomorrow
+
+let g:neocomplcache_enable_at_startup = 1
