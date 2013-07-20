@@ -36,6 +36,8 @@ Bundle 'git@github.com:tpope/vim-endwise.git'
 Bundle 'git@github.com:chrisbra/NrrwRgn.git'
 Bundle 'git@github.com:tpope/vim-ragtag.git'
 Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-repeat'
+Bundle 'git://github.com/tpope/vim-rvm.git'
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
@@ -83,15 +85,12 @@ set lazyredraw
 set mousemodel=popup
 set pastetoggle=<F2>
 set splitbelow
-set visualbell
 set virtualedit=block
 set wildmenu
 
 set wildmode=longest:full,full
 set wildignore+=tags
 set winaltkeys=no
-
-
 
 if v:version >= 600
   set autoread
@@ -150,12 +149,12 @@ map  <F1>   <Esc>
 map! <F1>   <Esc>
 if has("gui_running")
   map <F2>  :Fancy<CR>
+  set guioptions-=T
+  set guioptions-=r
 endif
 map <F3>    :cnext<CR>
 map <F4>    :cc<CR>
 map <F5>    :cprev<CR>
-
-
 
 "set winwidth=100
 "set winheight=5
@@ -197,6 +196,6 @@ let g:user_zen_settings = {
 
 let coffee_compiler = '/usr/local/bin/coffee'
 
-colorscheme Tomorrow
+colorscheme Tomorrow-Night
 
 let g:neocomplcache_enable_at_startup = 1
