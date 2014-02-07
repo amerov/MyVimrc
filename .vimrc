@@ -26,9 +26,9 @@ Bundle 'Shougo/neocomplcache'
 Bundle '907th/vim-auto-save'
 Bundle 'git://github.com/tpope/vim-haml'
 Bundle 'git@github.com:tpope/vim-endwise.git'
-"Bundle 'git://github.com/ervandew/supertab.git'
+Bundle 'git://github.com/ervandew/supertab.git'
 Bundle 'git://github.com/terryma/vim-multiple-cursors'
-
+Bundle 'git://github.com/majutsushi/tagbar'
 Bundle 'git://github.com/mileszs/ack.vim.git'
 Bundle 'git://github.com/scrooloose/nerdcommenter.git'
 Bundle 'git://github.com/othree/html5.vim.git'
@@ -112,9 +112,9 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-set guifont=Monaco:h13
+set guifont=Ubuntu\ Mono\ 12
 colorscheme Tomorrow-Night
-let g:EasyMotion_leader_key = '<Leader>'
+"let g:EasyMotion_leader_key = '<Leader>'
 let g:airline_enable_fugitive=1
 let g:airline_enable_syntastic=1
 let g:airline_enable_bufferline=1
@@ -149,3 +149,4 @@ nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outl
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 set noswapfile
+set guioptions-=T
