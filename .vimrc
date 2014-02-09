@@ -150,3 +150,4 @@ nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 set noswapfile
 set guioptions-=T
+set clipboard=unnamedplus
