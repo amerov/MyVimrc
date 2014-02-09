@@ -39,6 +39,9 @@ Bundle 'git://github.com/pangloss/vim-javascript.git'
 Bundle 'git://github.com/walm/jshint.vim.git'
 Bundle 'git://github.com/wavded/vim-stylus.git'
 Bundle "mattn/emmet-vim"
+Bundle "astashov/vim-ruby-debugger"
+Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
+
 syntax on
 filetype plugin indent on
 set number
@@ -114,7 +117,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 set guifont=Ubuntu\ Mono\ 12
 colorscheme Tomorrow-Night
-"let g:EasyMotion_leader_key = '<Leader>'
+"let g:EasyMotion_leader_key = '<eader>'
 let g:airline_enable_fugitive=1
 let g:airline_enable_syntastic=1
 let g:airline_enable_bufferline=1
@@ -149,5 +152,5 @@ nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outl
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 set noswapfile
-set guioptions-=T
 set clipboard=unnamedplus
+set guioptions-=T
