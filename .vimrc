@@ -43,6 +43,7 @@ Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
 
 syntax on
 filetype plugin indent on
+filetype indent on
 set number
 set autoindent
 set termencoding=utf-8
