@@ -3,7 +3,6 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
-Bundle 'L9'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
@@ -66,9 +65,6 @@ set showmode
 au FileType coffee set softtabstop=2 tabstop=2 shiftwidth=2
 au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
 nnoremap <silent> <Space> :nohl<Bar>:echo<CR>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
