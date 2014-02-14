@@ -68,10 +68,10 @@ set showmode
 au FileType coffee set softtabstop=2 tabstop=2 shiftwidth=2
 au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
 nnoremap <silent> <Space> :nohl<Bar>:echo<CR>
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
+"set guioptions-=r
+"set guioptions-=R
+"set guioptions-=l
+"set guioptions-=L
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -175,6 +175,7 @@ endif
 if has("gui_running")
   colorscheme Tomorrow
   if has("unix") || has("linux")
+    set clipboard=unnamedplus
     set guifont=Consolas\ 12
   endif
 endif
