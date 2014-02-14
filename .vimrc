@@ -6,7 +6,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-rails.git'
 Bundle 'SirVer/ultisnips'
@@ -25,8 +25,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle '907th/vim-auto-save'
 Bundle 'git://github.com/tpope/vim-haml'
 Bundle 'git@github.com:tpope/vim-endwise.git'
-Bundle 'git://github.com/ervandew/supertab.git'
-Bundle 'git://github.com/terryma/vim-multiple-cursors'
+"Bundle 'git://github.com/ervandew/supertab.git'
 Bundle 'git://github.com/majutsushi/tagbar'
 Bundle 'git://github.com/mileszs/ack.vim.git'
 Bundle 'git://github.com/scrooloose/nerdcommenter.git'
@@ -40,10 +39,13 @@ Bundle 'git://github.com/wavded/vim-stylus.git'
 Bundle "mattn/emmet-vim"
 Bundle "astashov/vim-ruby-debugger"
 Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
+Bundle "git@github.com:int3/vim-extradite.git"
 
 syntax on
 filetype plugin indent on
 filetype indent on
+set hidden 
+set magic
 set number
 set autoindent
 set termencoding=utf-8
@@ -66,6 +68,10 @@ set showmode
 au FileType coffee set softtabstop=2 tabstop=2 shiftwidth=2
 au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
 nnoremap <silent> <Space> :nohl<Bar>:echo<CR>
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -106,22 +112,23 @@ set smartcase
 set gdefault
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-tab>"
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-set guifont=Ubuntu\ Mono\ 12
-colorscheme Tomorrow-Night
 "let g:EasyMotion_leader_key = '<eader>'
 let g:airline_enable_fugitive=1
 let g:airline_enable_syntastic=1
 let g:airline_enable_bufferline=1
 
+" Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 
+"let g:neocomplcache_enable_auto_select = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 set wildignore+=tags
 set wildignore+=*/tmp/*
 set wildignore+=*/.idea/*
@@ -131,6 +138,7 @@ set wildignore+=*/public/*
 set wildignore+=*/chef/*
 set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
 autocmd vimenter * NERDTree
 
@@ -138,17 +146,36 @@ let g:unite_enable_start_insert = 1
 let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
 let g:unite_winheight = 10
-let g:unite_candidate_icon="▷"
+"let g:unite_candidate_icon="▷"
 
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <C-p> :Unite file_rec/async:!<cr>
 nnoremap <C-b> :Unite buffer<cr>
 nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
 nnoremap <leader>f :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
 nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 set noswapfile
+set nobackup
+set nowb
 set clipboard=unnamed
 set guioptions-=T
+colorscheme Tomorrow-Night
+
+if has("gui_macvim")
+    let g:ruby_debugger_progname = 'mvim'
+    set gfn=Consolas:h14
+
+    " Open MacVim in fullscreen mode
+    set fuoptions=maxvert,maxhorz
+    au GUIEnter * set fullscreen
+endif
+
+if has("gui_running")
+  colorscheme Tomorrow
+  if has("unix") || has("linux")
+    set guifont=Consolas\ 12
+  endif
+endif
+
