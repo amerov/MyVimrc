@@ -158,7 +158,7 @@ nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outl
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
 set noswapfile
 set nobackup
-set nowb
+"set nowb
 set clipboard=unnamed
 set guioptions-=T
 colorscheme Tomorrow-Night
