@@ -164,15 +164,16 @@ set guioptions-=T
 colorscheme Tomorrow-Night
 
 
-if has("gui_running")
-  colorscheme Tomorrow
-  if has("unix") || has("linux") || !has("gui_macvim")
-    set clipboard=unnamedplus
-    "set guifont=Consolas\ 12
-  endif
-endif
 
 if has("gui_macvim")
     let g:ruby_debugger_progname = 'mvim'
     set gfn=Consolas:h14
+else
+    if has("gui_running")
+        colorscheme Tomorrow
+        if has("unix") || has("linux") || has("gui_macvim")
+            set clipboard=unnamedplus
+            set guifont=Consolas\ 12
+        endif
+    endif
 endif
