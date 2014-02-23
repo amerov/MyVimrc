@@ -8,6 +8,7 @@ Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 "Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Shougo/unite.vim'
+Bundle 'git@github.com:Shougo/neomru.vim.git'
 Bundle 'tpope/vim-rails.git'
 Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/syntastic'
@@ -167,9 +168,6 @@ if has("gui_macvim")
     let g:ruby_debugger_progname = 'mvim'
     set gfn=Consolas:h14
     set clipboard=unnamed
-    " Open MacVim in fullscreen mode
-    set fuoptions=maxvert,maxhorz
-    au GUIEnter * set fullscreen
 endif
 
 if has("gui_running")
