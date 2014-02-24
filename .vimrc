@@ -168,13 +168,12 @@ if has("gui_macvim")
     let g:ruby_debugger_progname = 'mvim'
     set gfn=Consolas:h14
     set clipboard=unnamed
-endif
-
-if has("gui_running")
-  colorscheme Tomorrow
-  if has("unix") || has("linux")
-    set clipboard=unnamedplus
-    set guifont=Consolas\ 12
-  endif
+    colorscheme Tomorrow
+elseif has("gui_running")
+    colorscheme Tomorrow
+    if has("unix") || has("linux")
+        set clipboard=unnamedplus
+        set guifont=Consolas\ 12
+    endif
 endif
 
