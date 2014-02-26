@@ -9,23 +9,24 @@ Bundle 'tpope/vim-fugitive'
 "Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Shougo/unite.vim'
 Bundle 'git@github.com:Shougo/neomru.vim.git'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'git://github.com/tpope/vim-rvm.git'
 Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-rake'
+Bundle "astashov/vim-ruby-debugger"
+Bundle 'git@github.com:tpope/vim-endwise.git'
 Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'https://github.com/tpope/vim-surround.git'
 Bundle 'git://github.com/altercation/vim-colors-solarized.git'
 Bundle 'git://github.com/chriskempson/vim-tomorrow-theme.git'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-rake'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'git://github.com/tpope/vim-rvm.git'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'Shougo/neocomplcache'
 Bundle '907th/vim-auto-save'
 Bundle 'git://github.com/tpope/vim-haml'
-Bundle 'git@github.com:tpope/vim-endwise.git'
 "Bundle 'git://github.com/ervandew/supertab.git'
 Bundle 'git://github.com/majutsushi/tagbar'
 Bundle 'git://github.com/mileszs/ack.vim.git'
@@ -38,9 +39,11 @@ Bundle 'git://github.com/pangloss/vim-javascript.git'
 Bundle 'git://github.com/walm/jshint.vim.git'
 Bundle 'git://github.com/wavded/vim-stylus.git'
 Bundle "mattn/emmet-vim"
-Bundle "astashov/vim-ruby-debugger"
 Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
 Bundle "git@github.com:int3/vim-extradite.git"
+Bundle "Raimondi/delimitMate"
+Bundle "tpope/vim-repeat"
+Bundle "tpope/vim-abolish"
 
 syntax on
 filetype plugin indent on
@@ -87,6 +90,7 @@ endfunction
 " Spell checking
 if version >= 700
     " Turn off spell checking
+    set nospell
     menu Spell.off :setlocal spell spelllang= <cr>
     menu Spell.Russian+English :setlocal spell spelllang=ru,en <cr>
     menu Spell.Russian :setlocal spell spelllang=ru <cr>
@@ -114,10 +118,10 @@ set gdefault
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-tab>"
+
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby compiler ruby
 
 "let g:EasyMotion_leader_key = '<eader>'
 let g:airline_enable_fugitive=1
@@ -143,6 +147,7 @@ set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
 autocmd vimenter * NERDTree
+let g:NERDTreeDirArrows=0
 
 let g:unite_enable_start_insert = 1
 let g:unite_split_rule = "botright"
@@ -162,15 +167,14 @@ set noswapfile
 set nobackup
 "set nowb
 set guioptions-=T
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Eighties
 
 if has("gui_macvim")
     let g:ruby_debugger_progname = 'mvim'
-    set gfn=Consolas:h14
+    set gfn=Monaco:h14
     set clipboard=unnamed
-    colorscheme Tomorrow
+    colorscheme Tomorrow-Night-Eighties
 elseif has("gui_running")
-    colorscheme Tomorrow
     if has("unix") || has("linux")
         set clipboard=unnamedplus
         set guifont=Consolas\ 12
