@@ -44,6 +44,7 @@ Bundle "git@github.com:int3/vim-extradite.git"
 Bundle "Raimondi/delimitMate"
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-abolish"
+Bundle 'git@github.com:ngmy/vim-rubocop.git'
 
 syntax on
 filetype plugin indent on
@@ -180,4 +181,3 @@ elseif has("gui_running")
         set guifont=Consolas\ 12
     endif
 endif
-
