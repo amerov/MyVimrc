@@ -63,10 +63,10 @@ set softtabstop=4
 set expandtab 
 set cursorline 
 set wrap 
-set linebreak 
-set nolist
+"set linebreak 
+"set nolist
 "set scrolloff=3
-set modeline
+"set modeline
 set showmatch
 set showcmd
 set showmode
@@ -134,6 +134,7 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 
 let g:neocomplcache_enable_auto_select = 1
+let g:vimrubocop_extra_args = '-R'
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 set wildignore+=tags
@@ -181,3 +182,4 @@ elseif has("gui_running")
         set guifont=Consolas\ 12
     endif
 endif
+
