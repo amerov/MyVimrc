@@ -45,6 +45,10 @@ Bundle "Raimondi/delimitMate"
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-abolish"
 Bundle 'git@github.com:ngmy/vim-rubocop.git'
+Bundle 'git@github.com:nanotech/jellybeans.vim.git'
+Bundle 'git@github.com:w0ng/vim-hybrid.git'
+Bundle 'git@github.com:powerman/vim-plugin-ruscmd.git'
+
 
 syntax on
 filetype plugin indent on
