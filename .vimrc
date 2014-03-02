@@ -1,4 +1,3 @@
-set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -67,10 +66,10 @@ set softtabstop=4
 set expandtab 
 set cursorline 
 set wrap 
-"set linebreak 
-"set nolist
-"set scrolloff=3
-"set modeline
+set linebreak 
+set nolist
+set scrolloff=3
+set modeline
 set showmatch
 set showcmd
 set showmode
@@ -81,6 +80,10 @@ set guioptions-=r
 set guioptions-=R
 set guioptions-=l
 set guioptions-=L
+set autoread
+set wildmenu
+set lazyredraw
+set showfulltag
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -96,6 +99,7 @@ endfunction
 if version >= 700
     " Turn off spell checking
     set nospell
+    set spelllang=ru,en
     menu Spell.off :setlocal spell spelllang= <cr>
     menu Spell.Russian+English :setlocal spell spelllang=ru,en <cr>
     menu Spell.Russian :setlocal spell spelllang=ru <cr>
@@ -153,7 +157,8 @@ set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
 autocmd vimenter * NERDTree
-let g:NERDTreeDirArrows=0
+nmap <F7> :NERDTreeToggle<CR>
+"let g:NERDTreeDirArrows=0
 
 let g:unite_enable_start_insert = 1
 let g:unite_split_rule = "botright"
@@ -173,7 +178,7 @@ set noswapfile
 set nobackup
 "set nowb
 set guioptions-=T
-colorscheme Tomorrow-Night-Eighties
+colorscheme Tomorrow-Night
 
 if has("gui_macvim")
     let g:ruby_debugger_progname = 'mvim'
