@@ -1,3 +1,4 @@
+set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -178,13 +179,12 @@ set noswapfile
 set nobackup
 "set nowb
 set guioptions-=T
-colorscheme Tomorrow-Night
+colorscheme Tomorrow
 
 if has("gui_macvim")
     let g:ruby_debugger_progname = 'mvim'
-    set gfn=Monaco:h14
+    set gfn=Consolas:h12
     set clipboard=unnamed
-    colorscheme Tomorrow-Night-Eighties
 elseif has("gui_running")
     if has("unix") || has("linux")
         set clipboard=unnamedplus
