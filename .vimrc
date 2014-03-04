@@ -57,6 +57,7 @@ set hidden
 set magic
 set number
 set autoindent
+set encoding=utf-8
 set termencoding=utf-8
 set smartindent
 set smarttab
