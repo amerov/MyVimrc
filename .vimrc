@@ -19,10 +19,10 @@ Bundle 'git://github.com/majutsushi/tagbar'
 Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-abolish"
+Bundle '907th/vim-auto-save'
 
 " Text Edit 
 Bundle 'https://github.com/tpope/vim-surround.git'
-Bundle '907th/vim-auto-save'
 
 " Complete Code
 Bundle 'Shougo/neocomplcache'
@@ -70,14 +70,17 @@ Bundle 'git@github.com:jonathanfilip/vim-lucius.git'
 Bundle 'git@github.com:tomasr/molokai.git'
 
 syntax on
+set t_Co=256  
 filetype plugin indent on
 filetype indent on
+filetype on
 set hidden 
 set magic
 set number
 set autoindent
 set encoding=utf-8
 set termencoding=utf-8
+"set fileencoding=uft-8
 set smartindent
 set smarttab
 set ruler
@@ -85,7 +88,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4 
 set expandtab 
-set cursorline 
+set cursorline
 set wrap 
 set linebreak 
 set nolist
@@ -94,8 +97,6 @@ set modeline
 set showmatch
 set showcmd
 set showmode
-au FileType coffee set softtabstop=2 tabstop=2 shiftwidth=2
-au FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2
 nnoremap <silent> <Space> :nohl<Bar>:echo<CR>
 set guioptions-=r
 set guioptions-=R
@@ -103,6 +104,7 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=T
 set autoread
+set autowrite
 set wildmenu
 set lazyredraw
 set showfulltag
@@ -112,6 +114,9 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
+set copyindent
+set splitbelow
+set splitright
 "set gdefault
 set wildignore+=tags
 set wildignore+=*/tmp/*
@@ -124,6 +129,13 @@ set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
+autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 if version >= 700
     " Turn off spell checking
     set nospell
@@ -163,14 +175,18 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_auto_select = 1
 
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+"noremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+"inoautocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 let g:vimrubocop_extra_args = '-R'
 
 autocmd vimenter * NERDTree
-nmap <F7> :NERDTreeToggle<CR>
+nmap <F2> :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks=1
 "let g:NERDTreeDirArrows=0
-
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 let g:unite_enable_start_insert = 1
 let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
@@ -178,24 +194,24 @@ let g:unite_winheight = 10
 "let g:unite_candidate_icon="▷"
 
 let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <C-p> :Unite file_rec/async:!<cr>
-nnoremap <C-b> :Unite buffer<cr>
-nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>f :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <F3>  :Unite buffer<cr>
+nnoremap <F4>  :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <F5> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank  history/yank<cr>
 nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
-colorscheme Tomorrow
+colorscheme Tomorrow-Night
 
-if has("gui_macvim")
-    let g:ruby_debugger_progname = 'mvim'
+if has("mac")
     set gfn=Monaco:h14
-    set clipboard=unnamed
-elseif has("gui_running")
-    if has("unix") || has("linux")
-        set clipboard=unnamedplus
-        set guifont=Consolas\ 14
-    endif
+elseif has("unix") || has("linux")
+    set guifont=Consolas\ 12
 endif
 
+if has('clipboard')
+    if has('unnamedplus')
+        set clipboard=unnamedplus
+    else
+        set clipboard=unnamed
+    endif
+endif
