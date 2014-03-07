@@ -54,7 +54,7 @@ Bundle 'git://github.com/hokaccha/vim-html5validator.git'
 Bundle "mattn/emmet-vim"
 Bundle 'git://github.com/tpope/vim-haml'
 Bundle 'git://github.com/hail2u/vim-css3-syntax.git'
-Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
+"Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
 "Bundle 'git://github.com/wavded/vim-stylus.git'
 
 "  Colorschems 
@@ -197,10 +197,13 @@ let g:unite_source_history_yank_enable = 1
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <F4>  :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
 nnoremap <F5> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
+nnoremap <C-p> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
 nnoremap <F6>  :Unite buffer<cr>
+nnoremap <C-b>  :Unite buffer<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank  history/yank<cr>
 nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
-colorscheme Tomorrow-Night-Eighties
+colorscheme solarized
+
 
 if has("mac")
     set gfn=Monaco:h14
@@ -218,12 +221,15 @@ endif
 
 
 " Copy current buffer path relative to root of VIM session to system clipboard
-nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+nnoremap <Leader>Yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
 " Copy current filename to system clipboard
-nnoremap <Leader>yf :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
+nnoremap <Leader>Yf :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
 " Copy current buffer path without filename to system clipboard
-nnoremap <Leader>yd :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
+nnoremap <Leader>Yd :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
+
+highlight clear SignColumn
+autocmd ColorScheme * highlight clear SignColumn
 
