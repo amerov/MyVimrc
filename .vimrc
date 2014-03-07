@@ -231,5 +231,5 @@ nnoremap <Leader>Yd :let @*=expand("%:h")<cr>:echo "Copied file directory to cli
 au BufWritePost .vimrc so ~/.vimrc
 
 highlight clear SignColumn
-autocmd ColorScheme * highlight clear SignColumn
+autocmd ColorScheme * highlight SignColumn ctermbg=8
 
