@@ -200,7 +200,7 @@ nnoremap <F5> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async
 nnoremap <F6>  :Unite buffer<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank  history/yank<cr>
 nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Eighties
 
 if has("mac")
     set gfn=Monaco:h14
@@ -223,3 +223,7 @@ nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"
 nnoremap <Leader>yf :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
 " Copy current buffer path without filename to system clipboard
 nnoremap <Leader>yd :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
+
+" automatically reload vimrc when it's saved
+au BufWritePost .vimrc so ~/.vimrc
+
