@@ -63,19 +63,22 @@ Bundle 'git://github.com/chriskempson/vim-tomorrow-theme.git'
 Bundle 'git@github.com:nanotech/jellybeans.vim.git'
 Bundle 'git@github.com:w0ng/vim-hybrid.git'
 Bundle 'git@github.com:tomasr/molokai.git'
-Bundle 'git@github.com:jpo/vim-railscasts-theme.git'
+Bundle 'git@github.com:oguzbilgic/sexy-railscasts-theme.git'
 Bundle 'git@github.com:jnurmine/Zenburn.git'
 Bundle 'git@github.com:sjl/badwolf.git'
 Bundle 'git@github.com:jonathanfilip/vim-lucius.git'
 Bundle 'git@github.com:tomasr/molokai.git'
+Bundle 'git@github.com:Lokaltog/vim-distinguished.git'
 
+
+set re=2
 syntax on
 set t_Co=256  
 filetype plugin indent on
 filetype indent on
 filetype on
 set hidden 
-set magic
+"set magic
 set number
 set autoindent
 set encoding=utf-8
@@ -107,7 +110,7 @@ set autoread
 set autowrite
 set wildmenu
 set lazyredraw
-set showfulltag
+"set showfulltag
 set noswapfile
 set nobackup
 set incsearch
@@ -163,7 +166,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
-let g:EasyMotion_leader_key = '<eader>'
+let g:EasyMotion_leader_key = '<leader>'
 let g:airline_enable_fugitive=1
 let g:airline_enable_syntastic=1
 let g:airline_enable_bufferline=1
@@ -202,13 +205,13 @@ nnoremap <F6>  :Unite buffer<cr>
 nnoremap <C-b>  :Unite buffer<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank  history/yank<cr>
 nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
-colorscheme solarized
+colorscheme Tomorrow-Night
 
 
 if has("mac")
-    set gfn=Monaco:h14
+    set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Consolas\ 12
+    set guifont=Ubuntu\ Mono
 endif
 
 if has('clipboard')
@@ -221,15 +224,11 @@ endif
 
 
 " Copy current buffer path relative to root of VIM session to system clipboard
-nnoremap <Leader>Yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+nnoremap <Leader><Leader>p :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
 " Copy current filename to system clipboard
-nnoremap <Leader>Yf :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
+nnoremap <Leader><Leader>c :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
 " Copy current buffer path without filename to system clipboard
-nnoremap <Leader>Yd :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
+nnoremap <Leader><Leader>d :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
-
-highlight clear SignColumn
-autocmd ColorScheme * highlight SignColumn ctermbg=8
-
