@@ -13,7 +13,7 @@ Bundle 'git@github.com:Shougo/neomru.vim.git'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'git@github.com:powerman/vim-plugin-ruscmd.git'
-Bundle 'git://github.com/ervandew/supertab.git'
+"Bundle 'git://github.com/ervandew/supertab.git'
 Bundle 'git://github.com/majutsushi/tagbar'
 "Bundle 'git://github.com/mileszs/ack.vim.git'
 Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
@@ -234,4 +234,5 @@ nnoremap <Leader><Leader>d :let @*=expand("%:h")<cr>:echo "Copied file directory
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
 
-let g:SuperTabDefaultCompletionType = "<c-n>"
+"let g:SuperTabDefaultCompletionType = "<c-n>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
