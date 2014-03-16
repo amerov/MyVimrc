@@ -69,6 +69,7 @@ Bundle 'git@github.com:sjl/badwolf.git'
 Bundle 'git@github.com:jonathanfilip/vim-lucius.git'
 Bundle 'git@github.com:tomasr/molokai.git'
 Bundle 'git@github.com:Lokaltog/vim-distinguished.git'
+Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
 
 
 set re=2
@@ -232,3 +233,5 @@ nnoremap <Leader><Leader>d :let @*=expand("%:h")<cr>:echo "Copied file directory
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
