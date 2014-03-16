@@ -69,7 +69,6 @@ Bundle 'git@github.com:sjl/badwolf.git'
 Bundle 'git@github.com:jonathanfilip/vim-lucius.git'
 Bundle 'git@github.com:tomasr/molokai.git'
 Bundle 'git@github.com:Lokaltog/vim-distinguished.git'
-Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
 
 
 set re=2
