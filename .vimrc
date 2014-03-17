@@ -71,7 +71,6 @@ Bundle 'git@github.com:tomasr/molokai.git'
 Bundle 'git@github.com:Lokaltog/vim-distinguished.git'
 
 
-set re=2
 syntax on
 set t_Co=256  
 filetype plugin indent on
@@ -209,7 +208,7 @@ colorscheme Tomorrow-Night
 
 
 if has("mac")
-    set gfn=Melno:h12
+    set gfn=Consolas:h12
 elseif has("unix") || has("linux")
     set guifont=Ubuntu\ Mono
 endif
