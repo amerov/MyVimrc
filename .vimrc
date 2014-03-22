@@ -33,7 +33,7 @@ Bundle 'git://github.com/scrooloose/nerdcommenter.git'
 " Git
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
-Bundle "git@github.com:int3/vim-extradite.git"
+"Bundle "git@github.com:int3/vim-extradite.git"
 
 "For Rails 
 Bundle 'tpope/vim-rails.git'
