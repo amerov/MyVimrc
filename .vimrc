@@ -15,18 +15,18 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'git@github.com:powerman/vim-plugin-ruscmd.git'
 "Bundle 'git://github.com/ervandew/supertab.git'
 Bundle 'git://github.com/majutsushi/tagbar'
-"Bundle 'git://github.com/mileszs/ack.vim.git'
+Bundle 'git://github.com/mileszs/ack.vim.git'
 Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-abolish"
 Bundle '907th/vim-auto-save'
-
+Bundle 'git@github.com:ntpeters/vim-better-whitespace.git'
 " Text Edit 
 Bundle 'https://github.com/tpope/vim-surround.git'
 
 " Complete Code
 Bundle 'Shougo/neocomplcache'
-Bundle 'SirVer/ultisnips'
+"Bundle 'SirVer/ultisnips'
 Bundle "Raimondi/delimitMate"
 Bundle 'git://github.com/scrooloose/nerdcommenter.git'
 
@@ -96,7 +96,7 @@ set linebreak
 set nolist
 set scrolloff=3
 set modeline
-set showmatch
+"set showmatch
 set showcmd
 set showmode
 nnoremap <silent> <Space> :nohl<Bar>:echo<CR>
@@ -171,13 +171,14 @@ let g:airline_enable_syntastic=1
 let g:airline_enable_bufferline=1
 
 " Use neocomplcache.
+let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 
-let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_enable_auto_select = 0
 
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"noremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 "inoautocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
@@ -208,7 +209,7 @@ colorscheme Tomorrow-Night
 
 
 if has("mac")
-    set gfn=Consolas:h12
+    set gfn=Monaco:h14
 elseif has("unix") || has("linux")
     set guifont=Ubuntu\ Mono
 endif
@@ -231,6 +232,7 @@ nnoremap <Leader><Leader>d :let @*=expand("%:h")<cr>:echo "Copied file directory
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
+set lines=999 columns=999
 
-"let g:SuperTabDefaultCompletionType = "<c-n>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"let g:SuperTabDefaultCompletionType = "<c-n>"
