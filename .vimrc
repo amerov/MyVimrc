@@ -15,12 +15,12 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'git@github.com:powerman/vim-plugin-ruscmd.git'
 "Bundle 'git://github.com/ervandew/supertab.git'
 Bundle 'git://github.com/majutsushi/tagbar'
-Bundle 'git://github.com/mileszs/ack.vim.git'
+"Bundle 'git://github.com/mileszs/ack.vim.git'
 Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-abolish"
 Bundle '907th/vim-auto-save'
-Bundle 'git@github.com:ntpeters/vim-better-whitespace.git'
+Bundle 'git@github.com:bronson/vim-trailing-whitespace.git'
 " Text Edit 
 Bundle 'https://github.com/tpope/vim-surround.git'
 
@@ -71,8 +71,8 @@ Bundle 'git@github.com:tomasr/molokai.git'
 Bundle 'git@github.com:Lokaltog/vim-distinguished.git'
 
 
+
 syntax on
-set t_Co=256  
 filetype plugin indent on
 filetype indent on
 filetype on
@@ -96,7 +96,7 @@ set linebreak
 set nolist
 set scrolloff=3
 set modeline
-"set showmatch
+set showmatch
 set showcmd
 set showmode
 nnoremap <silent> <Space> :nohl<Bar>:echo<CR>
@@ -131,13 +131,12 @@ set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
-autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2 
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+
 if version >= 700
     " Turn off spell checking
     set nospell
@@ -171,14 +170,13 @@ let g:airline_enable_syntastic=1
 let g:airline_enable_bufferline=1
 
 " Use neocomplcache.
-let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 
 let g:neocomplcache_enable_auto_select = 0
 
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+"noremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 "inoautocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
@@ -209,9 +207,9 @@ colorscheme Tomorrow-Night
 
 
 if has("mac")
-    set gfn=Monaco:h14
+    set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Ubuntu\ Mono
+    set guifont=Ubuntu\ Mono\ 12
 endif
 
 if has('clipboard')
@@ -232,7 +230,10 @@ nnoremap <Leader><Leader>d :let @*=expand("%:h")<cr>:echo "Copied file directory
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
-set lines=999 columns=999
 
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "let g:SuperTabDefaultCompletionType = "<c-n>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+highlight clear SignColumn
+autocmd ColorScheme * highlight clear SignColumn
+
