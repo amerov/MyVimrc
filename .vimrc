@@ -15,13 +15,15 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'git@github.com:powerman/vim-plugin-ruscmd.git'
 "Bundle 'git://github.com/ervandew/supertab.git'
 Bundle 'git://github.com/majutsushi/tagbar'
-"Bundle 'git://github.com/mileszs/ack.vim.git'
+Bundle 'git://github.com/mileszs/ack.vim.git'
 Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-abolish"
 Bundle '907th/vim-auto-save'
 Bundle 'git@github.com:bronson/vim-trailing-whitespace.git'
-" Text Edit 
+Bundle 'git@github.com:thinca/vim-quickrun.git'
+
+" Text Edit
 Bundle 'https://github.com/tpope/vim-surround.git'
 
 " Complete Code
@@ -69,7 +71,7 @@ Bundle 'git@github.com:sjl/badwolf.git'
 Bundle 'git@github.com:jonathanfilip/vim-lucius.git'
 Bundle 'git@github.com:tomasr/molokai.git'
 Bundle 'git@github.com:Lokaltog/vim-distinguished.git'
-
+Bundle 'chriskempson/base16-vim'
 
 
 syntax on
@@ -236,4 +238,3 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 highlight clear SignColumn
 autocmd ColorScheme * highlight clear SignColumn
-
