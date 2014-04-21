@@ -22,6 +22,7 @@ Bundle "tpope/vim-abolish"
 Bundle '907th/vim-auto-save'
 Bundle 'git@github.com:bronson/vim-trailing-whitespace.git'
 Bundle 'git@github.com:thinca/vim-quickrun.git'
+Bundle 'git@github.com:mhinz/vim-startify.git'
 
 " Text Edit
 Bundle 'https://github.com/tpope/vim-surround.git'
@@ -205,13 +206,14 @@ nnoremap <F6>  :Unite buffer<cr>
 nnoremap <C-b>  :Unite buffer<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank  history/yank<cr>
 nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
-colorscheme Tomorrow-Night
+colorscheme base16-default
+set background=dark
 
 
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Ubuntu\ Mono\ 12
+    set guifont=Consolas\ 12
 endif
 
 if has('clipboard')
@@ -238,3 +240,5 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 highlight clear SignColumn
 autocmd ColorScheme * highlight clear SignColumn
+let NERDTreeHijackNetrw=1
+set regexpengine=2
