@@ -3,7 +3,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Plugins 
+" Plugins
 Bundle 'gmarik/vundle'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'bling/vim-airline'
@@ -57,6 +57,7 @@ Bundle 'git://github.com/hokaccha/vim-html5validator.git'
 Bundle "mattn/emmet-vim"
 Bundle 'git://github.com/tpope/vim-haml'
 Bundle 'git://github.com/hail2u/vim-css3-syntax.git'
+Bundle 'slim-template/vim-slim.git'
 "Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
 "Bundle 'git://github.com/wavded/vim-stylus.git'
 
@@ -134,7 +135,7 @@ set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2 
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 
