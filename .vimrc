@@ -109,6 +109,7 @@ set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 set guioptions-=T
+set guioptions-=b
 set autoread
 set autowrite
 set wildmenu
@@ -200,7 +201,7 @@ let g:unite_winheight = 10
 
 let g:unite_source_history_yank_enable = 1
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <F4>  :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <F4>  :<C-u>Unite -buffer-name=mru     -start-insert file_mru<cr>
 nnoremap <F5> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
 nnoremap <C-p> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
 nnoremap <F6>  :Unite buffer<cr>
