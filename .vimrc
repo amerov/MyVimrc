@@ -228,3 +228,6 @@ highlight clear SignColumn
 autocmd ColorScheme * highlight clear SignColumn
 set regexpengine=2
 
+let g:startify_session_persistence = 1
+let g:startify_session_autoload    = 1
+
