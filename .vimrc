@@ -36,9 +36,8 @@ Bundle 'git://github.com/scrooloose/nerdcommenter.git'
 " Git
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
-"Bundle "git@github.com:int3/vim-extradite.git"
 
-"For Rails 
+"For Rails and Rails
 Bundle 'tpope/vim-rails.git'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'git://github.com/tpope/vim-rvm.git'
@@ -62,17 +61,6 @@ Bundle 'slim-template/vim-slim.git'
 "Bundle 'git://github.com/wavded/vim-stylus.git'
 
 "  Colorschems 
-Bundle 'git://github.com/altercation/vim-colors-solarized.git'
-Bundle 'git://github.com/chriskempson/vim-tomorrow-theme.git'
-Bundle 'git@github.com:nanotech/jellybeans.vim.git'
-Bundle 'git@github.com:w0ng/vim-hybrid.git'
-Bundle 'git@github.com:tomasr/molokai.git'
-Bundle 'git@github.com:oguzbilgic/sexy-railscasts-theme.git'
-Bundle 'git@github.com:jnurmine/Zenburn.git'
-Bundle 'git@github.com:sjl/badwolf.git'
-Bundle 'git@github.com:jonathanfilip/vim-lucius.git'
-Bundle 'git@github.com:tomasr/molokai.git'
-Bundle 'git@github.com:Lokaltog/vim-distinguished.git'
 Bundle 'chriskempson/base16-vim'
 
 
@@ -81,7 +69,7 @@ filetype plugin indent on
 filetype indent on
 filetype on
 set hidden 
-"set magic
+set magic
 set number
 set autoindent
 set encoding=utf-8
@@ -114,7 +102,7 @@ set autoread
 set autowrite
 set wildmenu
 set lazyredraw
-"set showfulltag
+set showfulltag
 set noswapfile
 set nobackup
 set incsearch
@@ -124,7 +112,6 @@ set smartcase
 set copyindent
 set splitbelow
 set splitright
-"set gdefault
 set wildignore+=tags
 set wildignore+=*/tmp/*
 set wildignore+=*/.idea/*
@@ -155,7 +142,7 @@ if version >= 700
     menu Spell.Previous\ Wrong\ Word<Tab>[s [s
     menu Spell.Next\ Wrong\ Word<Tab>]s ]s
 endif
-" Custom mappings for the unite buffer
+" Custom mappings for the unite
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
   " Play nice with supertab
@@ -180,9 +167,6 @@ let g:neocomplcache_enable_smart_case = 1
 
 let g:neocomplcache_enable_auto_select = 0
 
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"noremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
-"inoautocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
@@ -191,8 +175,9 @@ let g:vimrubocop_extra_args = '-R'
 autocmd vimenter * NERDTree
 nmap <F2> :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
-"let g:NERDTreeDirArrows=0
+let g:NERDTreeDirArrows=0
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+
 let g:unite_enable_start_insert = 1
 let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
@@ -205,12 +190,11 @@ nnoremap <F4>  :<C-u>Unite -buffer-name=mru     -start-insert file_mru<cr>
 nnoremap <F5> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
 nnoremap <C-p> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
 nnoremap <F6>  :Unite buffer<cr>
-nnoremap <C-b>  :Unite buffer<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank  history/yank<cr>
 nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
-colorscheme base16-default
-set background=dark
 
+colorscheme base16-chalk
+set background=dark
 
 if has("mac")
     set gfn=Melno:h12
@@ -230,17 +214,17 @@ endif
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader><Leader>p :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
 " Copy current filename to system clipboard
-nnoremap <Leader><Leader>c :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
+nnoremap <Leader><Leader>f :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
 " Copy current buffer path without filename to system clipboard
 nnoremap <Leader><Leader>d :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
 
-"let g:SuperTabDefaultCompletionType = "<c-n>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+noremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
 highlight clear SignColumn
 autocmd ColorScheme * highlight clear SignColumn
-let NERDTreeHijackNetrw=1
 set regexpengine=2
+
