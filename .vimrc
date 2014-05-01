@@ -193,8 +193,6 @@ nnoremap <F6>  :Unite buffer<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank  history/yank<cr>
 nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
 
-colorscheme base16-chalk
-set background=dark
 
 if has("mac")
     set gfn=Melno:h12
@@ -208,6 +206,11 @@ if has('clipboard')
     else
         set clipboard=unnamed
     endif
+endif
+
+if has('gui_running')
+    colorscheme base16-solarized
+    set background=light
 endif
 
 
@@ -230,4 +233,3 @@ set regexpengine=2
 
 let g:startify_session_persistence = 1
 let g:startify_session_autoload    = 1
-
