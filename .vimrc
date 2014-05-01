@@ -187,7 +187,7 @@ let g:unite_winheight = 10
 let g:unite_source_history_yank_enable = 1
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <F4>  :<C-u>Unite -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <F5> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
+nnoremap <F5> :<C-u>Unite -buffer-name=files -start-insert  file_rec/async:!<cr>
 nnoremap <C-p> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
 nnoremap <F6>  :Unite buffer<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank  history/yank<cr>
@@ -197,7 +197,7 @@ nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Consolas\ 12
+    set guifont=Consolas\ 14
 endif
 
 if has('clipboard')
@@ -233,3 +233,4 @@ set regexpengine=2
 
 let g:startify_session_persistence = 1
 let g:startify_session_autoload    = 1
+
