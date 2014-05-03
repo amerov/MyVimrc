@@ -62,6 +62,7 @@ Bundle 'slim-template/vim-slim.git'
 
 "  Colorschems 
 Bundle 'chriskempson/base16-vim'
+Bundle 'git@github.com:w0ng/vim-hybrid.git'
 
 
 syntax on
@@ -175,7 +176,7 @@ let g:vimrubocop_extra_args = '-R'
 autocmd vimenter * NERDTree
 nmap <F2> :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
-let g:NERDTreeDirArrows=0
+"let g:NERDTreeDirArrows=0
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 
 let g:unite_enable_start_insert = 1
@@ -197,7 +198,7 @@ nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Consolas\ 14
+    set guifont=Consolas\ 12
 endif
 
 if has('clipboard')
@@ -209,8 +210,8 @@ if has('clipboard')
 endif
 
 if has('gui_running')
-    colorscheme base16-solarized
-    set background=light
+    colorscheme hybrid
+    set background=dark
 endif
 
 
@@ -227,10 +228,11 @@ au BufWritePost .vimrc so ~/.vimrc
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 noremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
-highlight clear SignColumn
-autocmd ColorScheme * highlight clear SignColumn
 set regexpengine=2
 
 let g:startify_session_persistence = 1
 let g:startify_session_autoload    = 1
+
+highlight clear SignColumn
+autocmd ColorScheme * highlight clear SignColumn
 
