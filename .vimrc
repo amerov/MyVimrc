@@ -5,11 +5,11 @@ call vundle#rc()
 
 " Plugins
 Bundle 'gmarik/vundle'
-Bundle 'Shougo/vimproc.vim'
+"Bundle 'Shougo/vimproc.vim'
 Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Shougo/unite.vim'
-Bundle 'git@github.com:Shougo/neomru.vim.git'
+"Bundle 'Shougo/unite.vim'
+"Bundle 'git@github.com:Shougo/neomru.vim.git'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'git@github.com:powerman/vim-plugin-ruscmd.git'
@@ -23,7 +23,9 @@ Bundle '907th/vim-auto-save'
 Bundle 'git@github.com:bronson/vim-trailing-whitespace.git'
 Bundle 'git@github.com:thinca/vim-quickrun.git'
 Bundle 'git@github.com:mhinz/vim-startify.git'
+Bundle 'git@github.com:kien/ctrlp.vim.git'
 
+Bundle 'flazz/vim-colorschemes'
 " Text Edit
 Bundle 'https://github.com/tpope/vim-surround.git'
 
@@ -143,15 +145,15 @@ if version >= 700
     menu Spell.Previous\ Wrong\ Word<Tab>[s [s
     menu Spell.Next\ Wrong\ Word<Tab>]s ]s
 endif
-" Custom mappings for the unite
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  " Play nice with supertab
-  let b:SuperTabDisabled=1
-  " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-endfunction
+"" Custom mappings for the unite
+"autocmd FileType unite call s:unite_settings()
+"function! s:unite_settings()
+  "" Play nice with supertab
+  "let b:SuperTabDisabled=1
+  "" Enable navigation with control-j and control-k in insert mode
+  "imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  "imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+"endfunction
 
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
@@ -179,20 +181,20 @@ let NERDTreeShowBookmarks=1
 "let g:NERDTreeDirArrows=0
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 
-let g:unite_enable_start_insert = 1
-let g:unite_split_rule = "botright"
-let g:unite_force_overwrite_statusline = 0
-let g:unite_winheight = 10
-"let g:unite_candidate_icon="▷"
+"let g:unite_enable_start_insert = 1
+"let g:unite_split_rule = "botright"
+"let g:unite_force_overwrite_statusline = 0
+"let g:unite_winheight = 10
+""let g:unite_candidate_icon="▷"
 
-let g:unite_source_history_yank_enable = 1
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <F4>  :<C-u>Unite -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <F5> :<C-u>Unite -buffer-name=files -start-insert  file_rec/async:!<cr>
-nnoremap <C-p> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
-nnoremap <F6>  :Unite buffer<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank  history/yank<cr>
-nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
+"let g:unite_source_history_yank_enable = 1
+""call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"nnoremap <F4>  :<C-u>Unite -buffer-name=mru     -start-insert file_mru<cr>
+"nnoremap <F5> :<C-u>Unite -buffer-name=files -start-insert  file_rec/async:!<cr>
+"nnoremap <C-p> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
+"nnoremap <F6>  :Unite buffer<cr>
+"nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank  history/yank<cr>
+"nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=grep  grep<cr>
 
 
 if has("mac")
@@ -236,3 +238,5 @@ let g:startify_session_autoload    = 1
 highlight clear SignColumn
 autocmd ColorScheme * highlight clear SignColumn
 
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_working_path_mode = 'cr'
