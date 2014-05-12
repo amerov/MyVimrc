@@ -24,6 +24,7 @@ Bundle 'git@github.com:bronson/vim-trailing-whitespace.git'
 Bundle 'git@github.com:thinca/vim-quickrun.git'
 Bundle 'git@github.com:mhinz/vim-startify.git'
 Bundle 'git@github.com:kien/ctrlp.vim.git'
+Bundle 'git@github.com:edsono/vim-matchit.git'
 
 Bundle 'flazz/vim-colorschemes'
 " Text Edit
@@ -175,7 +176,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 let g:vimrubocop_extra_args = '-R'
 
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 nmap <F2> :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
 "let g:NERDTreeDirArrows=0
@@ -200,7 +201,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Consolas\ 12
+    set guifont=Monaco\ 12
 endif
 
 if has('clipboard')
@@ -212,7 +213,8 @@ if has('clipboard')
 endif
 
 if has('gui_running')
-    colorscheme hybrid
+    colorscheme Tomorrow-Night-Bright
+
     set background=dark
 endif
 
@@ -240,3 +242,5 @@ autocmd ColorScheme * highlight clear SignColumn
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'cr'
+set laststatus=2
+
