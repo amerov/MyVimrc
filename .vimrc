@@ -24,6 +24,7 @@ Bundle 'git@github.com:bronson/vim-trailing-whitespace.git'
 Bundle 'git@github.com:thinca/vim-quickrun.git'
 Bundle 'git@github.com:mhinz/vim-startify.git'
 Bundle 'git@github.com:kien/ctrlp.vim.git'
+Bundle 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
 Bundle 'git@github.com:edsono/vim-matchit.git'
 
 Bundle 'flazz/vim-colorschemes'
@@ -243,4 +244,7 @@ autocmd ColorScheme * highlight clear SignColumn
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'cr'
 set laststatus=2
+set display-=unix
 
+nnoremap <c-]> :CtrlPtjump<cr>
+vnoremap <c-]> :CtrlPtjumpVisual<cr>
