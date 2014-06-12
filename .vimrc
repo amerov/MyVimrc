@@ -249,5 +249,3 @@ nnoremap <c-]> :CtrlPtjump<cr>
 vnoremap <c-]> :CtrlPtjumpVisual<cr>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
-
-autocmd BufRead,BufNewFile *.haml setlocal foldmethod=syntax
