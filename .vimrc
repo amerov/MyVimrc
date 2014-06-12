@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Plugins
 Bundle 'gmarik/vundle'
@@ -67,7 +67,7 @@ Bundle 'slim-template/vim-slim.git'
 "  Colorschems 
 Bundle 'chriskempson/base16-vim'
 Bundle 'git@github.com:w0ng/vim-hybrid.git'
-
+call vundle#end()  
 
 syntax on
 filetype plugin indent on
@@ -202,7 +202,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Monaco\ 12
+    set guifont=Ubuntu\ Mono\ 12
 endif
 
 if has('clipboard')
@@ -214,11 +214,10 @@ if has('clipboard')
 endif
 
 if has('gui_running')
-    colorscheme Tomorrow-Night-Bright
 
-    set background=dark
 endif
 
+colorscheme Tomorrow
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader><Leader>p :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -248,3 +247,7 @@ set display-=unix
 
 nnoremap <c-]> :CtrlPtjump<cr>
 vnoremap <c-]> :CtrlPtjumpVisual<cr>
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+autocmd BufRead,BufNewFile *.haml setlocal foldmethod=syntax
