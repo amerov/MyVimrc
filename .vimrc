@@ -26,10 +26,12 @@ Bundle 'git@github.com:mhinz/vim-startify.git'
 Bundle 'git@github.com:kien/ctrlp.vim.git'
 Bundle 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
 Bundle 'git@github.com:edsono/vim-matchit.git'
+Bundle 'git@github.com:troydm/easybuffer.vim.git'
 
 Bundle 'flazz/vim-colorschemes'
 " Text Edit
 Bundle 'https://github.com/tpope/vim-surround.git'
+Bundle 'git@github.com:terryma/vim-expand-region.git'
 
 " Complete Code
 Bundle 'Shougo/neocomplcache'
@@ -249,3 +251,4 @@ nnoremap <c-]> :CtrlPtjump<cr>
 vnoremap <c-]> :CtrlPtjumpVisual<cr>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
