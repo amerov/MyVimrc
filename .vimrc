@@ -15,7 +15,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'git@github.com:powerman/vim-plugin-ruscmd.git'
 "Bundle 'git://github.com/ervandew/supertab.git'
 Bundle 'git://github.com/majutsushi/tagbar'
-Bundle 'git://github.com/mileszs/ack.vim.git'
+Bundle 'git@github.com:rking/ag.vim.git'
 Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-abolish"
@@ -204,7 +204,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Ubuntu\ Mono\ 12
+    set guifont=Ubuntu\ Mono\ 13
 endif
 
 if has('clipboard')
@@ -219,14 +219,14 @@ if has('gui_running')
 
 endif
 
-colorscheme Tomorrow
+colorscheme Tomorrow-Night
 
 " Copy current buffer path relative to root of VIM session to system clipboard
-nnoremap <Leader><Leader>p :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+nnoremap <Leader><Leader>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
 " Copy current filename to system clipboard
-nnoremap <Leader><Leader>f :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
+nnoremap <Leader><Leader>f :let @+=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
 " Copy current buffer path without filename to system clipboard
-nnoremap <Leader><Leader>d :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
+nnoremap <Leader><Leader>d :let @+=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
@@ -250,5 +250,5 @@ set display-=unix
 nnoremap <c-]> :CtrlPtjump<cr>
 vnoremap <c-]> :CtrlPtjumpVisual<cr>
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+"let g:ackprg = 'ag --nogroup --nocolor --column'
 
