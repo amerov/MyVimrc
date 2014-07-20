@@ -69,6 +69,8 @@ Bundle 'slim-template/vim-slim.git'
 "  Colorschems 
 Bundle 'chriskempson/base16-vim'
 Bundle 'git@github.com:w0ng/vim-hybrid.git'
+
+
 call vundle#end()  
 
 syntax on
@@ -204,7 +206,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Ubuntu\ Mono\ 13
+    set guifont=Consolas\ 12
 endif
 
 if has('clipboard')
@@ -219,7 +221,7 @@ if has('gui_running')
 
 endif
 
-colorscheme Tomorrow-Night
+colorscheme solarized
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader><Leader>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -231,8 +233,8 @@ nnoremap <Leader><Leader>d :let @+=expand("%:h")<cr>:echo "Copied file directory
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
 
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-noremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
+au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "<TAB>"
 
 set regexpengine=2
 
@@ -249,6 +251,9 @@ set display-=unix
 
 nnoremap <c-]> :CtrlPtjump<cr>
 vnoremap <c-]> :CtrlPtjumpVisual<cr>
+let g:tagbar_type_javascript = {
+    \ 'ctagsbin' : '/usr/local/bin/jstags'
+\ }
 
-"let g:ackprg = 'ag --nogroup --nocolor --column'
+set shortmess=a
 
