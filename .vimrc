@@ -38,6 +38,8 @@ Bundle 'Shougo/neocomplcache'
 "Bundle 'SirVer/ultisnips'
 Bundle "Raimondi/delimitMate"
 Bundle 'git://github.com/scrooloose/nerdcommenter.git'
+Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet-snippets'
 
 " Git
 Bundle 'airblade/vim-gitgutter'
@@ -136,7 +138,7 @@ autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2 
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 
-autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType sass,scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
 if version >= 700
     " Turn off spell checking
@@ -221,7 +223,7 @@ if has('gui_running')
 
 endif
 
-colorscheme solarized
+colorscheme hybrid
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader><Leader>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -255,5 +257,8 @@ let g:tagbar_type_javascript = {
     \ 'ctagsbin' : '/usr/local/bin/jstags'
 \ }
 
-set shortmess=a
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
+set shortmess=a
