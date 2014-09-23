@@ -27,7 +27,7 @@ Bundle 'git@github.com:mhinz/vim-startify.git'
 Bundle 'git@github.com:kien/ctrlp.vim.git'
 Bundle 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
 Bundle 'git@github.com:edsono/vim-matchit.git'
-Bundle 'git@github.com:troydm/easybuffer.vim.git'
+Bundle 'git@github.com:fholgado/minibufexpl.vim.git'
 Bundle 'git@github.com:sjl/gundo.vim.git'
 
 " Text Edit
@@ -43,7 +43,7 @@ Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 
 " Git
-Bundle 'git@github.com:mhinz/vim-signify.git'
+Bundle 'git@github.com:airblade/vim-gitgutter.git'
 Bundle 'tpope/vim-fugitive'
 
 "For Rails and Rails
@@ -238,13 +238,15 @@ au BufWritePost .vimrc so ~/.vimrc
 au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
 au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "<TAB>"
 
-set regexpengine=2
+if exists('&regexpengine')
+  set regexpengine=2
+endif
 
 let g:startify_session_persistence = 1
 let g:startify_session_autoload    = 1
 
-highlight clear SignColumn
-autocmd ColorScheme * highlight clear SignColumn
+"highlight clear SignColumn
+"autocmd ColorScheme * highlight clear SignColumn
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'cr'
@@ -263,8 +265,9 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 set shortmess=a
 
-
 let g:tagbar_type_javascript = {
     \ 'ctagsbin' : '~/node_modules/jstags/bin/jstags'
 \ }
+
+let g:miniBufExplorerAutoStart = 0
 
