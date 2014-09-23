@@ -16,7 +16,8 @@ Bundle 'git@github.com:powerman/vim-plugin-ruscmd.git'
 "Bundle 'git://github.com/ervandew/supertab.git'
 Bundle 'git://github.com/majutsushi/tagbar'
 Bundle 'git@github.com:rking/ag.vim.git'
-Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
+"Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
+Bundle "git@github.com:Yggdroot/indentLine.git"
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-abolish"
 Bundle '907th/vim-auto-save'
@@ -27,8 +28,8 @@ Bundle 'git@github.com:kien/ctrlp.vim.git'
 Bundle 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
 Bundle 'git@github.com:edsono/vim-matchit.git'
 Bundle 'git@github.com:troydm/easybuffer.vim.git'
+Bundle 'git@github.com:sjl/gundo.vim.git'
 
-Bundle 'flazz/vim-colorschemes'
 " Text Edit
 Bundle 'https://github.com/tpope/vim-surround.git'
 Bundle 'git@github.com:terryma/vim-expand-region.git'
@@ -42,7 +43,7 @@ Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 
 " Git
-Bundle 'airblade/vim-gitgutter'
+Bundle 'git@github.com:mhinz/vim-signify.git'
 Bundle 'tpope/vim-fugitive'
 
 "For Rails and Rails
@@ -65,21 +66,22 @@ Bundle "mattn/emmet-vim"
 Bundle 'git://github.com/tpope/vim-haml'
 Bundle 'git://github.com/hail2u/vim-css3-syntax.git'
 Bundle 'slim-template/vim-slim.git'
+Bundle 'marijnh/tern_for_vim'
+
 "Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
 "Bundle 'git://github.com/wavded/vim-stylus.git'
 
-"  Colorschems 
-Bundle 'chriskempson/base16-vim'
-Bundle 'git@github.com:w0ng/vim-hybrid.git'
+"  Colorschems
+Bundle 'flazz/vim-colorschemes'
 
 
-call vundle#end()  
+call vundle#end()
 
 syntax on
 filetype plugin indent on
 filetype indent on
 filetype on
-set hidden 
+set hidden
 set magic
 set number
 set autoindent
@@ -126,9 +128,7 @@ set splitright
 set wildignore+=tags
 set wildignore+=*/tmp/*
 set wildignore+=*/.idea/*
-set wildignore+=*/vendor/*
 set wildignore+=*/spec/vcr/*
-set wildignore+=*/public/*
 set wildignore+=*/chef/*
 set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
@@ -208,7 +208,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Consolas\ 12
+    set guifont=Ubuntu\ Mono\ 11
 endif
 
 if has('clipboard')
@@ -262,3 +262,9 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 set shortmess=a
+
+
+let g:tagbar_type_javascript = {
+    \ 'ctagsbin' : '~/node_modules/jstags/bin/jstags'
+\ }
+
