@@ -27,7 +27,7 @@ Bundle 'git@github.com:mhinz/vim-startify.git'
 Bundle 'git@github.com:kien/ctrlp.vim.git'
 Bundle 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
 Bundle 'git@github.com:edsono/vim-matchit.git'
-Bundle 'git@github.com:fholgado/minibufexpl.vim.git'
+"Bundle 'git@github.com:fholgado/minibufexpl.vim.git'
 Bundle 'git@github.com:sjl/gundo.vim.git'
 
 " Text Edit
@@ -35,7 +35,7 @@ Bundle 'https://github.com/tpope/vim-surround.git'
 Bundle 'git@github.com:terryma/vim-expand-region.git'
 
 " Complete Code
-Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplete'
 "Bundle 'SirVer/ultisnips'
 Bundle "Raimondi/delimitMate"
 Bundle 'git://github.com/scrooloose/nerdcommenter.git'
@@ -58,6 +58,7 @@ Bundle 'git@github.com:tpope/vim-endwise.git'
 
 " Front End 
 Bundle 'git://github.com/pangloss/vim-javascript.git'
+
 Bundle 'git://github.com/walm/jshint.vim.git'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'git://github.com/othree/html5.vim.git'
@@ -74,6 +75,9 @@ Bundle 'marijnh/tern_for_vim'
 "  Colorschems
 Bundle 'flazz/vim-colorschemes'
 
+
+" Go lang
+Bundle "fatih/vim-go"
 
 call vundle#end()
 
@@ -172,12 +176,39 @@ let g:airline_enable_fugitive=1
 let g:airline_enable_syntastic=1
 let g:airline_enable_bufferline=1
 
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-let g:neocomplcache_enable_auto_select = 0
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
@@ -208,7 +239,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Ubuntu\ Mono\ 11
+    set guifont=Ubuntu\ Mono\ 10
 endif
 
 if has('clipboard')
@@ -223,7 +254,7 @@ if has('gui_running')
 
 endif
 
-colorscheme hybrid
+colorscheme Tomorrow
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader><Leader>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -245,19 +276,17 @@ endif
 let g:startify_session_persistence = 1
 let g:startify_session_autoload    = 1
 
-"highlight clear SignColumn
-"autocmd ColorScheme * highlight clear SignColumn
+highlight clear SignColumn
+autocmd ColorScheme * highlight clear SignColumn
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'cr'
 set laststatus=2
 set display-=unix
 
-nnoremap <c-]> :CtrlPtjump<cr>
+"nnoremap <c-]> :CtrlPtjump<cr>
 vnoremap <c-]> :CtrlPtjumpVisual<cr>
-let g:tagbar_type_javascript = {
-    \ 'ctagsbin' : '/usr/local/bin/jstags'
-\ }
+
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -268,6 +297,3 @@ set shortmess=a
 let g:tagbar_type_javascript = {
     \ 'ctagsbin' : '~/node_modules/jstags/bin/jstags'
 \ }
-
-let g:miniBufExplorerAutoStart = 0
-
