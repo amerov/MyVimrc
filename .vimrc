@@ -75,7 +75,6 @@ Bundle 'marijnh/tern_for_vim'
 "  Colorschems
 Bundle 'flazz/vim-colorschemes'
 
-
 " Go lang
 Bundle "fatih/vim-go"
 
@@ -284,9 +283,8 @@ let g:ctrlp_working_path_mode = 'cr'
 set laststatus=2
 set display-=unix
 
-"nnoremap <c-]> :CtrlPtjump<cr>
-vnoremap <c-]> :CtrlPtjumpVisual<cr>
-
+nnoremap <c-]> :CtrlPtjump<cr>
+"vnoremap <c-]> :CtrlPtjumpVisual<cr>
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -297,3 +295,5 @@ set shortmess=a
 let g:tagbar_type_javascript = {
     \ 'ctagsbin' : '~/node_modules/jstags/bin/jstags'
 \ }
+
+
