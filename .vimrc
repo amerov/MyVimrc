@@ -26,18 +26,18 @@ Bundle 'git@github.com:thinca/vim-quickrun.git'
 Bundle 'git@github.com:mhinz/vim-startify.git'
 Bundle 'git@github.com:kien/ctrlp.vim.git'
 Bundle 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
-Bundle 'git@github.com:edsono/vim-matchit.git'
+"Bundle 'git@github.com:edsono/vim-matchit.git'
 "Bundle 'git@github.com:fholgado/minibufexpl.vim.git'
 Bundle 'git@github.com:sjl/gundo.vim.git'
 
 " Text Edit
 Bundle 'https://github.com/tpope/vim-surround.git'
-Bundle 'git@github.com:terryma/vim-expand-region.git'
+"Bundle 'git@github.com:terryma/vim-expand-region.git'
 
 " Complete Code
 Bundle 'Shougo/neocomplete'
 "Bundle 'SirVer/ultisnips'
-Bundle "Raimondi/delimitMate"
+"Bundle "Raimondi/delimitMate"
 Bundle 'git://github.com/scrooloose/nerdcommenter.git'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
@@ -47,8 +47,8 @@ Bundle 'git@github.com:airblade/vim-gitgutter.git'
 Bundle 'tpope/vim-fugitive'
 
 "For Rails and Rails
-Bundle 'tpope/vim-rails.git'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rails.git'
 Bundle 'git://github.com/tpope/vim-rvm.git'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-rake'
@@ -56,8 +56,8 @@ Bundle 'tpope/vim-rake'
 Bundle 'git@github.com:ngmy/vim-rubocop.git'
 Bundle 'git@github.com:tpope/vim-endwise.git'
 
-" Front End 
-Bundle 'git://github.com/pangloss/vim-javascript.git'
+" Front End
+Bundle 'pangloss/vim-javascript'
 
 Bundle 'git://github.com/walm/jshint.vim.git'
 Bundle 'kchmck/vim-coffee-script'
@@ -67,7 +67,7 @@ Bundle "mattn/emmet-vim"
 Bundle 'git://github.com/tpope/vim-haml'
 Bundle 'git://github.com/hail2u/vim-css3-syntax.git'
 Bundle 'slim-template/vim-slim.git'
-Bundle 'marijnh/tern_for_vim'
+"Bundle 'marijnh/tern_for_vim'
 
 "Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
 "Bundle 'git://github.com/wavded/vim-stylus.git'
@@ -77,6 +77,8 @@ Bundle 'flazz/vim-colorschemes'
 
 " Go lang
 Bundle "fatih/vim-go"
+
+Plugin 'jaxbot/semantic-highlight.vim'
 
 call vundle#end()
 
@@ -96,17 +98,17 @@ set smarttab
 set ruler
 set tabstop=4
 set shiftwidth=4
-set softtabstop=4 
-set expandtab 
+set softtabstop=4
+set expandtab
 set cursorline
-set wrap 
-set linebreak 
+set wrap
+set linebreak
 set nolist
 set scrolloff=3
 set modeline
-set showmatch
 set showcmd
 set showmode
+set showmatch
 nnoremap <silent> <Space> :nohl<Bar>:echo<CR>
 set guioptions-=r
 set guioptions-=R
@@ -171,9 +173,6 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 let g:EasyMotion_leader_key = '<leader>'
-let g:airline_enable_fugitive=1
-let g:airline_enable_syntastic=1
-let g:airline_enable_bufferline=1
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
@@ -205,7 +204,7 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
@@ -238,7 +237,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Ubuntu\ Mono\ 10
+    set guifont=Ubuntu\ Mono\ 12
 endif
 
 if has('clipboard')
@@ -249,11 +248,8 @@ if has('clipboard')
     endif
 endif
 
-if has('gui_running')
-
-endif
-
-colorscheme Tomorrow
+colorscheme Tomorrow-Night
+set background=dark
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader><Leader>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -275,13 +271,13 @@ endif
 let g:startify_session_persistence = 1
 let g:startify_session_autoload    = 1
 
-highlight clear SignColumn
+"highlight clear SignColumn
 autocmd ColorScheme * highlight clear SignColumn
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'cr'
 set laststatus=2
-set display-=unix
+"set display-=unix
 
 nnoremap <c-]> :CtrlPtjump<cr>
 "vnoremap <c-]> :CtrlPtjumpVisual<cr>
@@ -295,5 +291,4 @@ set shortmess=a
 let g:tagbar_type_javascript = {
     \ 'ctagsbin' : '~/node_modules/jstags/bin/jstags'
 \ }
-
 
