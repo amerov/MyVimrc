@@ -2,10 +2,11 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+let mapleader=","
 
 " Plugins
 Bundle 'gmarik/vundle'
-"Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/vimproc.vim'
 Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'Shougo/unite.vim'
@@ -55,6 +56,7 @@ Bundle 'tpope/vim-rake'
 "Bundle "astashov/vim-ruby-debugger"
 Bundle 'git@github.com:ngmy/vim-rubocop.git'
 Bundle 'git@github.com:tpope/vim-endwise.git'
+"Bundle 'https://github.com/osyo-manga/vim-monster'
 
 " Front End
 Bundle 'pangloss/vim-javascript'
@@ -77,8 +79,6 @@ Bundle 'flazz/vim-colorschemes'
 
 " Go lang
 Bundle "fatih/vim-go"
-
-Plugin 'jaxbot/semantic-highlight.vim'
 
 call vundle#end()
 
@@ -168,11 +168,12 @@ endif
   "imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 "endfunction
 
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 let g:EasyMotion_leader_key = '<leader>'
+
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
@@ -182,6 +183,18 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+
+" Set async completion.
+" let g:monster#completion#rcodetools#backend = "async_rct_complete"
+"
+" Set async completion.
+"let g:monster#completion#rcodetools#backend = "async_rct_complete"
+
+" Use neocomplete.vim
+let g:neocomplete#force_omni_input_patterns = {
+            \   'ruby' : '[^. *\t]\.\|\h\w*::',
+            \}
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -249,7 +262,6 @@ if has('clipboard')
 endif
 
 colorscheme Tomorrow-Night
-set background=dark
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader><Leader>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -272,7 +284,7 @@ let g:startify_session_persistence = 1
 let g:startify_session_autoload    = 1
 
 "highlight clear SignColumn
-autocmd ColorScheme * highlight clear SignColumn
+"autocmd ColorScheme * highlight clear SignColumn
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'cr'
@@ -291,4 +303,18 @@ set shortmess=a
 let g:tagbar_type_javascript = {
     \ 'ctagsbin' : '~/node_modules/jstags/bin/jstags'
 \ }
+
+highlight clear SignColumn
+"set cmdheight=2
+
+if has('persistend_undo')
+    silent !mkdir ~/.vim/backups > /dev/null 2>&1
+    set undodir=~/.vim/backups
+    set undofile
+endif
+
+map <C-k> <C-w><Up>
+map <C-h> <C-w><Left>
+map <C-l> <C-w><Right>
+map <C-j> <C-w><Down>
 
