@@ -4,91 +4,89 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 " Plugins
-Bundle 'gmarik/vundle'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'bling/vim-airline'
-Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'Shougo/unite.vim'
-"Bundle 'git@github.com:Shougo/neomru.vim.git'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'git@github.com:powerman/vim-plugin-ruscmd.git'
-"Bundle 'git://github.com/ervandew/supertab.git'
-Bundle 'git://github.com/majutsushi/tagbar'
-Bundle 'git@github.com:rking/ag.vim.git'
-"Bundle "git://github.com/nathanaelkane/vim-indent-guides.git"
-"Bundle "git@github.com:Yggdroot/indentLine.git"
-Bundle "tpope/vim-repeat"
-Bundle "tpope/vim-abolish"
-Bundle '907th/vim-auto-save'
-Bundle 'git@github.com:bronson/vim-trailing-whitespace.git'
-Bundle 'git@github.com:thinca/vim-quickrun.git'
-Bundle 'git@github.com:mhinz/vim-startify.git'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
-"Bundle 'git@github.com:edsono/vim-matchit.git'
-"Bundle 'git@github.com:fholgado/minibufexpl.vim.git'
-Bundle 'git@github.com:sjl/gundo.vim.git'
+Plugin 'gmarik/vundle'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'Shougo/unite.vim'
+"Plugin 'git@github.com:Shougo/neomru.vim.git'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
+"Plugin 'git://github.com/ervandew/supertab.git'
+Plugin 'git://github.com/majutsushi/tagbar'
+Plugin 'git@github.com:rking/ag.vim.git'
+"Plugin 'git://github.com/nathanaelkane/vim-indent-guides.git'
+"Plugin 'git@github.com:Yggdroot/indentLine.git'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-abolish'
+Plugin '907th/vim-auto-save'
+Plugin 'git@github.com:bronson/vim-trailing-whitespace.git'
+Plugin 'git@github.com:thinca/vim-quickrun.git'
+Plugin 'git@github.com:mhinz/vim-startify.git'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
+"Plugin 'git@github.com:edsono/vim-matchit.git'
+"Plugin 'git@github.com:fholgado/minibufexpl.vim.git'
+Plugin 'git@github.com:sjl/gundo.vim.git'
 
 " Text Edit
-Bundle 'https://github.com/tpope/vim-surround.git'
-"Bundle 'git@github.com:terryma/vim-expand-region.git'
+Plugin 'https://github.com/tpope/vim-surround.git'
+"Plugin 'git@github.com:terryma/vim-expand-region.git'
 
 " Complete Code
-Bundle 'Shougo/neocomplete'
-"Bundle 'SirVer/ultisnips'
-"Bundle "Raimondi/delimitMate"
-Bundle 'git://github.com/scrooloose/nerdcommenter.git'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
+Plugin 'Shougo/neocomplete'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'Raimondi/delimitMate'
+Plugin 'git://github.com/scrooloose/nerdcommenter.git'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
 
 " Git
-Bundle 'git@github.com:airblade/vim-gitgutter.git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'junegunn/gv.vim'
-
+Plugin 'git@github.com:airblade/vim-gitgutter.git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/gv.vim'
+Plugin 'mhinz/vim-signify'
 "For Rails and Rails
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails.git'
-Bundle 'git://github.com/tpope/vim-rvm.git'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-rake'
-"Bundle "astashov/vim-ruby-debugger"
-Bundle 'git@github.com:ngmy/vim-rubocop.git'
-Bundle 'git@github.com:tpope/vim-endwise.git'
-"Bundle 'https://github.com/osyo-manga/vim-monster'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails.git'
+Plugin 'git://github.com/tpope/vim-rvm.git'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-rake'
+"Plugin 'astashov/vim-ruby-debugger'
+Plugin 'git@github.com:ngmy/vim-rubocop.git'
+Plugin 'git@github.com:tpope/vim-endwise.git'
+"Plugin 'https://github.com/osyo-manga/vim-monster'
 
 " Front End
-Bundle 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
 
-Bundle 'git://github.com/walm/jshint.vim.git'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'git://github.com/othree/html5.vim.git'
-Bundle 'git://github.com/hokaccha/vim-html5validator.git'
-"Bundle "mattn/emmet-vim"
-Bundle 'git://github.com/tpope/vim-haml'
-Bundle 'git://github.com/hail2u/vim-css3-syntax.git'
-Bundle 'slim-template/vim-slim.git'
+Plugin 'git://github.com/walm/jshint.vim.git'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'git://github.com/othree/html5.vim.git'
+Plugin 'git://github.com/hokaccha/vim-html5validator.git'
+"Plugin 'mattn/emmet-vim'
+Plugin 'git://github.com/tpope/vim-haml'
+Plugin 'git://github.com/hail2u/vim-css3-syntax.git'
+Plugin 'slim-template/vim-slim.git'
 
 "  Colorschems
-Bundle 'flazz/vim-colorschemes'
+Plugin 'flazz/vim-colorschemes'
 " Go lang
-Bundle "fatih/vim-go"
+Plugin 'fatih/vim-go'
 
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 call vundle#end()
 filetype plugin indent on
 syntax on
-filetype indent on
-filetype on
 set hidden
 set magic
 set number
 set autoindent
-set encoding
+"set encoding
 " set termencoding=utf-8
-set fileencoding
+"set fileencoding
 set smartindent
 set smarttab
 set ruler
