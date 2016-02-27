@@ -8,16 +8,13 @@ Plugin 'gmarik/vundle'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'bling/vim-airline'
 Plugin 'Lokaltog/vim-easymotion'
-"Plugin 'Shougo/unite.vim'
-"Plugin 'git@github.com:Shougo/neomru.vim.git'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
-"Plugin 'git://github.com/ervandew/supertab.git'
-Plugin 'git://github.com/majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
+" Plugin 'Yggdroot/indentLine'
+Plugin 'fholgado/minibufexpl.vim'
 Plugin 'git@github.com:rking/ag.vim.git'
-"Plugin 'git://github.com/nathanaelkane/vim-indent-guides.git'
-"Plugin 'git@github.com:Yggdroot/indentLine.git'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-abolish'
 Plugin '907th/vim-auto-save'
@@ -26,18 +23,17 @@ Plugin 'git@github.com:thinca/vim-quickrun.git'
 Plugin 'git@github.com:mhinz/vim-startify.git'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
-"Plugin 'git@github.com:edsono/vim-matchit.git'
-"Plugin 'git@github.com:fholgado/minibufexpl.vim.git'
+Plugin 'osyo-manga/vim-over'
+" Plugin 'git@github.com:edsono/vim-matchit.git'
 Plugin 'git@github.com:sjl/gundo.vim.git'
 
 " Text Edit
 Plugin 'https://github.com/tpope/vim-surround.git'
-"Plugin 'git@github.com:terryma/vim-expand-region.git'
+" Plugin 'git@github.com:terryma/vim-expand-region.git'
 
 " Complete Code
 Plugin 'Shougo/neocomplete'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'Raimondi/delimitMate'
+" Plugin 'Raimondi/delimitMate'
 Plugin 'git://github.com/scrooloose/nerdcommenter.git'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
@@ -47,7 +43,7 @@ Plugin 'git@github.com:airblade/vim-gitgutter.git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/gv.vim'
 Plugin 'mhinz/vim-signify'
-"For Rails and Rails
+"Ruby/Rails
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails.git'
 Plugin 'git://github.com/tpope/vim-rvm.git'
@@ -294,5 +290,5 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " without yanking it
 " vnoremap <leader>p "_dP
 
-let mapleader="\\"
+let mapleader='\'
 
