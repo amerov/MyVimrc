@@ -4,9 +4,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 " Plugins
-Plugin 'gmarik/vundle'
-Plugin 'Shougo/vimproc.vim'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'L9'
+" Plugin 'Shougo/vimproc.vim'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
@@ -24,8 +26,9 @@ Plugin 'git@github.com:mhinz/vim-startify.git'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
 Plugin 'osyo-manga/vim-over'
+Plugin 'tpope/vim-sleuth'
 " Plugin 'git@github.com:edsono/vim-matchit.git'
-Plugin 'git@github.com:sjl/gundo.vim.git'
+" Plugin 'git@github.com:sjl/gundo.vim.git'
 
 " Text Edit
 Plugin 'https://github.com/tpope/vim-surround.git'
@@ -34,7 +37,9 @@ Plugin 'https://github.com/tpope/vim-surround.git'
 " Complete Code
 Plugin 'Shougo/neocomplete'
 " Plugin 'Raimondi/delimitMate'
-Plugin 'git://github.com/scrooloose/nerdcommenter.git'
+Plugin 'ervandew/matchem'
+" Plugin 'git://github.com/scrooloose/nerdcommenter.git'
+Plugin 'tpope/vim-commentary'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 
@@ -42,7 +47,7 @@ Plugin 'Shougo/neosnippet-snippets'
 Plugin 'git@github.com:airblade/vim-gitgutter.git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/gv.vim'
-Plugin 'mhinz/vim-signify'
+
 "Ruby/Rails
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails.git'
@@ -57,10 +62,11 @@ Plugin 'git@github.com:tpope/vim-endwise.git'
 " Front End
 Plugin 'pangloss/vim-javascript'
 
-Plugin 'git://github.com/walm/jshint.vim.git'
+" Plugin 'git://github.com/walm/jshint.vim.git'
+
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'git://github.com/othree/html5.vim.git'
-Plugin 'git://github.com/hokaccha/vim-html5validator.git'
+" Plugin 'git://github.com/hokaccha/vim-html5validator.git'
 "Plugin 'mattn/emmet-vim'
 Plugin 'git://github.com/tpope/vim-haml'
 Plugin 'git://github.com/hail2u/vim-css3-syntax.git'
@@ -74,6 +80,7 @@ Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 call vundle#end()
+
 filetype plugin indent on
 syntax on
 set hidden
@@ -130,11 +137,11 @@ set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
-autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2 
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 
-autocmd FileType sass,scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+"autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+"autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
+"autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2 
+"autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 
+"autocmd FileType sass,scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
 if version >= 700
     " Turn off spell checking
@@ -212,7 +219,8 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 if has("mac")
     set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    set guifont=Ubuntu\ Mono\ 12
+    "set guifont=Ubuntu\ Mono\ 12
+    set guifont=ubuntu\ Mono\ 11
 endif
 
 if has('clipboard')
@@ -223,7 +231,7 @@ if has('clipboard')
     endif
 endif
 
-colorscheme jelleybeans
+colorscheme Tomorrow
 "set background=light
 
 " Copy current buffer path relative to root of VIM session to system clipboard
@@ -283,12 +291,12 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 
 " delete without yanking
-" nnoremap <leader>d "_d
-" vnoremap <leader>d "_d
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
 
 " replace currently selected text with default register
 " without yanking it
-" vnoremap <leader>p "_dP
+vnoremap <leader>p "_dP
 
-let mapleader='\'
+let mapleader="\\"
 
