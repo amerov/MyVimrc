@@ -13,16 +13,16 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
-Plugin 'majutsushi/tagbar'
+" Plugin 'majutsushi/tagbar'
 " Plugin 'Yggdroot/indentLine'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'git@github.com:rking/ag.vim.git'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-abolish'
-Plugin '907th/vim-auto-save'
+" Plugin '907th/vim-auto-save'
 Plugin 'git@github.com:bronson/vim-trailing-whitespace.git'
 Plugin 'git@github.com:thinca/vim-quickrun.git'
-Plugin 'git@github.com:mhinz/vim-startify.git'
+" Plugin 'git@github.com:mhinz/vim-startify.git'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
 Plugin 'osyo-manga/vim-over'
@@ -44,19 +44,19 @@ Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 
 " Git
-Plugin 'git@github.com:airblade/vim-gitgutter.git'
 Plugin 'tpope/vim-fugitive'
+Plugin 'git@github.com:airblade/vim-gitgutter.git'
 Plugin 'junegunn/gv.vim'
 
 "Ruby/Rails
+Plugin 'git://github.com/tpope/vim-rvm.git'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails.git'
-Plugin 'git://github.com/tpope/vim-rvm.git'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rake'
 "Plugin 'astashov/vim-ruby-debugger'
-Plugin 'git@github.com:ngmy/vim-rubocop.git'
-Plugin 'git@github.com:tpope/vim-endwise.git'
+" Plugin 'git@github.com:ngmy/vim-rubocop.git'
+"Plugin 'git@github.com:tpope/vim-endwise.git'
 "Plugin 'https://github.com/osyo-manga/vim-monster'
 
 " Front End
@@ -97,7 +97,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set cursorline
+" set cursorline
 set wrap
 set linebreak
 set nolist
@@ -127,7 +127,6 @@ set smartcase
 set copyindent
 set splitbelow
 set splitright
-set lazyredraw
 set wildignore+=tags
 set wildignore+=*/tmp/*
 set wildignore+=*/.idea/*
@@ -137,11 +136,11 @@ set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
-"autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
-"autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
-"autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2 
-"autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 
-"autocmd FileType sass,scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType sass,scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
 if version >= 700
     " Turn off spell checking
@@ -185,9 +184,9 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 
 " Use neocomplete.vim
-let g:neocomplete#force_omni_input_patterns = {
-            \   'ruby' : '[^. *\t]\.\|\h\w*::',
-            \}
+" let g:neocomplete#force_omni_input_patterns = {
+"             \   'ruby' : '[^. *\t]\.\|\h\w*::',
+"             \}
 
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -204,7 +203,7 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 " let g:vimrubocop_extra_args = '-R'
@@ -231,7 +230,7 @@ if has('clipboard')
     endif
 endif
 
-colorscheme Tomorrow
+colorscheme jelleybeans
 "set background=light
 
 " Copy current buffer path relative to root of VIM session to system clipboard
@@ -251,15 +250,15 @@ if exists('&regexpengine')
   set regexpengine=2
 endif
 
-let g:startify_session_persistence = 1
-let g:startify_session_autoload    = 1
+" let g:startify_session_persistence = 1
+" let g:startify_session_autoload    = 1
 
 "highlight clear SignColumn
 "autocmd ColorScheme * highlight clear SignColumn
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " let g:ctrlp_working_path_mode = 'cr'
-set laststatus=1
+" set laststatus=1
 "set display-=unix
 
 nnoremap <c-]> :CtrlPtjump<cr>
@@ -278,11 +277,11 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 "highlight clear SignColumn
 "set cmdheight=2
 
-"if has('persistend_undo')
-"    silent !mkdir ~/.vim/backups > /dev/null 2>&1
-"    set undodir=~/.vim/backups
-"    set undofile
-"endif
+if has('persistend_undo')
+    silent !mkdir ~/.vim/backups > /dev/null 2>&1
+    set undodir=~/.vim/backups
+    set undofile
+endif
 
 "map <C-k> <C-w><Up>
 "map <C-h> <C-w><Left>
@@ -299,4 +298,7 @@ vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
 
 let mapleader="\\"
-
+set nocursorcolumn
+set nocursorline
+set norelativenumber
+syntax sync minlines=256
