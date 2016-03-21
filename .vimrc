@@ -14,7 +14,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
 " Plugin 'majutsushi/tagbar'
-" Plugin 'Yggdroot/indentLine'
+Plugin 'Yggdroot/indentLine'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'git@github.com:rking/ag.vim.git'
 Plugin 'tpope/vim-repeat'
@@ -100,7 +100,7 @@ set expandtab
 " set cursorline
 set wrap
 set linebreak
-set nolist
+" set nolist
 set scrolloff=3
 set modeline
 set showcmd
@@ -115,8 +115,10 @@ set guioptions-=T
 set guioptions-=b
 set autoread
 set autowrite
-set wildmenu
+" set wildmenu
+set ttyfast
 set lazyredraw
+" set re=1
 set showfulltag
 set noswapfile
 set nobackup
@@ -216,18 +218,18 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 
 
 if has("mac")
-    set gfn=Melno:h12
+  set gfn=Melno:h12
 elseif has("unix") || has("linux")
-    "set guifont=Ubuntu\ Mono\ 12
-    set guifont=ubuntu\ Mono\ 11
+  "set guifont=Ubuntu\ Mono\ 12
+  set guifont=ubuntu\ Mono\ 11
 endif
 
 if has('clipboard')
-    if has('unnamedplus')
-        set clipboard=unnamedplus
-    else
-        set clipboard=unnamed
-    endif
+  if has('unnamedplus')
+    set clipboard=unnamedplus
+  else
+    set clipboard=unnamed
+  endif
 endif
 
 colorscheme jelleybeans
@@ -246,9 +248,9 @@ nnoremap <Leader><Leader>d :let @+=expand("%:h")<cr>:echo "Copied file directory
 au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
 au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "<TAB>"
 
-if exists('&regexpengine')
-  set regexpengine=2
-endif
+" if exists('&regexpengine')
+"   set regexpengine=2
+" endif
 
 " let g:startify_session_persistence = 1
 " let g:startify_session_autoload    = 1
@@ -301,4 +303,6 @@ let mapleader="\\"
 set nocursorcolumn
 set nocursorline
 set norelativenumber
-syntax sync minlines=256
+" syntax sync minlines=256
+"
+let g:indentLine_enabled = 0
