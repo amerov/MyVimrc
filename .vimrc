@@ -6,14 +6,14 @@ call vundle#begin()
 " Plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
-" Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/vimproc.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
-" Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 Plugin 'Yggdroot/indentLine'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'git@github.com:rking/ag.vim.git'
@@ -42,6 +42,7 @@ Plugin 'ervandew/matchem'
 Plugin 'tpope/vim-commentary'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
+" Plugin 'lyuts/vim-rtags'
 
 " Git
 Plugin 'tpope/vim-fugitive'
@@ -54,10 +55,10 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails.git'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rake'
-"Plugin 'astashov/vim-ruby-debugger'
-" Plugin 'git@github.com:ngmy/vim-rubocop.git'
-"Plugin 'git@github.com:tpope/vim-endwise.git'
-"Plugin 'https://github.com/osyo-manga/vim-monster'
+" Plugin 'astashov/vim-ruby-debugger'
+Plugin 'git@github.com:ngmy/vim-rubocop.git'
+" Plugin 'git@github.com:tpope/vim-endwise.git'
+" Plugin 'https://github.com/osyo-manga/vim-monster'
 
 " Front End
 Plugin 'pangloss/vim-javascript'
@@ -115,7 +116,7 @@ set guioptions-=T
 set guioptions-=b
 set autoread
 set autowrite
-" set wildmenu
+set wildmenu
 set ttyfast
 set lazyredraw
 " set re=1
@@ -185,10 +186,13 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 
 
+" Set async completion.
+" let g:monster#completion#rcodetools#backend = "async_rct_complete"
+
 " Use neocomplete.vim
-" let g:neocomplete#force_omni_input_patterns = {
-"             \   'ruby' : '[^. *\t]\.\|\h\w*::',
-"             \}
+" let g:neocomplete#sources#omni#input_patterns = {
+" \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+" \}
 
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -300,9 +304,9 @@ vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
 
 let mapleader="\\"
-set nocursorcolumn
-set nocursorline
-set norelativenumber
+" set nocursorcolumn
+" set nocursorline
+" set norelativenumber
 " syntax sync minlines=256
 "
 let g:indentLine_enabled = 0
