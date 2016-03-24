@@ -1,0 +1,19 @@
+[user]
+	email = maratamerov@gmail.com
+	name = amerov
+[push]
+	default = current
+[color]
+	sh = auto
+        ui = true
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    p = pull -v
+    s = status
+    ch = checkout
+    b = branch
+[rerere]
+	enabled = true
+	autoupdate = true
+[core]
+	autocrlf = input
