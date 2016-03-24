@@ -27,7 +27,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
 Plugin 'osyo-manga/vim-over'
 Plugin 'tpope/vim-sleuth'
-" Plugin 'git@github.com:edsono/vim-matchit.git'
+Plugin 'git@github.com:edsono/vim-matchit.git'
 " Plugin 'git@github.com:sjl/gundo.vim.git'
 
 " Text Edit
@@ -57,7 +57,7 @@ Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rake'
 " Plugin 'astashov/vim-ruby-debugger'
 Plugin 'git@github.com:ngmy/vim-rubocop.git'
-" Plugin 'git@github.com:tpope/vim-endwise.git'
+Plugin 'tpope/vim-endwise'
 " Plugin 'https://github.com/osyo-manga/vim-monster'
 
 " Front End
@@ -140,6 +140,7 @@ set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
+autocmd FileType ruby compiler ruby
 autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
