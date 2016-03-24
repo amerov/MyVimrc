@@ -80,6 +80,7 @@ Plugin 'fatih/vim-go'
 
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'Konfekt/FastFold'
 call vundle#end()
 
 filetype plugin indent on
