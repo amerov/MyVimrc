@@ -312,3 +312,4 @@ let mapleader="\\"
 " syntax sync minlines=256
 "
 let g:indentLine_enabled = 0
+let g:vim_markdown_folding_disabled = 1
