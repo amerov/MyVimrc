@@ -124,8 +124,10 @@ esac
 export EDITOR=vim
 
 source ~/.rvm/scripts/rvm
+export PATH="$PATH:$HOME/local/go1.6/bin"
+export GOROOT="$HOME/local/go1.6"
 
 # export PATH="$HOME/.linuxbrew/bin:$PATH"
 # export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 # export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-
+stty -ixon

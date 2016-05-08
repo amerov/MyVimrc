@@ -59,6 +59,8 @@ Plugin 'tpope/vim-rake'
 Plugin 'git@github.com:ngmy/vim-rubocop.git'
 Plugin 'tpope/vim-endwise'
 " Plugin 'https://github.com/osyo-manga/vim-monster'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'https://github.com/danchoi/ri.vim'
 
 " Front End
 Plugin 'pangloss/vim-javascript'
@@ -313,3 +315,4 @@ let mapleader="\\"
 "
 let g:indentLine_enabled = 0
 let g:vim_markdown_folding_disabled = 1
+let g:miniBufExplAutoStart = 0
