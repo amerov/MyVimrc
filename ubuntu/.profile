@@ -28,6 +28,6 @@ export NVM_DIR="/home/amerov/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 
-export PATH="$PATH:$HOME/bin" # Add bin to PATH for scripting
+export PATH="$PATH:$HOME/.local/bin"
 export HISTSIZE=10000
 export HISTFILESIZE=1000000

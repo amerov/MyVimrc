@@ -55,4 +55,4 @@
 (rvm-activate-corresponding-ruby))
 (add-hook 'robe-mode-hook 'ac-robe-setup)
 
-(load-theme 'ujelly t)
+(load-theme 'zenburn t)

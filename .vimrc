@@ -12,7 +12,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
-Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
+" Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
 Plugin 'majutsushi/tagbar'
 Plugin 'Yggdroot/indentLine'
 Plugin 'fholgado/minibufexpl.vim'
@@ -29,6 +29,8 @@ Plugin 'osyo-manga/vim-over'
 Plugin 'tpope/vim-sleuth'
 Plugin 'git@github.com:edsono/vim-matchit.git'
 " Plugin 'git@github.com:sjl/gundo.vim.git'
+Plugin 'fisadev/FixedTaskList.vim'
+Plugin 'rosenfeld/conque-term'
 
 " Text Edit
 Plugin 'https://github.com/tpope/vim-surround.git'
@@ -62,6 +64,15 @@ Plugin 'tpope/vim-endwise'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'https://github.com/danchoi/ri.vim'
 
+"Python
+" Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'nvie/vim-flake8'
+
+" Plugin 'klen/python-mode'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'mitsuhiko/vim-jinja'
+Plugin 'mitsuhiko/vim-python-combined'
+
 " Front End
 Plugin 'pangloss/vim-javascript'
 
@@ -74,6 +85,9 @@ Plugin 'git://github.com/othree/html5.vim.git'
 Plugin 'git://github.com/tpope/vim-haml'
 Plugin 'git://github.com/hail2u/vim-css3-syntax.git'
 Plugin 'slim-template/vim-slim.git'
+Plugin 'Slava/vim-spacebars'
+
+Plugin 'ternjs/tern_for_vim'
 
 "  Colorschems
 Plugin 'flazz/vim-colorschemes'
@@ -146,7 +160,7 @@ autocmd FileType ruby compiler ruby
 autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType sass,scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
 if version >= 700
@@ -240,7 +254,7 @@ if has('clipboard')
   endif
 endif
 
-colorscheme jelleybeans
+colorscheme Tomorrow
 "set background=light
 
 " Copy current buffer path relative to root of VIM session to system clipboard
@@ -316,3 +330,31 @@ let mapleader="\\"
 let g:indentLine_enabled = 0
 let g:vim_markdown_folding_disabled = 1
 let g:miniBufExplAutoStart = 0
+
+let python_highlight_all=1
+" let g:pymode_rope = 0
+" let g:pymode_rope_completion = 0
+" let g:pymode_rope_complete_on_dot = 0
+
+" let g:pymode_doc = 0
+" let g:pymode_doc_key = 'K'
+
+
+" let g:pymode_lint = 1
+" let g:pymode_lint_checker = "pyflakes,pep8"
+" let g:pymode_lint_ignore="E501,W601,C0110"
+" let g:pymode_lint_write = 1
+" let g:pymode_virtualenv = 1
+
+" let g:pymode_breakpoint = 1
+" let g:pymode_syntax = 1
+" let g:pymode_syntax_all = 1
+" let g:pymode_folding = 0
+" let g:pymode_run = 0
+" let g:syntastic_python_checkers = ['python3']
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#force_py_version = 3
+let g:mustache_abbreviations = 1
+set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+let g:tern_map_keys=1
+let g:javascript_enable_domhtmlcss = 1
