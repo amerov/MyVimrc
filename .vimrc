@@ -12,7 +12,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
+Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
 Plugin 'majutsushi/tagbar'
 Plugin 'Yggdroot/indentLine'
 Plugin 'fholgado/minibufexpl.vim'
@@ -142,7 +142,7 @@ set noswapfile
 set nobackup
 set incsearch
 set hlsearch
-set ignorecase
+" set ignorecase
 set smartcase
 set copyindent
 set splitbelow
@@ -355,6 +355,18 @@ let python_highlight_all=1
 let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#force_py_version = 3
 let g:mustache_abbreviations = 1
-set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+" set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 let g:tern_map_keys=1
 let g:javascript_enable_domhtmlcss = 1
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
