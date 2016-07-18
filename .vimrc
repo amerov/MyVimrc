@@ -65,13 +65,13 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'https://github.com/danchoi/ri.vim'
 
 "Python
-" Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'nvie/vim-flake8'
+Plugin 'jmcantrell/vim-virtualenv'
+" Plugin 'nvie/vim-flake8'
 
 " Plugin 'klen/python-mode'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'mitsuhiko/vim-jinja'
-Plugin 'mitsuhiko/vim-python-combined'
+"Plugin 'mitsuhiko/vim-python-combined'
 
 " Front End
 Plugin 'pangloss/vim-javascript'
@@ -97,6 +97,8 @@ Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'Konfekt/FastFold'
+
+" Plugin 'tweekmonster/django-plus.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -160,8 +162,11 @@ autocmd FileType ruby compiler ruby
 autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=4 shiftwidth=4 softtabstop=4
+" autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType sass,scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd BufReadPost *.gohtml set filetype=gohtmltmpl syntax=gohtmltmpl
+autocmd BufReadPost *.tpl set filetype=gohtmltmpl syntax=gohtmltmpl
+autocmd FileType gohtmltmpl setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 
 if version >= 700
     " Turn off spell checking
@@ -222,11 +227,12 @@ endfunction
 
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType python setlocal omnifunc=python3complete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
@@ -331,7 +337,7 @@ let g:indentLine_enabled = 0
 let g:vim_markdown_folding_disabled = 1
 let g:miniBufExplAutoStart = 0
 
-let python_highlight_all=1
+" let python_highlight_all=1
 " let g:pymode_rope = 0
 " let g:pymode_rope_completion = 0
 " let g:pymode_rope_complete_on_dot = 0
@@ -357,6 +363,7 @@ let g:jedi#force_py_version = 3
 let g:mustache_abbreviations = 1
 " set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 let g:tern_map_keys=1
+
 let g:javascript_enable_domhtmlcss = 1
 
 let g:go_highlight_functions = 1
@@ -370,3 +377,27 @@ let g:go_highlight_build_constraints = 1
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
+
+let g:syntastic_python_checkers = ['python']
+let g:syntastic_check_on_open = 1
+set completeopt-=preview
+
+
+
+autocmd BufReadPost *.html  call SetDjango()
+
+function! SetDjango()
+    if exists("g:django")
+        " autocmd BufReadPost *.html set filetype=djangohtml syntax=djangohtml
+        autocmd FileType html set filetype=djangohtml syntax=djangohtml
+        let b:surround_{char2nr("v")} = "{{ \r }}"
+        let b:surround_{char2nr("{")} = "{{ \r }}"
+        let b:surround_{char2nr("%")} = "{% \r %}"
+        let b:surround_{char2nr("b")} = "{% block \1block name: \1 %}\r{% endblock \1\1 %}"
+        let b:surround_{char2nr("i")} = "{% if \1condition: \1 %}\r{% endif %}"
+        let b:surround_{char2nr("w")} = "{% with \1with: \1 %}\r{% endwith %}"
+        let b:surround_{char2nr("f")} = "{% for \1for loop: \1 %}\r{% endfor %}"
+        let b:surround_{char2nr("c")} = "{% comment %}\r{% endcomment %}"
+    endif
+endfunction
+
