@@ -70,7 +70,7 @@ Plugin 'jmcantrell/vim-virtualenv'
 
 " Plugin 'klen/python-mode'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'mitsuhiko/vim-jinja'
+Plugin 'lepture/vim-jinja'
 "Plugin 'mitsuhiko/vim-python-combined'
 
 " Front End
@@ -85,7 +85,7 @@ Plugin 'git://github.com/othree/html5.vim.git'
 Plugin 'git://github.com/tpope/vim-haml'
 Plugin 'git://github.com/hail2u/vim-css3-syntax.git'
 Plugin 'slim-template/vim-slim.git'
-Plugin 'Slava/vim-spacebars'
+" Plugin 'Slava/vim-spacebars'
 
 Plugin 'ternjs/tern_for_vim'
 
@@ -384,20 +384,16 @@ set completeopt-=preview
 
 
 
-autocmd BufReadPost *.html  call SetDjango()
+autocmd FileType jinja.html call InjectSurround()
 
-function! SetDjango()
-    if exists("g:django")
-        " autocmd BufReadPost *.html set filetype=djangohtml syntax=djangohtml
-        autocmd FileType html set filetype=djangohtml syntax=djangohtml
-        let b:surround_{char2nr("v")} = "{{ \r }}"
-        let b:surround_{char2nr("{")} = "{{ \r }}"
-        let b:surround_{char2nr("%")} = "{% \r %}"
-        let b:surround_{char2nr("b")} = "{% block \1block name: \1 %}\r{% endblock \1\1 %}"
-        let b:surround_{char2nr("i")} = "{% if \1condition: \1 %}\r{% endif %}"
-        let b:surround_{char2nr("w")} = "{% with \1with: \1 %}\r{% endwith %}"
-        let b:surround_{char2nr("f")} = "{% for \1for loop: \1 %}\r{% endfor %}"
-        let b:surround_{char2nr("c")} = "{% comment %}\r{% endcomment %}"
-    endif
+function! InjectSurround()
+    let b:surround_{char2nr("v")} = "{{ \r }}"
+    let b:surround_{char2nr("{")} = "{{ \r }}"
+    let b:surround_{char2nr("%")} = "{% \r %}"
+    let b:surround_{char2nr("b")} = "{% block \1block name: \1 %}\r{% endblock \1\1 %}"
+    let b:surround_{char2nr("i")} = "{% if \1condition: \1 %}\r{% endif %}"
+    let b:surround_{char2nr("w")} = "{% with \1with: \1 %}\r{% endwith %}"
+    let b:surround_{char2nr("f")} = "{% for \1for loop: \1 %}\r{% endfor %}"
+    let b:surround_{char2nr("c")} = "{% comment %}\r{% endcomment %}"
 endfunction
 
