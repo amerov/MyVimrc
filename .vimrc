@@ -22,15 +22,13 @@ Plugin 'tpope/vim-abolish'
 " Plugin '907th/vim-auto-save'
 Plugin 'git@github.com:bronson/vim-trailing-whitespace.git'
 Plugin 'git@github.com:thinca/vim-quickrun.git'
-" Plugin 'git@github.com:mhinz/vim-startify.git'
+Plugin 'git@github.com:mhinz/vim-startify.git'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
-Plugin 'osyo-manga/vim-over'
 Plugin 'tpope/vim-sleuth'
 Plugin 'git@github.com:edsono/vim-matchit.git'
 " Plugin 'git@github.com:sjl/gundo.vim.git'
-Plugin 'fisadev/FixedTaskList.vim'
-Plugin 'rosenfeld/conque-term'
+" Plugin 'wincent/terminus' " Terminus enhances Vim's integration with the terminal
 
 " Text Edit
 Plugin 'https://github.com/tpope/vim-surround.git'
@@ -38,8 +36,8 @@ Plugin 'https://github.com/tpope/vim-surround.git'
 
 " Complete Code
 Plugin 'Shougo/neocomplete'
-" Plugin 'Raimondi/delimitMate'
-Plugin 'ervandew/matchem'
+Plugin 'Raimondi/delimitMate'
+" Plugin 'ervandew/matchem'
 " Plugin 'git://github.com/scrooloose/nerdcommenter.git'
 Plugin 'tpope/vim-commentary'
 Plugin 'Shougo/neosnippet'
@@ -137,7 +135,7 @@ set autoread
 set autowrite
 set wildmenu
 set ttyfast
-set lazyredraw
+" set lazyredraw
 " set re=1
 set showfulltag
 set noswapfile
@@ -158,8 +156,10 @@ set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
-autocmd FileType ruby compiler ruby
-autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+set cryptmethod=blowfish2
+
+" autocmd FileType ruby compiler ruby
+" autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
 " autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=4 shiftwidth=4 softtabstop=4
@@ -208,7 +208,6 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 
-
 " Set async completion.
 " let g:monster#completion#rcodetools#backend = "async_rct_complete"
 
@@ -225,18 +224,7 @@ function! s:my_cr_function()
   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 
-
-" Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=python3complete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-
-" let g:vimrubocop_extra_args = '-R'
+let g:vimrubocop_extra_args = '-R'
 
 "autocmd vimenter * NERDTree
 nmap <F2> :NERDTreeToggle<CR>
@@ -260,7 +248,7 @@ if has('clipboard')
   endif
 endif
 
-colorscheme Tomorrow
+colorscheme jelleybeans
 "set background=light
 
 " Copy current buffer path relative to root of VIM session to system clipboard
@@ -287,8 +275,9 @@ au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "<TAB>"
 "autocmd ColorScheme * highlight clear SignColumn
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_working_path_mode = 'ra'
 " let g:ctrlp_working_path_mode = 'cr'
-" set laststatus=1
+set laststatus=2
 "set display-=unix
 
 nnoremap <c-]> :CtrlPtjump<cr>
@@ -307,10 +296,13 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 "highlight clear SignColumn
 "set cmdheight=2
 
-if has('persistend_undo')
-    silent !mkdir ~/.vim/backups > /dev/null 2>&1
-    set undodir=~/.vim/backups
+if version >= 700
+    set history=64
+    set undolevels=128
+    set undodir=~/.vim/undodir/
     set undofile
+    set undolevels=1000
+    set undoreload=10000
 endif
 
 "map <C-k> <C-w><Up>
@@ -379,10 +371,8 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
 
 let g:syntastic_python_checkers = ['python']
-let g:syntastic_check_on_open = 1
-set completeopt-=preview
-
-
+" let g:syntastic_check_on_open = 1
+" set completeopt-=preview
 
 autocmd FileType jinja.html call InjectSurround()
 
@@ -396,4 +386,9 @@ function! InjectSurround()
     let b:surround_{char2nr("f")} = "{% for \1for loop: \1 %}\r{% endfor %}"
     let b:surround_{char2nr("c")} = "{% comment %}\r{% endcomment %}"
 endfunction
+
+map <Leader>c :call RunCurrentSpecFile()<CR>
+map <Leader>rn :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
