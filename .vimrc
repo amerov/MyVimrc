@@ -29,6 +29,7 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'git@github.com:edsono/vim-matchit.git'
 " Plugin 'git@github.com:sjl/gundo.vim.git'
 " Plugin 'wincent/terminus' " Terminus enhances Vim's integration with the terminal
+Plugin 'sickill/vim-pasta'
 
 " Text Edit
 Plugin 'https://github.com/tpope/vim-surround.git'
@@ -276,7 +277,7 @@ au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "<TAB>"
 "autocmd ColorScheme * highlight clear SignColumn
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'r'
 " let g:ctrlp_working_path_mode = 'cr'
 set laststatus=2
 "set display-=unix
@@ -388,8 +389,8 @@ function! InjectSurround()
     let b:surround_{char2nr("c")} = "{% comment %}\r{% endcomment %}"
 endfunction
 
-map <Leader>c :call RunCurrentSpecFile()<CR>
-map <Leader>rn :call RunNearestSpec()<CR>
+map <Leader>cf :call RunCurrentSpecFile()<CR>
+map <Leader>c :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 let g:rspec_command = "!./bin/rspec {spec}"
