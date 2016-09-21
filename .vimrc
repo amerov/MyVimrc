@@ -248,7 +248,8 @@ if has('clipboard')
   endif
 endif
 
-colorscheme jelleybeans
+" colorscheme jelleybeans
+colorscheme Tomorrow
 "set background=light
 
 " Copy current buffer path relative to root of VIM session to system clipboard
@@ -391,4 +392,8 @@ map <Leader>c :call RunCurrentSpecFile()<CR>
 map <Leader>rn :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+let g:rspec_command = "!./bin/rspec {spec}"
+
+autocmd BufNewFile,BufRead *.slim set ft=slim
+nnoremap <leader>g :Gstatus<CR>
 
