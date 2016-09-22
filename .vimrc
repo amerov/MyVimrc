@@ -37,7 +37,8 @@ Plugin 'https://github.com/tpope/vim-surround.git'
 
 " Complete Code
 Plugin 'Shougo/neocomplete'
-Plugin 'Raimondi/delimitMate'
+" Plugin 'Raimondi/delimitMate'
+Plugin 'jiangmiao/auto-pairs'
 " Plugin 'ervandew/matchem'
 " Plugin 'git://github.com/scrooloose/nerdcommenter.git'
 Plugin 'tpope/vim-commentary'
@@ -110,6 +111,7 @@ set autoindent
 " set termencoding=utf-8
 "set fileencoding
 set smartindent
+set copyindent
 set smarttab
 set ruler
 set tabstop=4
