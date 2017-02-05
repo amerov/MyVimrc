@@ -15,7 +15,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
 Plugin 'majutsushi/tagbar'
 Plugin 'Yggdroot/indentLine'
-Plugin 'fholgado/minibufexpl.vim'
+" Plugin 'fholgado/minibufexpl.vim'
 Plugin 'git@github.com:rking/ag.vim.git'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-abolish'
@@ -23,22 +23,38 @@ Plugin 'tpope/vim-abolish'
 Plugin 'git@github.com:bronson/vim-trailing-whitespace.git'
 Plugin 'git@github.com:thinca/vim-quickrun.git'
 Plugin 'git@github.com:mhinz/vim-startify.git'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
 Plugin 'tpope/vim-sleuth'
 Plugin 'git@github.com:edsono/vim-matchit.git'
 " Plugin 'git@github.com:sjl/gundo.vim.git'
 " Plugin 'wincent/terminus' " Terminus enhances Vim's integration with the terminal
 Plugin 'sickill/vim-pasta'
+Plugin 'tpope/vim-dispatch'
+Plugin 'DataWraith/auto_mkdir'
+" Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'd11wtq/ctrlp_bdelete.vim'
+Plugin 'wesQ3/vim-windowswap'
+Plugin 'https://github.com/danro/rename.vim'
+Plugin 'osyo-manga/vim-over'
+Plugin 'dyng/ctrlsf.vim'
 
 " Text Edit
 Plugin 'https://github.com/tpope/vim-surround.git'
+" Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'vim-scripts/YankRing.vim'
+" Plugin 'svermeulen/vim-easyclip'
 " Plugin 'git@github.com:terryma/vim-expand-region.git'
+Plugin 'Chun-Yang/vim-action-ag'
+" Plugin 'terryma/vim-multiple-cursors'
+
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'git@github.com:ivalkeen/vim-ctrlp-tjump.git'
+
 
 " Complete Code
 Plugin 'Shougo/neocomplete'
 " Plugin 'Raimondi/delimitMate'
 Plugin 'jiangmiao/auto-pairs'
+
 " Plugin 'ervandew/matchem'
 " Plugin 'git://github.com/scrooloose/nerdcommenter.git'
 Plugin 'tpope/vim-commentary'
@@ -91,6 +107,7 @@ Plugin 'ternjs/tern_for_vim'
 
 "  Colorschems
 Plugin 'flazz/vim-colorschemes'
+Plugin 'NLKNguyen/papercolor-theme'
 " Go lang
 Plugin 'fatih/vim-go'
 
@@ -100,9 +117,13 @@ Plugin 'Konfekt/FastFold'
 
 " Plugin 'tweekmonster/django-plus.vim'
 call vundle#end()
+call ctrlp_bdelete#init()
 
-filetype plugin indent on
-syntax on
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+syntax enable
+set t_Co=256
 set hidden
 set magic
 set number
@@ -121,8 +142,9 @@ set expandtab
 " set cursorline
 set wrap
 set linebreak
+set breakindent
 " set nolist
-set scrolloff=3
+" set scrolloff=1
 set modeline
 set showcmd
 set showmode
@@ -138,16 +160,15 @@ set autoread
 set autowrite
 set wildmenu
 set ttyfast
-" set lazyredraw
+set lazyredraw
 " set re=1
 set showfulltag
 set noswapfile
 set nobackup
 set incsearch
 set hlsearch
-" set ignorecase
+set ignorecase
 set smartcase
-set copyindent
 set splitbelow
 set splitright
 set wildignore+=tags
@@ -197,6 +218,7 @@ endif
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+" autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 
 let g:EasyMotion_leader_key = '<leader>'
 
@@ -211,13 +233,12 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 
-" Set async completion.
-" let g:monster#completion#rcodetools#backend = "async_rct_complete"
+"let g:monster#completion#rcodetools#backend = "async_rct_complete"
 
 " Use neocomplete.vim
 " let g:neocomplete#sources#omni#input_patterns = {
-" \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-" \}
+"       \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+"  \}
 
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -227,12 +248,13 @@ function! s:my_cr_function()
   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 
-let g:vimrubocop_extra_args = '-R'
+
+" let g:vimrubocop_extra_args = '-R'
 
 "autocmd vimenter * NERDTree
 nmap <F2> :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
-"let g:NERDTreeDirArrows=0
+" let g:NERDTreeDirArrows=1
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 
 
@@ -240,7 +262,7 @@ if has("mac")
   set gfn=Melno:h12
 elseif has("unix") || has("linux")
   "set guifont=Ubuntu\ Mono\ 12
-  set guifont=ubuntu\ Mono\ 11
+  " set guifont=ubuntu\ Mono\ 11
 endif
 
 if has('clipboard')
@@ -251,9 +273,28 @@ if has('clipboard')
   endif
 endif
 
+
+if has('gui_running')
+  set guifont=Source\ Code\ Pro\ Regular\ 10
+  set background=light
+  colorscheme solarized
+  " set guifont=Consolas\ 11
+  " highlight Normal guifg=white guibg=black
+  "set linespace=1
+else
+  " set background=dark
+  colorscheme jelleybeans
+  " set background=light
+  "colorscheme hybrid-light
+endif
+
+" colorscheme Tomorrow
 " colorscheme jelleybeans
-colorscheme Tomorrow
-"set background=light
+" colorscheme solarized
+" set background=dark
+" colorscheme github
+" colorscheme gruvbox
+" colorscheme zenburn
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader><Leader>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -316,12 +357,12 @@ endif
 
 
 " delete without yanking
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
+" nnoremap <leader>d "_d
+" vnoremap <leader>d "_d
 
 " replace currently selected text with default register
 " without yanking it
-vnoremap <leader>p "_dP
+" vnoremap <leader>p "_dP
 
 let mapleader="\\"
 " set nocursorcolumn
@@ -331,7 +372,7 @@ let mapleader="\\"
 "
 let g:indentLine_enabled = 0
 let g:vim_markdown_folding_disabled = 1
-let g:miniBufExplAutoStart = 0
+" let g:miniBufExplAutoStart = 0
 
 " let python_highlight_all=1
 " let g:pymode_rope = 0
@@ -391,12 +432,18 @@ function! InjectSurround()
     let b:surround_{char2nr("c")} = "{% comment %}\r{% endcomment %}"
 endfunction
 
-map <Leader>cf :call RunCurrentSpecFile()<CR>
-map <Leader>c :call RunNearestSpec()<CR>
+map <Leader>c :call RunCurrentSpecFile()<CR>
+map <Leader>n :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 let g:rspec_command = "!./bin/rspec {spec}"
 
 autocmd BufNewFile,BufRead *.slim set ft=slim
 nnoremap <leader>g :Gstatus<CR>
-
+let g:startify_change_to_dir = 0
+let g:startify_session_persistence = 1
+autocmd FileType gitcommit setlocal spell cursorline
+autocmd BufNewFile,BufRead *.md setlocal spell
+au BufReadPost quickfix  setlocal cursorline
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
