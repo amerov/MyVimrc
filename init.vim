@@ -49,6 +49,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'lepture/vim-jinja'
 
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
 Plug 'othree/html5.vim'
 "Plug 'mattn/emmet-vim'
@@ -72,7 +73,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'd11wtq/ctrlp_bdelete.vim'
 
-set tabstop=4
 call plug#end()
 call ctrlp_bdelete#init()
 
@@ -185,14 +185,8 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 let g:rspec_command = "!./bin/rspec {spec}"
 
-
-
-
 autocmd BufNewFile,BufRead *.slim set ft=slim
 nnoremap <leader>g :Gstatus<CR>
-
-
-
 
 let g:startify_change_to_dir = 0
 let g:startify_session_persistence = 1
@@ -202,9 +196,11 @@ au BufReadPost quickfix  setlocal cursorline
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 " colorscheme Tomorrow
-colorscheme jellybeans
-" colorscheme hybrid
+" colorscheme jellybeans
+colorscheme jelleybeans
+" colorscheme zenburn
 " set background=dark
+" colorscheme gruvbox
 let g:deoplete#enable_at_startup = 1
 
 au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
@@ -219,5 +215,8 @@ let g:ale_lint_on_save = 1
 let g:pasta_paste_before_mapping = ',P'
 let g:pasta_paste_after_mapping = ',p'
 
+" let g:yankring_enabled = 0
+let g:yankring_clipboard_monitor = 0
 let g:yankring_replace_n_pkey = '<m-p>'
 let g:yankring_replace_n_nkey = '<m-n>'
+
