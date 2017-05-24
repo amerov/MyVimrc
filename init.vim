@@ -1,4 +1,4 @@
-call plug#begin('~/.local/share/nvim/plugged')
+ call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'vim-scripts/YankRing.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'
@@ -124,11 +124,12 @@ let g:EasyMotion_leader_key = '<leader>'
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 let NERDTreeShowBookmarks=1
 " let g:NERDTreeDirArrows=1
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 " if has('clipboard')
 "   if has('unnamedplus')
 "     set clipboard=unnamedplus
@@ -200,7 +201,8 @@ let g:NERDTreeDirArrowCollapsible = '-'
 colorscheme jelleybeans
 " colorscheme zenburn
 " set background=dark
-" colorscheme gruvbox
+" colorscheme solarized
+" colorscheme monokai-chris
 let g:deoplete#enable_at_startup = 1
 
 au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
@@ -219,4 +221,14 @@ let g:pasta_paste_after_mapping = ',p'
 let g:yankring_clipboard_monitor = 0
 let g:yankring_replace_n_pkey = '<m-p>'
 let g:yankring_replace_n_nkey = '<m-n>'
+
+let g:ale_linters = {'ruby': ['ruby']}
+
+function! ActivateRubocop()
+  let g:ale_linters = {'ruby': ['rubocop']}
+endfunction
+
+function! DeactivateRubocop()
+  let g:ale_linters = {'ruby': ['rubocop']}
+endfunction
 
