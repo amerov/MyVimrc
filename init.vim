@@ -1,4 +1,4 @@
- call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'vim-scripts/YankRing.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'
@@ -229,6 +229,5 @@ function! ActivateRubocop()
 endfunction
 
 function! DeactivateRubocop()
-  let g:ale_linters = {'ruby': ['rubocop']}
-endfunction
-
+  let g:ale_linters = {'ruby': ['ruby']}
+endfunction  
