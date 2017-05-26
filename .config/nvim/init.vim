@@ -230,4 +230,5 @@ endfunction
 
 function! DeactivateRubocop()
   let g:ale_linters = {'ruby': ['ruby']}
-endfunction  
+endfunction
+

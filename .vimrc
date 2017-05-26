@@ -6,11 +6,12 @@ call vundle#begin()
 " Plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
-Plugin 'Shougo/vimproc.vim'
+" Plugin 'Shougo/vimproc.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+Plugin  'w0rp/ale'
 Plugin 'scrooloose/nerdtree'
 Plugin 'git@github.com:powerman/vim-plugin-ruscmd.git'
 Plugin 'majutsushi/tagbar'
@@ -28,11 +29,11 @@ Plugin 'git@github.com:edsono/vim-matchit.git'
 " Plugin 'git@github.com:sjl/gundo.vim.git'
 " Plugin 'wincent/terminus' " Terminus enhances Vim's integration with the terminal
 Plugin 'sickill/vim-pasta'
-Plugin 'tpope/vim-dispatch'
+" Plugin 'tpope/vim-dispatch'
 Plugin 'DataWraith/auto_mkdir'
 " Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'd11wtq/ctrlp_bdelete.vim'
-Plugin 'wesQ3/vim-windowswap'
+" Plugin 'wesQ3/vim-windowswap'
 Plugin 'https://github.com/danro/rename.vim'
 Plugin 'osyo-manga/vim-over'
 Plugin 'dyng/ctrlsf.vim'
@@ -79,6 +80,7 @@ Plugin 'tpope/vim-endwise'
 " Plugin 'https://github.com/osyo-manga/vim-monster'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'https://github.com/danchoi/ri.vim'
+Plugin 'stefanoverna/vim-i18n'
 
 "Python
 Plugin 'jmcantrell/vim-virtualenv'
@@ -92,6 +94,7 @@ Plugin 'lepture/vim-jinja'
 " Front End
 Plugin 'pangloss/vim-javascript'
 
+Plugin 'mxw/vim-jsx'
 " Plugin 'git://github.com/walm/jshint.vim.git'
 
 Plugin 'kchmck/vim-coffee-script'
@@ -114,6 +117,7 @@ Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'Konfekt/FastFold'
+Plugin 'szw/vim-tags'
 
 " Plugin 'tweekmonster/django-plus.vim'
 call vundle#end()
@@ -276,18 +280,17 @@ endif
 
 if has('gui_running')
   set guifont=Source\ Code\ Pro\ Regular\ 10
-  set background=light
-  colorscheme solarized
+  set background=dark
+  " colorscheme solarized
   " set guifont=Consolas\ 11
   " highlight Normal guifg=white guibg=black
-  "set linespace=1
+    set linespace=1
 else
   " set background=dark
-  colorscheme jelleybeans
-  " set background=light
-  "colorscheme hybrid-light
+  colorscheme jellybeans
 endif
 
+colorscheme jellybeans
 " colorscheme Tomorrow
 " colorscheme jelleybeans
 " colorscheme solarized
@@ -341,13 +344,10 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 "highlight clear SignColumn
 "set cmdheight=2
 
-if version >= 700
-    set history=64
-    set undolevels=128
-    set undodir=~/.vim/undodir/
-    set undofile
-    set undolevels=1000
-    set undoreload=10000
+if has('persistent_undo')
+  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+  set undodir=~/.vim/backups
+  set undofile
 endif
 
 "map <C-k> <C-w><Up>
@@ -447,3 +447,27 @@ autocmd BufNewFile,BufRead *.md setlocal spell
 au BufReadPost quickfix  setlocal cursorline
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
+
+
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
+
+let g:pasta_paste_before_mapping = ',P'
+let g:pasta_paste_after_mapping = ',p'
+
+let g:yankring_clipboard_monitor = 0
+let g:yankring_replace_n_pkey = '<m-p>'
+let g:yankring_replace_n_nkey = '<m-n>'
+
+
+let g:ale_linters = {'ruby': ['ruby']}
+
+function! ActivateRubocop()
+  let g:ale_linters = {'ruby': ['rubocop']}
+endfunction
+
+function! DeactivateRubocop()
+  let g:ale_linters = {'ruby': ['ruby']}
+endfunction
+
+

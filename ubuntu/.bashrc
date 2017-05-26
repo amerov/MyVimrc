@@ -121,11 +121,9 @@ case "$TERM" in
   'Eterm') TERM=Eterm-256color;;
 esac
 
-export EDITOR=vim
+export EDITOR=nvim
 
 source ~/.rvm/scripts/rvm
-export PATH="$PATH:$HOME/local/go1.6/bin"
-export GOROOT="$HOME/local/go1.6"
 
 # export PATH="$HOME/.linuxbrew/bin:$PATH"
 # export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
@@ -135,3 +133,17 @@ export GOROOT="$HOME/local/go1.6"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 stty -ixon
+
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+# set -o vi
+
+
+alias vi='nvim'
+alias vim='nvim'

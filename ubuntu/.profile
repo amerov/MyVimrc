@@ -28,6 +28,20 @@ export NVM_DIR="/home/amerov/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 
+export PATH="$PATH:$HOME/local/go1.6/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export HISTSIZE=10000
-export HISTFILESIZE=1000000
+export GOROOT="$HOME/local/go1.6"
+export GOPATH="$HOME/local/gopath"
+export PATH="$PATH:$HOME/local/gopath/bin"
+
+# export HISTSIZE=1000
+# export HISTFILESIZE=10000
+
+alias vi='nvim'
+alias vim='nvim'
+
+case "$TERM" in
+  'xterm') TERM=xterm-256color;;
+  'screen') TERM=screen-256color;;
+  'Eterm') TERM=Eterm-256color;;
+esac

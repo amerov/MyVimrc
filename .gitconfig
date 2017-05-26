@@ -1,19 +1,29 @@
 [user]
-	email = maratamerov@gmail.com
-	name = amerov
+    email = maratamerov@gmail.com
+    name = amerov
 [push]
-	default = current
+    default = current
 [color]
-	sh = auto
-        ui = true
+    sh = auto
+    ui = true
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    lo = log --no-merges --oneline
     p = pull -v
     s = status
+    co = commit -v
+    ca = commit --amend
     ch = checkout
     b = branch
+    sdiff = diff --staged
+    cdiff = diff --cached
 [rerere]
-	enabled = true
-	autoupdate = true
+    enabled = true
+    autoupdate = true
+[diff]
+    compactionHeuristic = true
+    algorithm = patience
 [core]
-	autocrlf = input
+    autocrlf = input
+    excludesfile = /home/amerov/.gitexcludes
