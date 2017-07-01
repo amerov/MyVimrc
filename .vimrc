@@ -127,7 +127,10 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 syntax enable
-set t_Co=256
+if has("termguicolors")
+  set termguicolors
+endif
+"set t_Co=256
 set hidden
 set magic
 set number

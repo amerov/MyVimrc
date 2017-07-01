@@ -59,6 +59,9 @@ Plug 'slim-template/vim-slim'
 Plug 'ternjs/tern_for_vim'
 
 Plug 'flazz/vim-colorschemes'
+Plug 'lifepillar/vim-solarized8'
+Plug 'dracula/vim'
+Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 
@@ -71,10 +74,8 @@ Plug 'vim-scripts/YankRing.vim'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ivalkeen/vim-ctrlp-tjump'
-Plug 'd11wtq/ctrlp_bdelete.vim'
 
 call plug#end()
-call ctrlp_bdelete#init()
 
 set tabstop=4
 set shiftwidth=4
@@ -196,13 +197,23 @@ autocmd BufNewFile,BufRead *.md setlocal spell
 au BufReadPost quickfix  setlocal cursorline
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
-" colorscheme Tomorrow
-" colorscheme jellybeans
-colorscheme jelleybeans
+
+if has("termguicolors")
+  set termguicolors
+endif
+
+colorscheme solarized8_dark
+syn on
+" set background=dark
+
+" colorscheme jelleybeans
 " colorscheme zenburn
 " set background=dark
-" colorscheme solarized
+" colorscheme hybrid_material
 " colorscheme monokai-chris
+" set background=dark
+let g:jellybeans_background_color="000000"
+" colorscheme jellybeans
 let g:deoplete#enable_at_startup = 1
 
 au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
@@ -231,4 +242,5 @@ endfunction
 function! DeactivateRubocop()
   let g:ale_linters = {'ruby': ['ruby']}
 endfunction
+
 
