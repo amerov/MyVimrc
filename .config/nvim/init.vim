@@ -40,7 +40,8 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-endwise'
-Plug 'thoughtbot/vim-rspec'
+" Plug 'thoughtbot/vim-rspec'
+Plug 'janko-m/vim-test'
 Plug 'danchoi/ri.vim'
 Plug 'stefanoverna/vim-i18n'
 
@@ -181,11 +182,11 @@ let g:go_list_type = "quickfix"
 
 
 
-map <Leader>c :call RunCurrentSpecFile()<CR>
-map <Leader>n :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = "!./bin/rspec {spec}"
+" map <Leader>c :call RunCurrentSpecFile()<CR>
+" map <Leader>n :call RunNearestSpec()<CR>
+" map <Leader>l :call RunLastSpec()<CR>
+" map <Leader>a :call RunAllSpecs()<CR>
+" let g:rspec_command = "!./bin/rspec {spec}"
 
 autocmd BufNewFile,BufRead *.slim set ft=slim
 nnoremap <leader>g :Gstatus<CR>
@@ -202,17 +203,16 @@ if has("termguicolors")
   set termguicolors
 endif
 
-colorscheme solarized8_dark
-syn on
+" colorscheme solarized8_dark
 " set background=dark
 
-" colorscheme jelleybeans
+colorscheme jelleybeans
 " colorscheme zenburn
 " set background=dark
 " colorscheme hybrid_material
 " colorscheme monokai-chris
 " set background=dark
-let g:jellybeans_background_color="000000"
+" let g:jellybeans_background_color="000000"
 " colorscheme jellybeans
 let g:deoplete#enable_at_startup = 1
 
