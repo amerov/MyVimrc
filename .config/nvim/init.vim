@@ -204,16 +204,21 @@ if has("termguicolors")
 endif
 
 " colorscheme solarized8_dark
+" colorscheme solarized8_light
+" colorscheme github
 " set background=dark
+" colorscheme hybrid
 
-colorscheme jelleybeans
+" colorscheme jelleybeans
 " colorscheme zenburn
 " set background=dark
 " colorscheme hybrid_material
 " colorscheme monokai-chris
 " set background=dark
-" let g:jellybeans_background_color="000000"
-" colorscheme jellybeans
+let g:jellybeans_background_color="070707"
+colorscheme jellybeans
+" colorscheme material-theme
+
 let g:deoplete#enable_at_startup = 1
 
 au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
@@ -243,4 +248,8 @@ function! DeactivateRubocop()
   let g:ale_linters = {'ruby': ['ruby']}
 endfunction
 
+function! RubyTags()
+  !ctags --recurse=yes --exclude=.git --exclude='*.log' `bundle show --paths; pwd`
+endfunction
 
+set tags+=./TAGS
