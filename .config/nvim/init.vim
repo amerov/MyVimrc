@@ -1,8 +1,9 @@
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'vim-scripts/YankRing.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'
-Plug 'w0rp/ale'
+" Plug 'roxma/nvim-completion-manager'
+" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " (optional) php completion via LanguageClient-neovim
+
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Lokaltog/vim-easymotion'
@@ -53,9 +54,10 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
 Plug 'othree/html5.vim'
-"Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-haml'
 Plug 'hail2u/vim-css3-syntax'
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'slim-template/vim-slim'
 Plug 'ternjs/tern_for_vim'
 
@@ -63,11 +65,12 @@ Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
 Plug 'dracula/vim'
 Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'rakr/vim-one'
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 
 Plug 'Konfekt/FastFold'
-Plug 'szw/vim-tags'
+" Plug 'szw/vim-tags'
 
 Plug 'sickill/vim-pasta'
 " Plug 'maxbrunsfeld/vim-yankstack'
@@ -76,16 +79,26 @@ Plug 'vim-scripts/YankRing.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ivalkeen/vim-ctrlp-tjump'
 
-call plug#end()
+" Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+Plug 'aliou/sql-heredoc.vim'
 
+Plug 'w0rp/ale'
+call plug#end()
+filetype indent on
+filetype plugin on
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set shiftround
 set expandtab
 set hidden
 set magic
 set number
 set autoindent
+set smartindent
+set smarttab
+" set indentexpr'
+" set cindent
 set ruler
 set modeline
 set showcmd
@@ -147,7 +160,7 @@ nnoremap <Leader><Leader>f :let @+=expand("%:t")<cr>:echo "Copied file name to c
 " Copy current buffer path without filename to system clipboard
 nnoremap <Leader><Leader>d :let @+=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 
-let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_working_path_mode = 'w'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 nnoremap <c-]> :CtrlPtjump<cr>
 
@@ -203,21 +216,23 @@ if has("termguicolors")
   set termguicolors
 endif
 
-" colorscheme solarized8_dark
+colorscheme solarized8_dark
 " colorscheme solarized8_light
 " colorscheme github
 " set background=dark
 " colorscheme hybrid
-
+" colorscheme gruvbox
 " colorscheme jelleybeans
 " colorscheme zenburn
 " set background=dark
 " colorscheme hybrid_material
 " colorscheme monokai-chris
 " set background=dark
-let g:jellybeans_background_color="070707"
-colorscheme jellybeans
+"
+let g:jellybeans_background_color="101010"
+" colorscheme jellybeans
 " colorscheme material-theme
+" colorscheme gruvbox
 
 let g:deoplete#enable_at_startup = 1
 
@@ -253,3 +268,6 @@ function! RubyTags()
 endfunction
 
 set tags+=./TAGS
+au BufRead,BufNewFile *.scss set filetype=scss.css
+
+
