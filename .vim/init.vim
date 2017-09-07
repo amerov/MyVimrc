@@ -10,6 +10,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
 
+Plug 'chrisbra/NrrwRgn'
 Plug 'powerman/vim-plugin-ruscmd'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
@@ -33,7 +34,6 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
-
 Plug 'tpope/vim-rvm'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
@@ -60,7 +60,9 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'slim-template/vim-slim'
 Plug 'ternjs/tern_for_vim'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
+Plug 'chiel92/vim-autoformat'
 Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
 Plug 'dracula/vim'
@@ -81,6 +83,8 @@ Plug 'ivalkeen/vim-ctrlp-tjump'
 
 " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'aliou/sql-heredoc.vim'
+
+Plug 'MattesGroeger/vim-bookmarks'
 
 Plug 'w0rp/ale'
 call plug#end()
@@ -110,6 +114,9 @@ set showfulltag
 set noswapfile
 set smartcase
 set ignorecase
+set wildmenu
+set laststatus=2
+" set cmdheight=2
 set wildignore+=tags
 set wildignore+=*/tmp/*
 set wildignore+=*/.idea/*
@@ -216,12 +223,12 @@ if has("termguicolors")
   set termguicolors
 endif
 
-colorscheme solarized8_dark
+" colorscheme solarized8_dark
 " colorscheme solarized8_light
 " colorscheme github
-" set background=dark
+set background=dark
 " colorscheme hybrid
-" colorscheme gruvbox
+colorscheme gruvbox
 " colorscheme jelleybeans
 " colorscheme zenburn
 " set background=dark
@@ -229,7 +236,7 @@ colorscheme solarized8_dark
 " colorscheme monokai-chris
 " set background=dark
 "
-let g:jellybeans_background_color="101010"
+" let g:jellybeans_background_color="101010"
 " colorscheme jellybeans
 " colorscheme material-theme
 " colorscheme gruvbox
@@ -253,14 +260,14 @@ let g:yankring_clipboard_monitor = 0
 let g:yankring_replace_n_pkey = '<m-p>'
 let g:yankring_replace_n_nkey = '<m-n>'
 
-let g:ale_linters = {'ruby': ['ruby']}
+let g:ale_linters = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'eruby': []}
 
 function! ActivateRubocop()
-  let g:ale_linters = {'ruby': ['rubocop']}
+  let g:ale_linters = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'eruby': []}
 endfunction
 
 function! DeactivateRubocop()
-  let g:ale_linters = {'ruby': ['ruby']}
+  let g:ale_linters = {'ruby': ['ruby'], 'javascript': ['eslint'], 'eruby': []}
 endfunction
 
 function! RubyTags()
@@ -270,4 +277,16 @@ endfunction
 set tags+=./TAGS
 au BufRead,BufNewFile *.scss set filetype=scss.css
 
+let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
 
+
+" let g:deoplete#sources#ternjs#types = 1
+" let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#include_keywords = 1
+
+" Use tern_for_vim.
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent", "--no-port-file"]
+
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1
