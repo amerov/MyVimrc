@@ -228,8 +228,8 @@ endif
 " colorscheme github
 set background=dark
 " colorscheme hybrid
-colorscheme gruvbox
-" colorscheme jelleybeans
+" colorscheme gruvbox
+colorscheme jelleybeans
 " colorscheme zenburn
 " set background=dark
 " colorscheme hybrid_material
@@ -290,3 +290,14 @@ let g:tern#arguments = ["--persistent", "--no-port-file"]
 
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_auto_save = 1
+
+let g:tagbar_type_ruby = {
+    \ 'kinds' : [
+        \ 'm:modules',
+        \ 'c:classes',
+        \ 'd:describes',
+        \ 'C:contexts',
+        \ 'f:methods',
+        \ 'F:singleton methods'
+    \ ]
+\ }
