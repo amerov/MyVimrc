@@ -14,7 +14,9 @@ Plug 'chrisbra/NrrwRgn'
 Plug 'powerman/vim-plugin-ruscmd'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
-Plug 'rking/ag.vim'
+" Plug 'rking/ag.vim'
+" Plug 'Chun-Yang/vim-action-ag'
+Plug 'wincent/ferret'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'bronson/vim-trailing-whitespace'
@@ -23,10 +25,9 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-sleuth'
 Plug 'https://github.com/adelarsq/vim-matchit'
 Plug 'DataWraith/auto_mkdir'
-Plug 'https://github.com/danro/rename.vim'
+Plug 'tpope/vim-eunuch'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-surround'
-Plug 'Chun-Yang/vim-action-ag'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'Shougo/neosnippet'
@@ -48,8 +49,8 @@ Plug 'stefanoverna/vim-i18n'
 
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'davidhalter/jedi-vim'
-Plug 'lepture/vim-jinja'
-
+" Plug 'lepture/vim-jinja'
+Plug 'tpope/vim-liquid'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
@@ -226,18 +227,18 @@ endif
 " colorscheme solarized8_dark
 " colorscheme solarized8_light
 " colorscheme github
-set background=dark
+" set background=dark
 " colorscheme hybrid
 " colorscheme gruvbox
-colorscheme jelleybeans
+" colorscheme jelleybeans
 " colorscheme zenburn
 " set background=dark
 " colorscheme hybrid_material
 " colorscheme monokai-chris
 " set background=dark
 "
-" let g:jellybeans_background_color="101010"
-" colorscheme jellybeans
+let g:jellybeans_background_color="111111"
+colorscheme jellybeans
 " colorscheme material-theme
 " colorscheme gruvbox
 
@@ -301,3 +302,53 @@ let g:tagbar_type_ruby = {
         \ 'F:singleton methods'
     \ ]
 \ }
+
+
+function! g:BMWorkDirFileLocation()
+    let filename = 'bookmarks'
+    let location = ''
+    if isdirectory('.git')
+        " Current work dir is git's work tree
+        let location = getcwd().'/.git'
+    else
+        " Look upwards (at parents) for a directory named '.git'
+        let location = finddir('.git', '.;')
+    endif
+    if len(location) > 0
+        return location.'/'.filename
+    else
+        return getcwd().'/.'.filename
+    endif
+endfunction
+
+let g:bookmark_no_default_key_mappings = 1
+
+function! BookmarkMapKeys()
+    nmap mm :BookmarkToggle<CR>
+    nmap mi :BookmarkAnnotate<CR>
+    nmap mn :BookmarkNext<CR>
+    nmap mp :BookmarkPrev<CR>
+    nmap ma :BookmarkShowAll<CR>
+    nmap mc :BookmarkClear<CR>
+    nmap mx :BookmarkClearAll<CR>
+    nmap mkk :BookmarkMoveUp
+    nmap mjj :BookmarkMoveDown
+endfunction
+
+function! BookmarkUnmapKeys()
+    unmap mm
+    unmap mi
+    unmap mn
+    unmap mp
+    unmap ma
+    unmap mc
+    unmap mx
+    unmap mkk
+    unmap mjj
+endfunction
+
+autocmd BufEnter * :call BookmarkMapKeys()
+autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+let g:FerretMap=0
+nmap <leader><leader>s <Plug>(FerretAckWord)
+
