@@ -14,8 +14,8 @@ Plug 'chrisbra/NrrwRgn'
 Plug 'powerman/vim-plugin-ruscmd'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
-" Plug 'rking/ag.vim'
-" Plug 'Chun-Yang/vim-action-ag'
+Plug 'rking/ag.vim'
+Plug 'Chun-Yang/vim-action-ag'
 Plug 'wincent/ferret'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
@@ -51,10 +51,12 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'davidhalter/jedi-vim'
 " Plug 'lepture/vim-jinja'
 Plug 'tpope/vim-liquid'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
 Plug 'othree/html5.vim'
+" Plug 'Valloric/MatchTagAlways'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-haml'
 Plug 'hail2u/vim-css3-syntax'
@@ -66,6 +68,8 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'chiel92/vim-autoformat'
 Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
+" Plug 'ajh17/Spacegray.vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'dracula/vim'
 Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'rakr/vim-one'
@@ -88,6 +92,13 @@ Plug 'aliou/sql-heredoc.vim'
 Plug 'MattesGroeger/vim-bookmarks'
 
 Plug 'w0rp/ale'
+Plug 'itchyny/vim-cursorword'
+" Plug 'qstrahl/vim-matchmaker'
+Plug 'mhinz/vim-sayonara'
+" Plug 'Quramy/vim-js-pretty-template'
+Plug 'matze/vim-move'
+Plug 'cocopon/vaffle.vim'
+
 call plug#end()
 filetype indent on
 filetype plugin on
@@ -95,6 +106,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set shiftround
+set nowrap
 set expandtab
 set hidden
 set magic
@@ -105,6 +117,7 @@ set smarttab
 " set indentexpr'
 " set cindent
 set ruler
+" set cursorline
 set modeline
 set showcmd
 set showmode
@@ -126,6 +139,8 @@ set wildignore+=*/chef/*
 set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+set lazyredraw
+set ttyfast
 nnoremap <silent> <Space> :nohl<Bar>:echo<CR>
 
 if has('spell')
@@ -224,23 +239,18 @@ if has("termguicolors")
   set termguicolors
 endif
 
+" set background=dark
 " colorscheme solarized8_dark
 " colorscheme solarized8_light
 " colorscheme github
-" set background=dark
-" colorscheme hybrid
 " colorscheme gruvbox
 " colorscheme jelleybeans
-" colorscheme zenburn
-" set background=dark
-" colorscheme hybrid_material
-" colorscheme monokai-chris
-" set background=dark
+" colorscheme gruvbox
 "
-let g:jellybeans_background_color="111111"
+let g:jellybeans_background_color="121212"
 colorscheme jellybeans
 " colorscheme material-theme
-" colorscheme gruvbox
+" colorscheme spacegray
 
 let g:deoplete#enable_at_startup = 1
 
@@ -351,4 +361,7 @@ autocmd BufEnter * :call BookmarkMapKeys()
 autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 let g:FerretMap=0
 nmap <leader><leader>s <Plug>(FerretAckWord)
-
+" let g:bookmark_location_list = 0
+let g:bookmark_disable_ctrlp = 1
+let g:NERDTreeHijackNetrw = 0
+let g:jsx_ext_required = 0
