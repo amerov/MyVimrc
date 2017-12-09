@@ -40,7 +40,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
-Plug 'ngmy/vim-rubocop'
+" Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-endwise'
 " Plug 'thoughtbot/vim-rspec'
 Plug 'janko-m/vim-test'
@@ -51,8 +51,9 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'davidhalter/jedi-vim'
 " Plug 'lepture/vim-jinja'
 Plug 'tpope/vim-liquid'
-" Plug 'pangloss/vim-javascript'
-Plug 'othree/yajs.vim'
+Plug 'pangloss/vim-javascript'
+" Plug 'othree/javascript-libraries-syntax.vim'
+" Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
 Plug 'othree/html5.vim'
@@ -66,13 +67,31 @@ Plug 'ternjs/tern_for_vim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 Plug 'chiel92/vim-autoformat'
-Plug 'flazz/vim-colorschemes'
+
+" Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
-" Plug 'ajh17/Spacegray.vim'
+Plug 'iCyMind/NeoSolarized'
+Plug 'aunsira/macvim-light'
+Plug 'hukl/Smyck-Color-Scheme'
+Plug 'ajh17/Spacegray.vim'
 Plug 'ayu-theme/ayu-vim'
+Plug 'nightsense/office'
 Plug 'dracula/vim'
 Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'rakr/vim-one'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'nanotech/jellybeans.vim'
+Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'whatyouhide/vim-gotham'
+Plug 'joshdick/onedark.vim'
+Plug 'romainl/Apprentice'
+Plug 'mhinz/vim-janah'
+Plug 'MaxSt/FlatColor'
+" Plug 'cocopon/iceberg.vim'
+Plug 'mhartington/oceanic-next'
+Plug 'brooth/far.vim'
+
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 
@@ -89,16 +108,17 @@ Plug 'ivalkeen/vim-ctrlp-tjump'
 " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'aliou/sql-heredoc.vim'
 
-Plug 'MattesGroeger/vim-bookmarks'
+" Plug 'MattesGroeger/vim-bookmarks'
 
 Plug 'w0rp/ale'
-Plug 'itchyny/vim-cursorword'
+" Plug 'itchyny/vim-cursorword'
 " Plug 'qstrahl/vim-matchmaker'
-Plug 'mhinz/vim-sayonara'
+" Plug 'mhinz/vim-sayonara'
 " Plug 'Quramy/vim-js-pretty-template'
-Plug 'matze/vim-move'
+" Plug 'matze/vim-move'
 Plug 'cocopon/vaffle.vim'
 
+" Plug 'c0r73x/neotags.nvim'
 call plug#end()
 filetype indent on
 filetype plugin on
@@ -140,8 +160,11 @@ set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
-set ttyfast
+" set ttyfast
 nnoremap <silent> <Space> :nohl<Bar>:echo<CR>
+
+" set synmaxcol=256
+" syntax sync minlines=256
 
 if has('spell')
     " Turn off spell checking
@@ -159,14 +182,14 @@ endif
 
 let g:EasyMotion_leader_key = '<leader>'
 
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+" autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 let NERDTreeShowBookmarks=1
 " let g:NERDTreeDirArrows=1
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+" let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 set clipboard+=unnamedplus
 " if has('clipboard')
 "   if has('unnamedplus')
@@ -231,7 +254,8 @@ let g:startify_change_to_dir = 0
 let g:startify_session_persistence = 1
 autocmd FileType gitcommit setlocal spell cursorline
 autocmd BufNewFile,BufRead *.md setlocal spell
-au BufReadPost quickfix  setlocal cursorline
+au BufEnter quickfix  setlocal cursorline
+au BufEnter qf setlocal cursorline
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
@@ -240,16 +264,16 @@ if has("termguicolors")
 endif
 
 " set background=dark
+" let g:solarized_visibility="high"
+
 " colorscheme solarized8_dark
 " colorscheme solarized8_light
-" colorscheme github
-" colorscheme gruvbox
-" colorscheme jelleybeans
-" colorscheme gruvbox
 "
-let g:jellybeans_background_color="121212"
+let g:jellybeans_background_color="202020"
 colorscheme jellybeans
-" colorscheme material-theme
+
+" colorscheme one
+" colorscheme PaperColor
 " colorscheme spacegray
 
 let g:deoplete#enable_at_startup = 1
@@ -274,11 +298,11 @@ let g:yankring_replace_n_nkey = '<m-n>'
 let g:ale_linters = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'eruby': []}
 
 function! ActivateRubocop()
-  let g:ale_linters = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'eruby': []}
+  let g:ale_linters['ruby'] = ['rubocop']
 endfunction
 
 function! DeactivateRubocop()
-  let g:ale_linters = {'ruby': ['ruby'], 'javascript': ['eslint'], 'eruby': []}
+  let g:ale_linters['ruby'] = ['ruby']
 endfunction
 
 function! RubyTags()
@@ -286,7 +310,7 @@ function! RubyTags()
 endfunction
 
 set tags+=./TAGS
-au BufRead,BufNewFile *.scss set filetype=scss.css
+au BufRead,BufNewFile *.scss setlocal filetype=scss.css
 
 let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
 
@@ -299,8 +323,8 @@ let g:deoplete#sources#ternjs#include_keywords = 1
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent", "--no-port-file"]
 
-let g:bookmark_save_per_working_dir = 1
-let g:bookmark_auto_save = 1
+" let g:bookmark_save_per_working_dir = 1
+" let g:bookmark_auto_save = 1
 
 let g:tagbar_type_ruby = {
     \ 'kinds' : [
@@ -314,54 +338,59 @@ let g:tagbar_type_ruby = {
 \ }
 
 
-function! g:BMWorkDirFileLocation()
-    let filename = 'bookmarks'
-    let location = ''
-    if isdirectory('.git')
-        " Current work dir is git's work tree
-        let location = getcwd().'/.git'
-    else
-        " Look upwards (at parents) for a directory named '.git'
-        let location = finddir('.git', '.;')
-    endif
-    if len(location) > 0
-        return location.'/'.filename
-    else
-        return getcwd().'/.'.filename
-    endif
-endfunction
 
-let g:bookmark_no_default_key_mappings = 1
+" function! g:BMWorkDirFileLocation()
+"     let filename = 'bookmarks'
+"     let location = ''
+"     if isdirectory('.git')
+"         " Current work dir is git's work tree
+"         let location = getcwd().'/.git'
+"     else
+"         " Look upwards (at parents) for a directory named '.git'
+"         let location = finddir('.git', '.;')
+"     endif
+"     if len(location) > 0
+"         return location.'/'.filename
+"     else
+"         return getcwd().'/.'.filename
+"     endif
+" endfunction
 
-function! BookmarkMapKeys()
-    nmap mm :BookmarkToggle<CR>
-    nmap mi :BookmarkAnnotate<CR>
-    nmap mn :BookmarkNext<CR>
-    nmap mp :BookmarkPrev<CR>
-    nmap ma :BookmarkShowAll<CR>
-    nmap mc :BookmarkClear<CR>
-    nmap mx :BookmarkClearAll<CR>
-    nmap mkk :BookmarkMoveUp
-    nmap mjj :BookmarkMoveDown
-endfunction
+" let g:bookmark_no_default_key_mappings = 1
 
-function! BookmarkUnmapKeys()
-    unmap mm
-    unmap mi
-    unmap mn
-    unmap mp
-    unmap ma
-    unmap mc
-    unmap mx
-    unmap mkk
-    unmap mjj
-endfunction
+" function! BookmarkMapKeys()
+"     nmap mm :BookmarkToggle<CR>
+"     nmap mi :BookmarkAnnotate<CR>
+"     nmap mn :BookmarkNext<CR>
+"     nmap mp :BookmarkPrev<CR>
+"     nmap ma :BookmarkShowAll<CR>
+"     nmap mc :BookmarkClear<CR>
+"     nmap mx :BookmarkClearAll<CR>
+"     nmap mkk :BookmarkMoveUp
+"     nmap mjj :BookmarkMoveDown
+" endfunction
 
-autocmd BufEnter * :call BookmarkMapKeys()
-autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+" function! BookmarkUnmapKeys()
+"     unmap mm
+"     unmap mi
+"     unmap mn
+"     unmap mp
+"     unmap ma
+"     unmap mc
+"     unmap mx
+"     unmap mkk
+"     unmap mjj
+" endfunction
+
+" autocmd BufEnter * :call BookmarkMapKeys()
+" autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+" let g:bookmark_location_list = 0
+" let g:bookmark_disable_ctrlp = 1
+
+
 let g:FerretMap=0
 nmap <leader><leader>s <Plug>(FerretAckWord)
-" let g:bookmark_location_list = 0
-let g:bookmark_disable_ctrlp = 1
 let g:NERDTreeHijackNetrw = 0
-let g:jsx_ext_required = 0
+let g:jsx_ext_required = 1
+let g:rails_no_syntax = 1
+" let g:used_javascript_libs = 'underscore,jquery'
