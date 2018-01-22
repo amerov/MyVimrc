@@ -51,9 +51,9 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'davidhalter/jedi-vim'
 " Plug 'lepture/vim-jinja'
 Plug 'tpope/vim-liquid'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 " Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'othree/yajs.vim'
+Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
 Plug 'othree/html5.vim'
@@ -120,6 +120,7 @@ Plug 'cocopon/vaffle.vim'
 
 " Plug 'c0r73x/neotags.nvim'
 call plug#end()
+
 filetype indent on
 filetype plugin on
 set tabstop=4
@@ -269,7 +270,7 @@ endif
 " colorscheme solarized8_dark
 " colorscheme solarized8_light
 "
-let g:jellybeans_background_color="202020"
+" let g:jellybeans_background_color="202020"
 colorscheme jellybeans
 
 " colorscheme one
@@ -295,14 +296,18 @@ let g:yankring_clipboard_monitor = 0
 let g:yankring_replace_n_pkey = '<m-p>'
 let g:yankring_replace_n_nkey = '<m-n>'
 
-let g:ale_linters = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'eruby': []}
+
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'] }
+
 
 function! ActivateRubocop()
   let g:ale_linters['ruby'] = ['rubocop']
+  let g:ale_fixers['ruby'] = ['rubocop']
 endfunction
 
 function! DeactivateRubocop()
   let g:ale_linters['ruby'] = ['ruby']
+  let g:ale_fixers['ruby'] = ['ruby']
 endfunction
 
 function! RubyTags()
@@ -312,7 +317,7 @@ endfunction
 set tags+=./TAGS
 au BufRead,BufNewFile *.scss setlocal filetype=scss.css
 
-let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
+let g:ale_fixers = { 'javascript': ['eslint'] }
 
 
 " let g:deoplete#sources#ternjs#types = 1
