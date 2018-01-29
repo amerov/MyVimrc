@@ -123,10 +123,10 @@ call plug#end()
 
 filetype indent on
 filetype plugin on
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set shiftround
+" set tabstop=4
+" set shiftwidth=4
+" set softtabstop=4
+" set shiftround
 set nowrap
 set expandtab
 set hidden
@@ -186,19 +186,19 @@ let g:EasyMotion_leader_key = '<leader>'
 " autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-" autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 let NERDTreeShowBookmarks=1
 " let g:NERDTreeDirArrows=1
 " let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
-set clipboard+=unnamedplus
-" if has('clipboard')
-"   if has('unnamedplus')
-"     set clipboard=unnamedplus
-"   else
-"     set clipboard=unnamed
-"   endif
-" endif
+" set clipboard+=unnamedplus
+if has('clipboard')
+  if has('unnamedplus')
+    set clipboard=unnamedplus
+  else
+    set clipboard=unnamed
+  endif
+endif
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader><Leader>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -270,7 +270,7 @@ endif
 " colorscheme solarized8_dark
 " colorscheme solarized8_light
 "
-" let g:jellybeans_background_color="202020"
+let g:jellybeans_background_color="282c34"
 colorscheme jellybeans
 
 " colorscheme one
