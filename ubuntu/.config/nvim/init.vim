@@ -268,9 +268,13 @@ endif
 " let g:solarized_visibility="high"
 
 " colorscheme solarized8_dark
+" let g:airline_theme='base16_solarized'
 " colorscheme solarized8_light
 "
-let g:jellybeans_background_color="282c34"
+" let g:jellybeans_background_color="282c34"
+"
+let g:jellybeans_background_color="222222"
+
 colorscheme jellybeans
 
 " colorscheme one
