@@ -391,7 +391,9 @@ let g:tern#arguments = ["--persistent", "--no-port-file"]
 
 let g:FerretMap=0
 let g:FerretQFOptions=0
-nmap <leader><leader>s <Plug>(FerretAckWord)
+
+vmap     ,/ <Plug>CtrlSFVwordPath
+nmap     ,/ <Plug>CtrlSFCwordPath
 
 let g:NERDTreeHijackNetrw = 0
 let g:jsx_ext_required = 1
