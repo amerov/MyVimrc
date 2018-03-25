@@ -1,29 +1,32 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'
+" Plug 'uplus/deoplete-solargraph'
+
 " Plug 'roxma/nvim-completion-manager'
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " (optional) php completion via LanguageClient-neovim
 
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'chrisbra/NrrwRgn'
 Plug 'powerman/vim-plugin-ruscmd'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
-Plug 'rking/ag.vim'
-Plug 'Chun-Yang/vim-action-ag'
+" Plug 'rking/ag.vim'
+" Plug 'Chun-Yang/vim-action-ag'
 Plug 'wincent/ferret'
+" Plug 'wincent/loupe'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'thinca/vim-quickrun'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-sleuth'
-Plug 'https://github.com/adelarsq/vim-matchit'
+" Plug 'https://github.com/adelarsq/vim-matchit'
+Plug 'andymass/vim-matchup'
 Plug 'DataWraith/auto_mkdir'
 Plug 'tpope/vim-eunuch'
 Plug 'dyng/ctrlsf.vim'
@@ -33,30 +36,29 @@ Plug 'tpope/vim-commentary'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-rvm'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
-" Plug 'ngmy/vim-rubocop'
+" Plug 'osyo-manga/vim-monster'
 Plug 'tpope/vim-endwise'
-" Plug 'thoughtbot/vim-rspec'
 Plug 'janko-m/vim-test'
-Plug 'danchoi/ri.vim'
 Plug 'stefanoverna/vim-i18n'
 
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'davidhalter/jedi-vim'
 " Plug 'lepture/vim-jinja'
-Plug 'tpope/vim-liquid'
+" Plug 'tpope/vim-liquid'
 " Plug 'pangloss/vim-javascript'
 " Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
-Plug 'othree/html5.vim'
 " Plug 'Valloric/MatchTagAlways'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-haml'
@@ -68,28 +70,17 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 Plug 'chiel92/vim-autoformat'
 
-" Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
-Plug 'iCyMind/NeoSolarized'
-Plug 'aunsira/macvim-light'
-Plug 'hukl/Smyck-Color-Scheme'
 Plug 'ajh17/Spacegray.vim'
-Plug 'ayu-theme/ayu-vim'
-Plug 'nightsense/office'
-Plug 'dracula/vim'
-Plug 'tyrannicaltoucan/vim-quantum'
-Plug 'rakr/vim-one'
-Plug 'liuchengxu/space-vim-dark'
 Plug 'nanotech/jellybeans.vim'
+Plug 'guns/jellyx.vim'
+Plug 'fenetikm/falcon'
+Plug 'danilo-augusto/vim-afterglow'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'whatyouhide/vim-gotham'
-Plug 'joshdick/onedark.vim'
-Plug 'romainl/Apprentice'
-Plug 'mhinz/vim-janah'
-Plug 'MaxSt/FlatColor'
-" Plug 'cocopon/iceberg.vim'
-Plug 'mhartington/oceanic-next'
+Plug 'reedes/vim-colors-pencil'
+Plug 'roosta/vim-srcery'
+
 Plug 'brooth/far.vim'
 
 Plug 'fatih/vim-go'
@@ -117,17 +108,27 @@ Plug 'w0rp/ale'
 " Plug 'Quramy/vim-js-pretty-template'
 " Plug 'matze/vim-move'
 Plug 'cocopon/vaffle.vim'
+Plug 'kopischke/vim-fetch'
+" Plug 'wincent/terminus'
 
 " Plug 'c0r73x/neotags.nvim'
+" Plug 'kassio/neoterm'
+" Plug 'osyo-manga/vim-over'
+" Plug 'reedes/vim-wordy'
+" Plug 'tweekmonster/braceless.vim'
+
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
 
 filetype indent on
 filetype plugin on
-" set tabstop=4
-" set shiftwidth=4
-" set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 " set shiftround
-set nowrap
+" set nowrap
 set expandtab
 set hidden
 set magic
@@ -161,15 +162,16 @@ set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
+set updatetime=1000
 " set ttyfast
-nnoremap <silent> <Space> :nohl<Bar>:echo<CR>
+
+nnoremap <silent><leader><backspace> :nohl<Bar>:echo<CR>
 
 " set synmaxcol=256
 " syntax sync minlines=256
 
 if has('spell')
     " Turn off spell checking
-    set nospell
     set spelllang=ru,en
     menu Spell.off :setlocal spell spelllang= <cr>
     menu Spell.Russian+English :setlocal spell spelllang=ru,en <cr>
@@ -181,12 +183,19 @@ if has('spell')
     menu Spell.Next\ Wrong\ Word<Tab>]s ]s
 endif
 
+if has('mouse')
+  set mouse=a
+endif
+
 let g:EasyMotion_leader_key = '<leader>'
 
 " autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+" au Filetype eruby setlocal ft=eruby.html
+autocmd BufRead,BufNewFile *.html.erb set filetype=eruby.html
+autocmd FileType ruby,yaml,Gemfile,rake setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 let NERDTreeShowBookmarks=1
 " let g:NERDTreeDirArrows=1
@@ -199,6 +208,7 @@ if has('clipboard')
     set clipboard=unnamed
   endif
 endif
+
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader><Leader>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -240,23 +250,16 @@ let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
 
-
-
-" map <Leader>c :call RunCurrentSpecFile()<CR>
-" map <Leader>n :call RunNearestSpec()<CR>
-" map <Leader>l :call RunLastSpec()<CR>
-" map <Leader>a :call RunAllSpecs()<CR>
-" let g:rspec_command = "!./bin/rspec {spec}"
-
-autocmd BufNewFile,BufRead *.slim set ft=slim
 nnoremap <leader>g :Gstatus<CR>
 
 let g:startify_change_to_dir = 0
 let g:startify_session_persistence = 1
+
+autocmd BufNewFile,BufRead *.slim setlocal ft=slim
 autocmd FileType gitcommit setlocal spell cursorline
-autocmd BufNewFile,BufRead *.md setlocal spell
-au BufEnter quickfix  setlocal cursorline
-au BufEnter qf setlocal cursorline
+autocmd FileType md setlocal spell
+au FileType qf setlocal cursorline
+
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
@@ -265,21 +268,20 @@ if has("termguicolors")
 endif
 
 " set background=dark
+" let g:gruvbox_improved_warnings = 1
+" colorscheme gruvbox
+
 " let g:solarized_visibility="high"
 
-" colorscheme solarized8_dark
+" colorscheme solarized8_high
 " let g:airline_theme='base16_solarized'
-" colorscheme solarized8_light
+" colorscheme solarized8_light_high
 "
-" let g:jellybeans_background_color="282c34"
-"
-let g:jellybeans_background_color="222222"
+" let g:jellybeans_background_color="050505"
+" let g:jellybeans_background_color="101010"
+" colorscheme jellybeans
 
-colorscheme jellybeans
-
-" colorscheme one
-" colorscheme PaperColor
-" colorscheme spacegray
+colorscheme PaperColor
 
 let g:deoplete#enable_at_startup = 1
 
@@ -299,6 +301,7 @@ let g:pasta_paste_after_mapping = ',p'
 let g:yankring_clipboard_monitor = 0
 let g:yankring_replace_n_pkey = '<m-p>'
 let g:yankring_replace_n_nkey = '<m-n>'
+
 
 
 let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'] }
@@ -334,17 +337,6 @@ let g:tern#arguments = ["--persistent", "--no-port-file"]
 
 " let g:bookmark_save_per_working_dir = 1
 " let g:bookmark_auto_save = 1
-
-let g:tagbar_type_ruby = {
-    \ 'kinds' : [
-        \ 'm:modules',
-        \ 'c:classes',
-        \ 'd:describes',
-        \ 'C:contexts',
-        \ 'f:methods',
-        \ 'F:singleton methods'
-    \ ]
-\ }
 
 
 
@@ -398,8 +390,16 @@ let g:tagbar_type_ruby = {
 
 
 let g:FerretMap=0
+let g:FerretQFOptions=0
 nmap <leader><leader>s <Plug>(FerretAckWord)
+
 let g:NERDTreeHijackNetrw = 0
 let g:jsx_ext_required = 1
 let g:rails_no_syntax = 1
 " let g:used_javascript_libs = 'underscore,jquery'
+let g:matchup_matchparen_deferred = 1
+let g:matchup_delim_noskips = 2
+
+let g:signify_sign_change = '~'
+" let g:signify_realtime = 1
+
