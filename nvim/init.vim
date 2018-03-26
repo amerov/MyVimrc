@@ -15,10 +15,6 @@ Plug 'chrisbra/NrrwRgn'
 Plug 'powerman/vim-plugin-ruscmd'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
-" Plug 'rking/ag.vim'
-" Plug 'Chun-Yang/vim-action-ag'
-Plug 'wincent/ferret'
-" Plug 'wincent/loupe'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'bronson/vim-trailing-whitespace'
@@ -91,7 +87,7 @@ Plug 'Konfekt/FastFold'
 
 Plug 'sickill/vim-pasta'
 " Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'vim-scripts/YankRing.vim'
+" Plug 'vim-scripts/YankRing.vim'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ivalkeen/vim-ctrlp-tjump'
@@ -106,7 +102,6 @@ Plug 'w0rp/ale'
 " Plug 'qstrahl/vim-matchmaker'
 " Plug 'mhinz/vim-sayonara'
 " Plug 'Quramy/vim-js-pretty-template'
-" Plug 'matze/vim-move'
 Plug 'cocopon/vaffle.vim'
 Plug 'kopischke/vim-fetch'
 " Plug 'wincent/terminus'
@@ -141,8 +136,8 @@ set smarttab
 set ruler
 " set cursorline
 set modeline
-set showcmd
-set showmode
+" set showcmd
+" set showmode
 set showmatch
 set autoread
 set autowrite
@@ -162,10 +157,8 @@ set wildignore+=*/coverage/*
 set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
-set updatetime=1000
+set updatetime=500
 " set ttyfast
-
-nnoremap <silent><leader><backspace> :nohl<Bar>:echo<CR>
 
 " set synmaxcol=256
 " syntax sync minlines=256
@@ -232,7 +225,7 @@ let g:vim_markdown_folding_disabled = 1
 
 let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#force_py_version = 3
-let g:mustache_abbreviations = 1
+" let g:mustache_abbreviations = 1
 
 let g:tern_map_keys=1
 
@@ -250,8 +243,6 @@ let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
 
-nnoremap <leader>g :Gstatus<CR>
-
 let g:startify_change_to_dir = 0
 let g:startify_session_persistence = 1
 
@@ -259,6 +250,7 @@ autocmd BufNewFile,BufRead *.slim setlocal ft=slim
 autocmd FileType gitcommit setlocal spell cursorline
 autocmd FileType md setlocal spell
 au FileType qf setlocal cursorline
+au BufRead,BufNewFile *.scss setlocal filetype=scss.css
 
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
@@ -298,9 +290,9 @@ let g:pasta_paste_before_mapping = ',P'
 let g:pasta_paste_after_mapping = ',p'
 
 " let g:yankring_enabled = 0
-let g:yankring_clipboard_monitor = 0
-let g:yankring_replace_n_pkey = '<m-p>'
-let g:yankring_replace_n_nkey = '<m-n>'
+" let g:yankring_clipboard_monitor = 0
+" let g:yankring_replace_n_pkey = '<m-p>'
+" let g:yankring_replace_n_nkey = '<m-n>'
 
 
 
@@ -322,7 +314,7 @@ function! RubyTags()
 endfunction
 
 set tags+=./TAGS
-au BufRead,BufNewFile *.scss setlocal filetype=scss.css
+
 
 let g:ale_fixers = { 'javascript': ['eslint'] }
 
@@ -388,20 +380,22 @@ let g:tern#arguments = ["--persistent", "--no-port-file"]
 " let g:bookmark_location_list = 0
 " let g:bookmark_disable_ctrlp = 1
 
+vmap ,f <Plug>CtrlSFVwordPath
+nmap ,f <Plug>CtrlSFCwordPath
 
-let g:FerretMap=0
-let g:FerretQFOptions=0
+nmap ,g :Gstatus<CR>
 
-vmap     ,/ <Plug>CtrlSFVwordPath
-nmap     ,/ <Plug>CtrlSFCwordPath
+nmap ,c :nohl<CR>
 
 let g:NERDTreeHijackNetrw = 0
 let g:jsx_ext_required = 1
 let g:rails_no_syntax = 1
 " let g:used_javascript_libs = 'underscore,jquery'
-let g:matchup_matchparen_deferred = 1
+let g:matchup_matchparen_deferred = 0
 let g:matchup_delim_noskips = 2
 
 let g:signify_sign_change = '~'
 " let g:signify_realtime = 1
+
+let g:airline_highlighting_cache = 1
 
