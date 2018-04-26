@@ -17,7 +17,8 @@ Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'thinca/vim-quickrun'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-sleuth'
@@ -202,14 +203,6 @@ if has('clipboard')
   endif
 endif
 
-
-" Copy current buffer path relative to root of VIM session to system clipboard
-nnoremap <Leader><Leader>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
-" Copy current filename to system clipboard
-nnoremap <Leader><Leader>f :let @+=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
-" Copy current buffer path without filename to system clipboard
-nnoremap <Leader><Leader>d :let @+=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
-
 let g:ctrlp_working_path_mode = 'w'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 nnoremap <c-]> :CtrlPtjump<cr>
@@ -249,6 +242,8 @@ let g:startify_session_persistence = 1
 autocmd BufNewFile,BufRead *.slim setlocal ft=slim
 autocmd FileType gitcommit setlocal spell cursorline
 autocmd FileType md setlocal spell
+autocmd FileType markdown setlocal spell
+
 au FileType qf setlocal cursorline
 au BufRead,BufNewFile *.scss setlocal filetype=scss.css
 
@@ -271,9 +266,10 @@ endif
 "
 " let g:jellybeans_background_color="050505"
 " let g:jellybeans_background_color="101010"
-" colorscheme jellybeans
+colorscheme jellybeans
 
-colorscheme PaperColor
+" colorscheme PaperColor
+
 
 let g:deoplete#enable_at_startup = 1
 
@@ -295,9 +291,7 @@ let g:pasta_paste_after_mapping = ',p'
 " let g:yankring_replace_n_nkey = '<m-n>'
 
 
-
 let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'] }
-
 
 function! ActivateRubocop()
   let g:ale_linters['ruby'] = ['rubocop']
@@ -315,9 +309,7 @@ endfunction
 
 set tags+=./TAGS
 
-
 let g:ale_fixers = { 'javascript': ['eslint'] }
-
 
 " let g:deoplete#sources#ternjs#types = 1
 " let g:deoplete#sources#ternjs#docs = 1
@@ -380,12 +372,25 @@ let g:tern#arguments = ["--persistent", "--no-port-file"]
 " let g:bookmark_location_list = 0
 " let g:bookmark_disable_ctrlp = 1
 
-vmap ,f <Plug>CtrlSFVwordPath
-nmap ,f <Plug>CtrlSFCwordPath
+nmap <leader><leader>f <Plug>CtrlSFCwordPath
+vmap <leader><leader>f <Plug>CtrlSFVwordPath
 
-nmap ,g :Gstatus<CR>
+nmap <F2> :NERDTreeToggle<CR>
+nmap <F3> <Plug>CtrlSFCwordPath
+vmap <F3> <Plug>CtrlSFVwordPath
+nmap <F4> <Plug>CtrlSFPrompt
 
-nmap ,c :nohl<CR>
+noremap <leader><backspace> :nohl<CR>
+noremap <leader>gs :Gstatus<CR>
+noremap <leader>gb :Gstatus<CR>
+tnoremap <C-\>w <C-\><C-N><C-w>p
+
+" Copy current buffer path relative to root of VIM session to system clipboard
+nnoremap <F5>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+" Copy current filename to system clipboard
+nnoremap <F5>f :let @+=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
+" Copy current buffer path without filename to system clipboard
+nnoremap <F5>d :let @+=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 
 let g:NERDTreeHijackNetrw = 0
 let g:jsx_ext_required = 1
@@ -399,3 +404,4 @@ let g:signify_sign_change = '~'
 
 let g:airline_highlighting_cache = 1
 
+autocmd FileType ruby setlocal keywordprg=:term\ ri
