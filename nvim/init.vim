@@ -9,7 +9,7 @@ Plug 'fishbullet/deoplete-ruby'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'chrisbra/NrrwRgn'
 Plug 'powerman/vim-plugin-ruscmd'
@@ -86,7 +86,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'Konfekt/FastFold'
 " Plug 'szw/vim-tags'
 
-Plug 'sickill/vim-pasta'
+" Plug 'sickill/vim-pasta'
 " Plug 'maxbrunsfeld/vim-yankstack'
 " Plug 'vim-scripts/YankRing.vim'
 
@@ -132,13 +132,13 @@ set number
 set autoindent
 set smartindent
 set smarttab
-" set indentexpr'
+" set indentexpr
 " set cindent
 set ruler
 " set cursorline
 set modeline
-" set showcmd
-" set showmode
+set showcmd
+set showmode
 set showmatch
 set autoread
 set autowrite
@@ -239,7 +239,7 @@ let g:go_list_type = "quickfix"
 let g:startify_change_to_dir = 0
 let g:startify_session_persistence = 1
 
-autocmd BufNewFile,BufRead *.slim setlocal ft=slim
+" autocmd BufNewFile,BufRead *.slim setlocal ft=slim
 autocmd FileType gitcommit setlocal spell cursorline
 autocmd FileType md setlocal spell
 autocmd FileType markdown setlocal spell
@@ -282,8 +282,8 @@ set splitright
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
 
-let g:pasta_paste_before_mapping = ',P'
-let g:pasta_paste_after_mapping = ',p'
+" let g:pasta_paste_before_mapping = ',P'
+" let g:pasta_paste_after_mapping = ',p'
 
 " let g:yankring_enabled = 0
 " let g:yankring_clipboard_monitor = 0
@@ -405,3 +405,9 @@ let g:signify_sign_change = '~'
 let g:airline_highlighting_cache = 1
 
 autocmd FileType ruby setlocal keywordprg=:term\ ri
+
+" let g:signify_update_on_bufenter    = 1
+" let g:signify_update_on_focusgained = 1
+" let g:NERDTreeQuitOnOpen=1
+autocmd VimLeavePre * NERDTreeClose
+
