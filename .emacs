@@ -10,13 +10,6 @@
 (size-indication-mode t)
 (tool-bar-mode nil)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
-
 
 (setq auto-save-default nil)
 (setq auto-save-list-file-name nil)
@@ -52,7 +45,22 @@
 (set-fringe-style -1)
 
 (defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
-(rvm-activate-corresponding-ruby))
+  (rvm-activate-corresponding-ruby))
+
 (add-hook 'robe-mode-hook 'ac-robe-setup)
 
-(load-theme 'zenburn t)
+;;;(load-theme 'zenburn t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("e11569fd7e31321a33358ee4b232c2d3cf05caccd90f896e1df6cab228191109" "3b5ce826b9c9f455b7c4c8bff22c020779383a12f2f57bf2eb25139244bb7290" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

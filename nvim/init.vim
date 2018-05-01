@@ -166,7 +166,8 @@ set updatetime=500
 
 if has('spell')
     " Turn off spell checking
-    set spelllang=ru,en
+    set spelllang=en,ru
+    set spellcapcheck=
     menu Spell.off :setlocal spell spelllang= <cr>
     menu Spell.Russian+English :setlocal spell spelllang=ru,en <cr>
     menu Spell.Russian :setlocal spell spelllang=ru <cr>
@@ -265,10 +266,11 @@ endif
 " colorscheme solarized8_light_high
 "
 " let g:jellybeans_background_color="050505"
-" let g:jellybeans_background_color="101010"
+let g:jellybeans_background_color="101010"
 colorscheme jellybeans
 
 " colorscheme PaperColor
+" colorscheme spacegray
 
 
 let g:deoplete#enable_at_startup = 1
@@ -404,10 +406,11 @@ let g:signify_sign_change = '~'
 
 let g:airline_highlighting_cache = 1
 
-autocmd FileType ruby setlocal keywordprg=:term\ ri
+autocmd FileType ruby setlocal keywordprg=:vs\|\:term\ ri
 
 " let g:signify_update_on_bufenter    = 1
 " let g:signify_update_on_focusgained = 1
 " let g:NERDTreeQuitOnOpen=1
 autocmd VimLeavePre * NERDTreeClose
+
 

@@ -1,0 +1,27 @@
+{
+    "editor.renderWhitespace": "none",
+    "editor.fontFamily": "'Consolas'",
+    "editor.fontSize": 14,
+    "editor.formatOnPaste": true,
+    "window.zoomLevel": 0,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.idea": true
+    },
+  "telemetry.enableTelemetry": false,
+"ruby.linter.executablePath": "ruby",
+"ruby.linter.run": "onSave",
+
+"gitlens.codeLens.enabled": false,
+"gitlens.currentLine.enabled": false,
+"gitlens.hovers.currentLine.over": "line",
+"workbench.colorTheme": "Solarized Dark"
+}
