@@ -22,7 +22,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'thinca/vim-quickrun'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-sleuth'
-" Plug 'https://github.com/adelarsq/vim-matchit'
 Plug 'andymass/vim-matchup'
 Plug 'DataWraith/auto_mkdir'
 Plug 'tpope/vim-eunuch'
@@ -33,8 +32,8 @@ Plug 'tpope/vim-commentary'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-fugitive'
-" Plug 'airblade/vim-gitgutter'
-Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
+" Plug 'mhinz/vim-signify'
 Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-rvm'
 Plug 'vim-ruby/vim-ruby'
@@ -65,20 +64,24 @@ Plug 'slim-template/vim-slim'
 Plug 'ternjs/tern_for_vim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
-Plug 'chiel92/vim-autoformat'
+Plug 'sbdchd/neoformat'
 
 Plug 'lifepillar/vim-solarized8'
 Plug 'ajh17/Spacegray.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'guns/jellyx.vim'
-Plug 'fenetikm/falcon'
+Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'jonathanfilip/vim-lucius'
+" Plug 'fenetikm/falcon'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'reedes/vim-colors-pencil'
 Plug 'roosta/vim-srcery'
-
-Plug 'brooth/far.vim'
+Plug 'romainl/Apprentice'
+Plug 'joshdick/onedark.vim'
+Plug 'jacoborus/tender.vim'
+Plug 'cocopon/iceberg.vim'
 
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
@@ -86,7 +89,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'Konfekt/FastFold'
 " Plug 'szw/vim-tags'
 
-" Plug 'sickill/vim-pasta'
+Plug 'sickill/vim-pasta'
 " Plug 'maxbrunsfeld/vim-yankstack'
 " Plug 'vim-scripts/YankRing.vim'
 
@@ -100,6 +103,7 @@ Plug 'aliou/sql-heredoc.vim'
 
 Plug 'w0rp/ale'
 " Plug 'itchyny/vim-cursorword'
+Plug 'osyo-manga/vim-brightest'
 " Plug 'qstrahl/vim-matchmaker'
 " Plug 'mhinz/vim-sayonara'
 " Plug 'Quramy/vim-js-pretty-template'
@@ -115,6 +119,16 @@ Plug 'kopischke/vim-fetch'
 
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'tpope/vim-dadbod'
+" Plug 'vimlab/split-term.vim'
+
+Plug 'simnalamburt/vim-mundo'
+
+Plug 'machakann/vim-highlightedyank'
+Plug 'Shougo/unite.vim'
+" Plug 'devjoe/vim-codequery'
+Plug 'kshenoy/vim-signature'
 
 call plug#end()
 
@@ -159,11 +173,12 @@ set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
 set updatetime=500
+set inccommand=nosplit
+set incsearch
 " set ttyfast
 
 " set synmaxcol=256
 " syntax sync minlines=256
-
 if has('spell')
     " Turn off spell checking
     set spelllang=en,ru
@@ -182,6 +197,11 @@ if has('mouse')
   set mouse=a
 endif
 
+if has("persistent_undo")
+    set undodir=~/.vim/undo
+    set undofile
+endif
+
 let g:EasyMotion_leader_key = '<leader>'
 
 " autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
@@ -189,7 +209,9 @@ let g:EasyMotion_leader_key = '<leader>'
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 " au Filetype eruby setlocal ft=eruby.html
-autocmd BufRead,BufNewFile *.html.erb set filetype=eruby.html
+autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
+autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
+autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
 autocmd FileType ruby,yaml,Gemfile,rake setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 let NERDTreeShowBookmarks=1
@@ -251,6 +273,7 @@ au BufRead,BufNewFile *.scss setlocal filetype=scss.css
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
+
 if has("termguicolors")
   set termguicolors
 endif
@@ -259,18 +282,22 @@ endif
 " let g:gruvbox_improved_warnings = 1
 " colorscheme gruvbox
 
-" let g:solarized_visibility="high"
 
-" colorscheme solarized8_high
-" let g:airline_theme='base16_solarized'
+colorscheme solarized8_high
+" let g:airline_theme='papercolor'
+
+" let g:solarized_visibility="high"
 " colorscheme solarized8_light_high
+
 "
 " let g:jellybeans_background_color="050505"
-let g:jellybeans_background_color="101010"
-colorscheme jellybeans
+" colorscheme jellybeans
+
+" colorscheme jellyx
 
 " colorscheme PaperColor
 " colorscheme spacegray
+" colorscheme srcery
 
 
 let g:deoplete#enable_at_startup = 1
@@ -385,7 +412,8 @@ nmap <F4> <Plug>CtrlSFPrompt
 noremap <leader><backspace> :nohl<CR>
 noremap <leader>gs :Gstatus<CR>
 noremap <leader>gb :Gstatus<CR>
-tnoremap <C-\>w <C-\><C-N><C-w>p
+tnoremap <C-\><C-W> <C-\><C-N>
+tnoremap <C-\>w <C-\><C-N><C-W>p
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <F5>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
@@ -394,6 +422,8 @@ nnoremap <F5>f :let @+=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr
 " Copy current buffer path without filename to system clipboard
 nnoremap <F5>d :let @+=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 
+" nnoremap p p=`]
+
 let g:NERDTreeHijackNetrw = 0
 let g:jsx_ext_required = 1
 let g:rails_no_syntax = 1
@@ -401,16 +431,26 @@ let g:rails_no_syntax = 1
 let g:matchup_matchparen_deferred = 0
 let g:matchup_delim_noskips = 2
 
-let g:signify_sign_change = '~'
+" let g:signify_sign_change = '~'
 " let g:signify_realtime = 1
 
-let g:airline_highlighting_cache = 1
+" let g:airline_highlighting_cache = 1
 
-autocmd FileType ruby setlocal keywordprg=:vs\|\:term\ ri
+autocmd FileType ruby,eruby.html setlocal keywordprg=:vs\|\:term\ ri
 
 " let g:signify_update_on_bufenter    = 1
 " let g:signify_update_on_focusgained = 1
 " let g:NERDTreeQuitOnOpen=1
 autocmd VimLeavePre * NERDTreeClose
 
+" let g:jellybeans_overrides = {
+"       \    'background': { 'guifg': '1D1D1D' },
+"       \}
 
+let NERDTreeIgnore=['tags']
+let g:vim_markdown_frontmatter = 1
+
+let g:SignatureEnabledAtStartup = 0
+
+autocmd BufWritePost * GitGutter
+let g:matchup_matchparen_timeout = 30
