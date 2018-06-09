@@ -44,6 +44,7 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-endwise'
 Plug 'janko-m/vim-test'
 Plug 'stefanoverna/vim-i18n'
+Plug 'davydovanton/vim-html2slim'
 
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'davidhalter/jedi-vim'
@@ -128,7 +129,10 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'machakann/vim-highlightedyank'
 Plug 'Shougo/unite.vim'
 " Plug 'devjoe/vim-codequery'
-Plug 'kshenoy/vim-signature'
+" Plug 'kshenoy/vim-signature'
+
+Plug 'larsbs/vimterial_dark'
+Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
 
@@ -214,6 +218,8 @@ autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
 autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
 autocmd FileType ruby,yaml,Gemfile,rake setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
+let g:rails_no_syntax = 1
+
 let NERDTreeShowBookmarks=1
 " let g:NERDTreeDirArrows=1
 " let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
@@ -283,7 +289,7 @@ endif
 " colorscheme gruvbox
 
 
-colorscheme solarized8_high
+" colorscheme solarized8_high
 " let g:airline_theme='papercolor'
 
 " let g:solarized_visibility="high"
@@ -291,10 +297,11 @@ colorscheme solarized8_high
 
 "
 " let g:jellybeans_background_color="050505"
-" colorscheme jellybeans
+colorscheme jellybeans
 
 " colorscheme jellyx
 
+" set background=dark
 " colorscheme PaperColor
 " colorscheme spacegray
 " colorscheme srcery
@@ -426,7 +433,6 @@ nnoremap <F5>d :let @+=expand("%:h")<cr>:echo "Copied file directory to clipboar
 
 let g:NERDTreeHijackNetrw = 0
 let g:jsx_ext_required = 1
-let g:rails_no_syntax = 1
 " let g:used_javascript_libs = 'underscore,jquery'
 let g:matchup_matchparen_deferred = 0
 let g:matchup_delim_noskips = 2
@@ -454,3 +460,11 @@ let g:SignatureEnabledAtStartup = 0
 
 autocmd BufWritePost * GitGutter
 let g:matchup_matchparen_timeout = 30
+
+let g:brightest#enable_on_CursorHold = 1
+let g:brightest#enable_on_CursorMoved = 0
+
+let g:brightest#highlight = {
+\   "group" : "BrightestUnderline"
+\}
+
