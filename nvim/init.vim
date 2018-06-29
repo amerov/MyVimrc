@@ -27,7 +27,7 @@ Plug 'DataWraith/auto_mkdir'
 Plug 'tpope/vim-eunuch'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -35,13 +35,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-signify'
 Plug 'junegunn/gv.vim'
+Plug 'gregsexton/gitv'
 Plug 'tpope/vim-rvm'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 " Plug 'osyo-manga/vim-monster'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
+Plug 'cohama/lexima.vim'
 Plug 'janko-m/vim-test'
 Plug 'stefanoverna/vim-i18n'
 Plug 'davydovanton/vim-html2slim'
@@ -90,7 +92,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'Konfekt/FastFold'
 " Plug 'szw/vim-tags'
 
-Plug 'sickill/vim-pasta'
+" Plug 'sickill/vim-pasta'
 " Plug 'maxbrunsfeld/vim-yankstack'
 " Plug 'vim-scripts/YankRing.vim'
 
@@ -127,12 +129,23 @@ Plug 'tpope/vim-dadbod'
 Plug 'simnalamburt/vim-mundo'
 
 Plug 'machakann/vim-highlightedyank'
-Plug 'Shougo/unite.vim'
+" Plug 'Shougo/unite.vim'
+Plug 'Shougo/denite.nvim'
 " Plug 'devjoe/vim-codequery'
 " Plug 'kshenoy/vim-signature'
 
 Plug 'larsbs/vimterial_dark'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'elixir-editors/vim-elixir'
+Plug 'ap/vim-css-color'
+Plug 'rhysd/vim-grammarous'
+Plug 'Shougo/deol.nvim'
+Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/context_filetype.vim'
+Plug 'jamessan/vim-gnupg'
+
+" Plug 'Shougo/vimfiler.vim'
+" Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -180,6 +193,8 @@ set updatetime=500
 set inccommand=nosplit
 set incsearch
 " set ttyfast
+set completeopt-=preview
+
 
 " set synmaxcol=256
 " syntax sync minlines=256
@@ -289,14 +304,14 @@ endif
 " colorscheme gruvbox
 
 
-" colorscheme solarized8_high
+" colorscheme solarized8_dark_high
 " let g:airline_theme='papercolor'
 
 " let g:solarized_visibility="high"
 " colorscheme solarized8_light_high
 
 "
-" let g:jellybeans_background_color="050505"
+let g:jellybeans_background_color="000000"
 colorscheme jellybeans
 
 " colorscheme jellyx
@@ -309,8 +324,17 @@ colorscheme jellybeans
 
 let g:deoplete#enable_at_startup = 1
 
-au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
-au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "<TAB>"
+" au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
+" au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "<TAB>"
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
 
 set splitbelow
 set splitright
@@ -434,7 +458,7 @@ nnoremap <F5>d :let @+=expand("%:h")<cr>:echo "Copied file directory to clipboar
 let g:NERDTreeHijackNetrw = 0
 let g:jsx_ext_required = 1
 " let g:used_javascript_libs = 'underscore,jquery'
-let g:matchup_matchparen_deferred = 0
+let g:matchup_matchparen_deferred = 1
 let g:matchup_delim_noskips = 2
 
 " let g:signify_sign_change = '~'
@@ -442,7 +466,7 @@ let g:matchup_delim_noskips = 2
 
 " let g:airline_highlighting_cache = 1
 
-autocmd FileType ruby,eruby.html setlocal keywordprg=:vs\|\:term\ ri
+autocmd FileType ruby,eruby.html,slim setlocal keywordprg=:vs\|\:term\ ri
 
 " let g:signify_update_on_bufenter    = 1
 " let g:signify_update_on_focusgained = 1
@@ -456,9 +480,10 @@ autocmd VimLeavePre * NERDTreeClose
 let NERDTreeIgnore=['tags']
 let g:vim_markdown_frontmatter = 1
 
-let g:SignatureEnabledAtStartup = 0
+" let g:SignatureEnabledAtStartup = 0
 
-autocmd BufWritePost * GitGutter
+" autocmd BufWritePost * GitGutter
+"
 let g:matchup_matchparen_timeout = 30
 
 let g:brightest#enable_on_CursorHold = 1
@@ -468,3 +493,6 @@ let g:brightest#highlight = {
 \   "group" : "BrightestUnderline"
 \}
 
+" autocmd CursorHold * GitGutter
+
+call deoplete#custom#option('auto_complete_delay', 400)
