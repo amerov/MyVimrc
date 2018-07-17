@@ -1,6 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'
+
 " Plug 'uplus/deoplete-solargraph'
 
 " Plug 'roxma/nvim-completion-manager'
@@ -26,6 +27,7 @@ Plug 'andymass/vim-matchup'
 Plug 'DataWraith/auto_mkdir'
 Plug 'tpope/vim-eunuch'
 Plug 'dyng/ctrlsf.vim'
+Plug 'brooth/far.vim'
 Plug 'tpope/vim-surround'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
@@ -88,6 +90,7 @@ Plug 'cocopon/iceberg.vim'
 
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
+Plug 'tpope/vim-speeddating'
 
 Plug 'Konfekt/FastFold'
 " Plug 'szw/vim-tags'
@@ -100,7 +103,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ivalkeen/vim-ctrlp-tjump'
 
 " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
-Plug 'aliou/sql-heredoc.vim'
+" Plug 'aliou/sql-heredoc.vim'
 
 " Plug 'MattesGroeger/vim-bookmarks'
 
@@ -143,6 +146,7 @@ Plug 'Shougo/deol.nvim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'jamessan/vim-gnupg'
+Plug 'tpope/vim-unimpaired'
 
 " Plug 'Shougo/vimfiler.vim'
 " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -178,6 +182,8 @@ set noswapfile
 set smartcase
 set ignorecase
 set wildmenu
+set wildmode=longest:full,full
+
 set laststatus=2
 " set cmdheight=2
 set wildignore+=tags
@@ -190,10 +196,10 @@ set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
 set updatetime=500
-set inccommand=nosplit
+" set inccommand=nosplit
 set incsearch
 " set ttyfast
-set completeopt-=preview
+" set completeopt-=preview
 
 
 " set synmaxcol=256
@@ -228,9 +234,9 @@ let g:EasyMotion_leader_key = '<leader>'
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 " au Filetype eruby setlocal ft=eruby.html
-autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
-autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
-autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
+" autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
+" autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
+" autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
 autocmd FileType ruby,yaml,Gemfile,rake setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 let g:rails_no_syntax = 1
@@ -311,7 +317,7 @@ endif
 " colorscheme solarized8_light_high
 
 "
-let g:jellybeans_background_color="000000"
+let g:jellybeans_background_color="101010"
 colorscheme jellybeans
 
 " colorscheme jellyx
@@ -331,6 +337,7 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ deoplete#mappings#manual_complete()
+
 function! s:check_back_space() abort "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -466,7 +473,7 @@ let g:matchup_delim_noskips = 2
 
 " let g:airline_highlighting_cache = 1
 
-autocmd FileType ruby,eruby.html,slim setlocal keywordprg=:vs\|\:term\ ri
+autocmd FileType ruby,eruby.html,eruby,slim setlocal keywordprg=:vs\|\:term\ ri
 
 " let g:signify_update_on_bufenter    = 1
 " let g:signify_update_on_focusgained = 1
@@ -484,7 +491,7 @@ let g:vim_markdown_frontmatter = 1
 
 " autocmd BufWritePost * GitGutter
 "
-let g:matchup_matchparen_timeout = 30
+let g:matchup_matchparen_timeout = 200
 
 let g:brightest#enable_on_CursorHold = 1
 let g:brightest#enable_on_CursorMoved = 0
@@ -495,4 +502,5 @@ let g:brightest#highlight = {
 
 " autocmd CursorHold * GitGutter
 
-call deoplete#custom#option('auto_complete_delay', 400)
+call deoplete#custom#option({'auto_complete_delay': 400, 'on_insert_enter': v:false})
+
