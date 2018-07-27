@@ -38,6 +38,7 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-signify'
 Plug 'junegunn/gv.vim'
 Plug 'gregsexton/gitv'
+Plug 'idanarye/vim-merginal'
 Plug 'tpope/vim-rvm'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
@@ -317,7 +318,7 @@ endif
 " colorscheme solarized8_light_high
 
 "
-let g:jellybeans_background_color="101010"
+" let g:jellybeans_background_color="050505"
 colorscheme jellybeans
 
 " colorscheme jellyx
