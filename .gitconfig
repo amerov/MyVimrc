@@ -21,9 +21,16 @@
 [rerere]
     enabled = true
     autoupdate = true
-[diff]
-    compactionHeuristic = true
-    algorithm = patience
 [core]
     autocrlf = input
     excludesfile = /home/amerov/.gitexcludes
+[merge]
+    tool = nvimdiff
+
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+    algorithm = patience
+[difftool "nvimdiff"]
+    cmd = "nvim -d -u ~/.config/nvim/init.vim \"$LOCAL\" \"$REMOTE\""
