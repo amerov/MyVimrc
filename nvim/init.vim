@@ -318,7 +318,7 @@ endif
 " colorscheme solarized8_light_high
 
 "
-" let g:jellybeans_background_color="050505"
+let g:jellybeans_background_color="050505"
 colorscheme jellybeans
 
 " colorscheme jellyx
@@ -372,7 +372,7 @@ function! DeactivateRubocop()
 endfunction
 
 function! RubyTags()
-  !ctags --recurse=yes --exclude=.git --exclude='*.log' `bundle show --paths; pwd`
+  !ctags -R --exclude=.git --exclude=log --exclude=tmp --exclude=db --exclude=node_modules --languages=ruby `bundle show --paths; pwd`
 endfunction
 
 set tags+=./TAGS
