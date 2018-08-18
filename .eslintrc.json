@@ -18,7 +18,8 @@
     "import",
     "node",
     "promise",
-    "standard"
+    "standard",
+    "html"
   ],
 
   "extends": "eslint:recommended",

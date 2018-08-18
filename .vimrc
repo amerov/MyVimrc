@@ -1,0 +1,13 @@
+set nocompatible
+set magic
+set hidden
+set cursorline
+set noswapfile
+set wildmenu
+set autoread
+set cindent
+set smarttab
+set smartcase
+set cmdheight=2
+set tabstop=4
+set shiftwidth=4

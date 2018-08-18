@@ -58,6 +58,9 @@ Plug 'davidhalter/jedi-vim'
 " Plug 'pangloss/vim-javascript'
 " Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/html5.vim'
+
+Plug '/tpope/vim-ragtag'
+
 Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
@@ -234,7 +237,8 @@ let g:EasyMotion_leader_key = '<leader>'
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
-" au Filetype eruby setlocal ft=eruby.html
+autocmd BufRead,BufNewFile *.erb setlocal ft=eruby.html
+
 " autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
 " autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
 " autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
@@ -295,7 +299,7 @@ autocmd FileType gitcommit setlocal spell cursorline
 autocmd FileType md setlocal spell
 autocmd FileType markdown setlocal spell
 
-au FileType qf setlocal cursorline
+" au FileType qf setlocal cursorline
 au BufRead,BufNewFile *.scss setlocal filetype=scss.css
 
 let g:NERDTreeDirArrowExpandable = '+'
@@ -318,14 +322,15 @@ endif
 " colorscheme solarized8_light_high
 
 "
-let g:jellybeans_background_color="050505"
-colorscheme jellybeans
+" let g:jellybeans_background_color="000000"
+" colorscheme jellybeans
 
 " colorscheme jellyx
 
 " set background=dark
 " colorscheme PaperColor
-" colorscheme spacegray
+
+colorscheme spacegray
 " colorscheme srcery
 
 
@@ -474,7 +479,7 @@ let g:matchup_delim_noskips = 2
 
 " let g:airline_highlighting_cache = 1
 
-autocmd FileType ruby,eruby.html,eruby,slim setlocal keywordprg=:vs\|\:term\ ri
+autocmd FileType ruby,eruby,slim setlocal keywordprg=:vs\|\:term\ ri
 
 " let g:signify_update_on_bufenter    = 1
 " let g:signify_update_on_focusgained = 1
@@ -492,7 +497,7 @@ let g:vim_markdown_frontmatter = 1
 
 " autocmd BufWritePost * GitGutter
 "
-let g:matchup_matchparen_timeout = 200
+let g:matchup_matchparen_timeout = 400
 
 let g:brightest#enable_on_CursorHold = 1
 let g:brightest#enable_on_CursorMoved = 0
