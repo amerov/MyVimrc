@@ -508,5 +508,6 @@ let g:brightest#highlight = {
 
 " autocmd CursorHold * GitGutter
 
-call deoplete#custom#option({'auto_complete_delay': 400, 'on_insert_enter': v:false})
+" call deoplete#custom#option({'auto_complete_delay': 400, 'on_insert_enter': v:false})
 
+call deoplete#custom#option('ignore_sources', {'_': ['tag']})
