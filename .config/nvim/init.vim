@@ -363,8 +363,9 @@ let g:ale_lint_on_save = 1
 " let g:yankring_replace_n_pkey = '<m-p>'
 " let g:yankring_replace_n_nkey = '<m-n>'
 
+let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']}
 
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'] }
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'], 'html': ['htmlhint', 'eslint', 'stylelint'] }
 
 function! ActivateRubocop()
   let g:ale_linters['ruby'] = ['rubocop']
