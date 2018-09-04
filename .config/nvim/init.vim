@@ -81,14 +81,13 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'guns/jellyx.vim'
 Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'jonathanfilip/vim-lucius'
-" Plug 'fenetikm/falcon'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'reedes/vim-colors-pencil'
 Plug 'roosta/vim-srcery'
 Plug 'romainl/Apprentice'
-Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
+Plug 'nightsense/snow'
 Plug 'jacoborus/tender.vim'
 Plug 'cocopon/iceberg.vim'
 
@@ -144,7 +143,8 @@ Plug 'Shougo/denite.nvim'
 Plug 'larsbs/vimterial_dark'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'elixir-editors/vim-elixir'
-Plug 'ap/vim-css-color'
+" Plug 'ap/vim-css-color'
+Plug 'chrisbra/Colorizer'
 Plug 'rhysd/vim-grammarous'
 Plug 'Shougo/deol.nvim'
 Plug 'Shougo/neoinclude.vim'
@@ -202,7 +202,9 @@ set lazyredraw
 set updatetime=500
 " set inccommand=nosplit
 set incsearch
-" set ttyfast
+set ttyfast
+set title
+set titlestring=VIM
 " set completeopt-=preview
 
 
@@ -237,7 +239,7 @@ let g:EasyMotion_leader_key = '<leader>'
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
-autocmd BufRead,BufNewFile *.erb setlocal ft=eruby.html
+autocmd BufRead,BufNewFile html.erb setlocal ft=eruby.html
 
 " autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
 " autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
@@ -311,28 +313,29 @@ if has("termguicolors")
 endif
 
 " set background=dark
-" let g:gruvbox_improved_warnings = 1
+let g:gruvbox_improved_warnings = 1
 " colorscheme gruvbox
 
 
 " colorscheme solarized8_dark_high
 " let g:airline_theme='papercolor'
 
-" let g:solarized_visibility="high"
+let g:solarized_visibility="high"
 " colorscheme solarized8_light_high
 
-"
-" let g:jellybeans_background_color="000000"
-" colorscheme jellybeans
+
+" let g:jellybeans_background_color="101010"
+colorscheme jellybeans
 
 " colorscheme jellyx
 
 " set background=dark
 " colorscheme PaperColor
 
-colorscheme spacegray
-" colorscheme srcery
+" colorscheme spacegray
 
+" colorscheme tender
+" colorscheme lucius
 
 let g:deoplete#enable_at_startup = 1
 
@@ -363,9 +366,11 @@ let g:ale_lint_on_save = 1
 " let g:yankring_replace_n_pkey = '<m-p>'
 " let g:yankring_replace_n_nkey = '<m-n>'
 
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'], 'html': ['htmlhint', 'eslint', 'stylelint'] }
+
 let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']}
 
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'], 'html': ['htmlhint', 'eslint', 'stylelint'] }
+autocmd FileType eruby.html let b:ale_linter_aliases = {'html': ['javascript', 'css']}
 
 function! ActivateRubocop()
   let g:ale_linters['ruby'] = ['rubocop']
@@ -487,10 +492,6 @@ autocmd FileType ruby,eruby,slim setlocal keywordprg=:vs\|\:term\ ri
 " let g:NERDTreeQuitOnOpen=1
 autocmd VimLeavePre * NERDTreeClose
 
-" let g:jellybeans_overrides = {
-"       \    'background': { 'guifg': '1D1D1D' },
-"       \}
-
 let NERDTreeIgnore=['tags']
 let g:vim_markdown_frontmatter = 1
 
@@ -509,6 +510,27 @@ let g:brightest#highlight = {
 
 " autocmd CursorHold * GitGutter
 
-" call deoplete#custom#option({'auto_complete_delay': 400, 'on_insert_enter': v:false})
+call deoplete#custom#option({'auto_complete_delay': 400, 'on_insert_enter': v:false})
 
 call deoplete#custom#option('ignore_sources', {'_': ['tag']})
+
+" if strftime('%H') >= 7 && strftime('%H') < 19
+"   set background=light
+" else
+"   set background=dark
+" endif
+
+
+function XDisplayColor(color)
+    let displaycommand = "display -size 300x300 xc:'" . a:color . "'"
+    execute "silent !" . displaycommand . " 2>&1 >/dev/null &"
+    :redraw!
+    return 1
+endfunction
+
+function ShowHexColorUnderCursor()
+    let wordundercursor = expand("<cword>")
+    :call XDisplayColor('\#' . wordundercursor)
+    return 1
+endfunction
+

@@ -25,12 +25,12 @@
   "extends": "eslint:recommended",
 
   "globals": {
-    "document": false,
+    "document": true,
     "navigator": false,
-    "window": false,
-    "$": false,
-    "jQuery": false,
-    "_": false
+    "window": true,
+    "$": true,
+    "jQuery": true,
+    "_": true
   },
 
   "rules": {
