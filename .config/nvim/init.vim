@@ -19,7 +19,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 " Plug 'bronson/vim-trailing-whitespace'
-Plug 'ntpeters/vim-better-whitespace'
+" Plug 'ntpeters/vim-better-whitespace'
 Plug 'thinca/vim-quickrun'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-sleuth'
@@ -37,7 +37,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-signify'
 Plug 'junegunn/gv.vim'
-Plug 'gregsexton/gitv'
+" Plug 'gregsexton/gitv'
 Plug 'idanarye/vim-merginal'
 Plug 'tpope/vim-rvm'
 Plug 'vim-ruby/vim-ruby'
@@ -76,6 +76,9 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'sbdchd/neoformat'
 
 Plug 'lifepillar/vim-solarized8'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'andbar-ru/vim-unicon'
+Plug 'chriskempson/base16-vim'
 Plug 'ajh17/Spacegray.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'guns/jellyx.vim'
@@ -90,6 +93,9 @@ Plug 'rakr/vim-one'
 Plug 'nightsense/snow'
 Plug 'jacoborus/tender.vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'rakr/vim-two-firewatch'
+Plug 'reedes/vim-colors-pencil'
 
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
@@ -193,10 +199,7 @@ set laststatus=2
 set wildignore+=tags
 set wildignore+=*/tmp/*
 set wildignore+=*/.idea/*
-set wildignore+=*/spec/vcr/*
-set wildignore+=*/chef/*
 set wildignore+=*/coverage/*
-set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
 set updatetime=500
@@ -205,6 +208,7 @@ set incsearch
 set ttyfast
 set title
 set titlestring=VIM
+set list
 " set completeopt-=preview
 
 
@@ -239,12 +243,12 @@ let g:EasyMotion_leader_key = '<leader>'
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
-autocmd BufRead,BufNewFile html.erb setlocal ft=eruby.html
+autocmd BufRead,BufNewFile *html.erb setlocal syn=eruby.html
 
 " autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
 " autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
 " autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
-autocmd FileType ruby,yaml,Gemfile,rake setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType ruby,yaml,Gemfile,rake,eruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 let g:rails_no_syntax = 1
 
@@ -303,6 +307,7 @@ autocmd FileType markdown setlocal spell
 
 " au FileType qf setlocal cursorline
 au BufRead,BufNewFile *.scss setlocal filetype=scss.css
+au FileType GV setlocal nolist
 
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
@@ -312,19 +317,33 @@ if has("termguicolors")
   set termguicolors
 endif
 
-" set background=dark
 let g:gruvbox_improved_warnings = 1
+let g:gruvbox_contrast_light = 'hard'
+let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_improved_strings = 1
+
+" set background=dark
 " colorscheme gruvbox
 
+
+let g:seoul256_background = 233
+let g:seoul256_light_background = 256
 
 " colorscheme solarized8_dark_high
 " let g:airline_theme='papercolor'
 
 let g:solarized_visibility="high"
 " colorscheme solarized8_light_high
+" colorscheme solarized8_dark_high
 
+let g:jellybeans_overrides = {
+\    'RubySymbol': { 'guifg': '99ad6a', 'guibg': '' },
+\    'javascriptObjectLiteral': { 'guifg': '', 'guibg': '' },
+\    'javascriptObjectLabel': { 'guifg': '99ad6a', 'guibg': '' },
+\}
 
-" let g:jellybeans_background_color="101010"
+" let g:jellybeans_background_color="000000"
+
 colorscheme jellybeans
 
 " colorscheme jellyx
@@ -336,7 +355,12 @@ colorscheme jellybeans
 
 " colorscheme tender
 " colorscheme lucius
-
+" colorscheme onehalflight
+" colorscheme onehalfdark
+" colo seoul256-light
+" colo seoul256
+" colo srcery
+" colo base16-github
 let g:deoplete#enable_at_startup = 1
 
 " au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
@@ -366,11 +390,13 @@ let g:ale_lint_on_save = 1
 " let g:yankring_replace_n_pkey = '<m-p>'
 " let g:yankring_replace_n_nkey = '<m-n>'
 
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'], 'html': ['htmlhint', 'eslint', 'stylelint'] }
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'] }
 
 let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']}
 
-autocmd FileType eruby.html let b:ale_linter_aliases = {'html': ['javascript', 'css']}
+let g:ale_fixers = { 'javascript': ['eslint'] }
+
+autocmd FileType eruby.html let b:ale_linters = {'html': []}
 
 function! ActivateRubocop()
   let g:ale_linters['ruby'] = ['rubocop']
@@ -388,7 +414,6 @@ endfunction
 
 set tags+=./TAGS
 
-let g:ale_fixers = { 'javascript': ['eslint'] }
 
 " let g:deoplete#sources#ternjs#types = 1
 " let g:deoplete#sources#ternjs#docs = 1
@@ -490,6 +515,9 @@ autocmd FileType ruby,eruby,slim setlocal keywordprg=:vs\|\:term\ ri
 " let g:signify_update_on_bufenter    = 1
 " let g:signify_update_on_focusgained = 1
 " let g:NERDTreeQuitOnOpen=1
+
+let g:NERDTreeWinPos = "right"
+
 autocmd VimLeavePre * NERDTreeClose
 
 let NERDTreeIgnore=['tags']
@@ -510,7 +538,7 @@ let g:brightest#highlight = {
 
 " autocmd CursorHold * GitGutter
 
-call deoplete#custom#option({'auto_complete_delay': 400, 'on_insert_enter': v:false})
+" call deoplete#custom#option({'auto_complete_delay': 400, 'on_insert_enter': v:false})
 
 call deoplete#custom#option('ignore_sources', {'_': ['tag']})
 
@@ -534,3 +562,10 @@ function ShowHexColorUnderCursor()
     return 1
 endfunction
 
+
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc

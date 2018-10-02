@@ -33,4 +33,4 @@
     tool = nvimdiff
     algorithm = patience
 [difftool "nvimdiff"]
-    cmd = "nvim -d -u ~/.config/nvim/init.vim \"$LOCAL\" \"$REMOTE\""
+    cmd = "nvim -d -m -n \"$LOCAL\" \"$REMOTE\""
