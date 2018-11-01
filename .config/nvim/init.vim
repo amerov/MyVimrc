@@ -1,6 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'fishbullet/deoplete-ruby'
+" Plug 'fishbullet/deoplete-ruby'
 
 " Plug 'uplus/deoplete-solargraph'
 
@@ -29,7 +29,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'dyng/ctrlsf.vim'
 Plug 'brooth/far.vim'
 Plug 'tpope/vim-surround'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -47,6 +46,7 @@ Plug 'tpope/vim-rake'
 " Plug 'osyo-manga/vim-monster'
 " Plug 'tpope/vim-endwise'
 Plug 'cohama/lexima.vim'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'janko-m/vim-test'
 Plug 'stefanoverna/vim-i18n'
 Plug 'davydovanton/vim-html2slim'
@@ -55,13 +55,13 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'davidhalter/jedi-vim'
 " Plug 'lepture/vim-jinja'
 " Plug 'tpope/vim-liquid'
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 " Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/html5.vim'
 
 Plug '/tpope/vim-ragtag'
 
-Plug 'othree/yajs.vim'
+" Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
 " Plug 'Valloric/MatchTagAlways'
@@ -157,6 +157,7 @@ Plug 'Shougo/neoinclude.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'tpope/vim-unimpaired'
+Plug 'nelstrom/vim-visual-star-search'
 
 " Plug 'Shougo/vimfiler.vim'
 " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -233,7 +234,7 @@ if has('mouse')
 endif
 
 if has("persistent_undo")
-    set undodir=~/.vim/undo
+    set undodir=~/.nvim/undo
     set undofile
 endif
 
@@ -243,7 +244,7 @@ let g:EasyMotion_leader_key = '<leader>'
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
-autocmd BufRead,BufNewFile *html.erb setlocal syn=eruby.html
+autocmd BufRead,BufNewFile *.html.erb setlocal syn=eruby.html
 
 " autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
 " autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
@@ -322,19 +323,14 @@ let g:gruvbox_contrast_light = 'hard'
 let g:gruvbox_contrast_dark = 'hard'
 " let g:gruvbox_improved_strings = 1
 
-" set background=dark
-" colorscheme gruvbox
+set background=dark
+colorscheme gruvbox
+" colorscheme solarized8_high
 
 
 let g:seoul256_background = 233
 let g:seoul256_light_background = 256
 
-" colorscheme solarized8_dark_high
-" let g:airline_theme='papercolor'
-
-let g:solarized_visibility="high"
-" colorscheme solarized8_light_high
-" colorscheme solarized8_dark_high
 
 let g:jellybeans_overrides = {
 \    'RubySymbol': { 'guifg': '99ad6a', 'guibg': '' },
@@ -342,9 +338,9 @@ let g:jellybeans_overrides = {
 \    'javascriptObjectLabel': { 'guifg': '99ad6a', 'guibg': '' },
 \}
 
-" let g:jellybeans_background_color="000000"
+let g:jellybeans_background_color="000000"
 
-colorscheme jellybeans
+" colorscheme jellybeans
 
 " colorscheme jellyx
 
@@ -390,16 +386,16 @@ let g:ale_lint_on_save = 1
 " let g:yankring_replace_n_pkey = '<m-p>'
 " let g:yankring_replace_n_nkey = '<m-n>'
 
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'] }
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop'] }
 
 let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']}
 
-let g:ale_fixers = { 'javascript': ['eslint'] }
+let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
 
 autocmd FileType eruby.html let b:ale_linters = {'html': []}
 
 function! ActivateRubocop()
-  let g:ale_linters['ruby'] = ['rubocop']
+  let g:ale_linters['ruby'] = ['rubocop', 'ruby']
   let g:ale_fixers['ruby'] = ['rubocop']
 endfunction
 
@@ -483,19 +479,20 @@ nmap <F2> :NERDTreeToggle<CR>
 nmap <F3> <Plug>CtrlSFCwordPath
 vmap <F3> <Plug>CtrlSFVwordPath
 nmap <F4> <Plug>CtrlSFPrompt
+nmap <F7> :CtrlSFToggle<CR>
+nmap <F6> :Vaffle<CR>
 
 noremap <leader><backspace> :nohl<CR>
-noremap <leader>gs :Gstatus<CR>
-noremap <leader>gb :Gstatus<CR>
-tnoremap <C-\><C-W> <C-\><C-N>
-tnoremap <C-\>w <C-\><C-N><C-W>p
+noremap <F9> :Gstatus<CR>
+tnoremap <F36> <C-\><C-N>
+
 
 " Copy current buffer path relative to root of VIM session to system clipboard
-nnoremap <F5>p :let @+=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+nnoremap <F5>p :let @+=expand("%").":".line('.')<cr>:echo "Copied file path to clipboard"<cr>
 " Copy current filename to system clipboard
-nnoremap <F5>f :let @+=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
+nnoremap <F5>f :let @+=expand("%:t").":".line('.')<cr>:echo "Copied file name to clipboard"<cr>
 " Copy current buffer path without filename to system clipboard
-nnoremap <F5>d :let @+=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
+nnoremap <F5>d :let @+=expand("%:h").":".line('.')<cr>:echo "Copied file directory to clipboard"<cr>
 
 " nnoremap p p=`]
 
@@ -569,3 +566,15 @@ function! SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+let g:netrw_browsex_viewer="xdg-open"
+
+let g:neosnippet#scope_aliases = {}
+let g:neosnippet#scope_aliases['ruby'] = 'ruby,ruby-rails'
+let g:neosnippet#scope_aliases['eruby'] = 'html,eruby'
+
+" autocmd BufWritePost * GitGutter
+" autocmd BufLeave * GitGutter
+" au BufEnter * GitGutter
+
+
