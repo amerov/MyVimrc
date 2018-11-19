@@ -203,7 +203,7 @@ set wildignore+=*/.idea/*
 set wildignore+=*/coverage/*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
-set updatetime=500
+set updatetime=400
 " set inccommand=nosplit
 set incsearch
 set ttyfast
@@ -323,9 +323,10 @@ let g:gruvbox_contrast_light = 'hard'
 let g:gruvbox_contrast_dark = 'hard'
 " let g:gruvbox_improved_strings = 1
 
-set background=dark
-colorscheme gruvbox
+" set background=light
+" colorscheme gruvbox
 " colorscheme solarized8_high
+" set background=dark
 
 
 let g:seoul256_background = 233
@@ -340,7 +341,7 @@ let g:jellybeans_overrides = {
 
 let g:jellybeans_background_color="000000"
 
-" colorscheme jellybeans
+colorscheme jellybeans
 
 " colorscheme jellyx
 
@@ -357,6 +358,7 @@ let g:jellybeans_background_color="000000"
 " colo seoul256
 " colo srcery
 " colo base16-github
+" colo one
 let g:deoplete#enable_at_startup = 1
 
 " au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
@@ -405,7 +407,7 @@ function! DeactivateRubocop()
 endfunction
 
 function! RubyTags()
-  !ctags -R --exclude=.git --exclude=log --exclude=tmp --exclude=db --exclude=node_modules --languages=ruby `bundle show --paths; pwd`
+  !ctags -R --exclude=.git --exclude=log --exclude=tmp --exclude=db --exclude=node_modules --languages=ruby `bundle show --paths 2>/dev/null; pwd`
 endfunction
 
 set tags+=./TAGS
@@ -578,3 +580,4 @@ let g:neosnippet#scope_aliases['eruby'] = 'html,eruby'
 " au BufEnter * GitGutter
 
 
+let g:gitgutter_terminal_reports_focus=0
