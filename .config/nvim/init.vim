@@ -18,7 +18,6 @@ Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
-" Plug 'bronson/vim-trailing-whitespace'
 " Plug 'ntpeters/vim-better-whitespace'
 Plug 'thinca/vim-quickrun'
 Plug 'mhinz/vim-startify'
@@ -27,12 +26,13 @@ Plug 'andymass/vim-matchup'
 Plug 'DataWraith/auto_mkdir'
 Plug 'tpope/vim-eunuch'
 Plug 'dyng/ctrlsf.vim'
-Plug 'brooth/far.vim'
+" Plug 'brooth/far.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-signify'
 Plug 'junegunn/gv.vim'
@@ -41,6 +41,7 @@ Plug 'idanarye/vim-merginal'
 Plug 'tpope/vim-rvm'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
+Plug 'airblade/vim-localorie'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 " Plug 'osyo-manga/vim-monster'
@@ -124,7 +125,6 @@ Plug 'osyo-manga/vim-brightest'
 " Plug 'Quramy/vim-js-pretty-template'
 Plug 'cocopon/vaffle.vim'
 Plug 'kopischke/vim-fetch'
-" Plug 'wincent/terminus'
 
 " Plug 'c0r73x/neotags.nvim'
 " Plug 'kassio/neoterm'
@@ -141,8 +141,9 @@ Plug 'tpope/vim-dadbod'
 Plug 'simnalamburt/vim-mundo'
 
 Plug 'machakann/vim-highlightedyank'
-" Plug 'Shougo/unite.vim'
 Plug 'Shougo/denite.nvim'
+Plug 'Shougo/neoyank.vim'
+Plug 'Shougo/neomru.vim'
 " Plug 'devjoe/vim-codequery'
 " Plug 'kshenoy/vim-signature'
 
@@ -152,7 +153,7 @@ Plug 'elixir-editors/vim-elixir'
 " Plug 'ap/vim-css-color'
 Plug 'chrisbra/Colorizer'
 Plug 'rhysd/vim-grammarous'
-Plug 'Shougo/deol.nvim'
+" Plug 'Shougo/deol.nvim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'jamessan/vim-gnupg'
@@ -210,6 +211,7 @@ set ttyfast
 set title
 set titlestring=VIM
 set list
+set visualbell
 " set completeopt-=preview
 
 
@@ -324,9 +326,9 @@ let g:gruvbox_contrast_dark = 'hard'
 " let g:gruvbox_improved_strings = 1
 
 " set background=light
-" colorscheme gruvbox
+colorscheme gruvbox
 " colorscheme solarized8_high
-" set background=dark
+set background=dark
 
 
 let g:seoul256_background = 233
@@ -336,12 +338,15 @@ let g:seoul256_light_background = 256
 let g:jellybeans_overrides = {
 \    'RubySymbol': { 'guifg': '99ad6a', 'guibg': '' },
 \    'javascriptObjectLiteral': { 'guifg': '', 'guibg': '' },
-\    'javascriptObjectLabel': { 'guifg': '99ad6a', 'guibg': '' },
+\    'javascriptObjectLabel': { 'guifg': '99ad6a', 'guibg': '' }
 \}
 
-let g:jellybeans_background_color="000000"
 
-colorscheme jellybeans
+let g:jellybeans_background_color="050505"
+" colorscheme jellybeans
+" hi NERDTreeFile guibg=none
+" hi gitcommitDiscarded guibg=none
+" hi ColorColumn guibg=none
 
 " colorscheme jellyx
 
@@ -579,5 +584,21 @@ let g:neosnippet#scope_aliases['eruby'] = 'html,eruby'
 " autocmd BufLeave * GitGutter
 " au BufEnter * GitGutter
 
-
 let g:gitgutter_terminal_reports_focus=0
+
+nnoremap <silent> <leader>lt :call localorie#translate()<CR>
+nnoremap <silent> <leader>le :call localorie#expand_key()<CR>
+vmap <Leader>ls :call I18nTranslateString()<CR>
+vmap <Leader>ld :call I18nDisplayTranslation()<CR>
+nmap <F8>o :Denite file_old<CR>
+nmap <F8>w :Vaffle %:h<CR>
+nmap <F8>f :Denite file_rec<CR>
+nmap <F8>t :DeniteCursorWord tag<CR>
+nmap <F8>d :Denite directory_rec<CR>
+nmap <F8>m :Denite mark<CR>
+nmap <F8>y :Denite neoyank<CR>
+nmap <F8>u :Denite buffer<CR>
+nmap <F8>r :Denite register<CR>
+nmap <F8>e :Denite file_mru<CR>
+
+
