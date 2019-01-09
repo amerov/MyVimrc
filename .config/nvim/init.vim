@@ -2,7 +2,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'fishbullet/deoplete-ruby'
 
-" Plug 'uplus/deoplete-solargraph'
 
 " Plug 'roxma/nvim-completion-manager'
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " (optional) php completion via LanguageClient-neovim
@@ -109,8 +108,8 @@ Plug 'Konfekt/FastFold'
 " Plug 'maxbrunsfeld/vim-yankstack'
 " Plug 'vim-scripts/YankRing.vim'
 
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ivalkeen/vim-ctrlp-tjump'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ivalkeen/vim-ctrlp-tjump'
 
 " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 " Plug 'aliou/sql-heredoc.vim'
@@ -159,11 +158,30 @@ Plug 'Shougo/context_filetype.vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'tpope/vim-unimpaired'
 Plug 'nelstrom/vim-visual-star-search'
+Plug 'tpope/vim-scriptease'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tweekmonster/fzf-filemru'
+
+
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 
 " Plug 'Shougo/vimfiler.vim'
 " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
+"
 
+Plug 'tyru/open-browser.vim'
 call plug#end()
+
+
+
+
 
 filetype indent on
 filetype plugin on
@@ -267,9 +285,9 @@ if has('clipboard')
   endif
 endif
 
-let g:ctrlp_working_path_mode = 'w'
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-nnoremap <c-]> :CtrlPtjump<cr>
+" let g:ctrlp_working_path_mode = 'w'
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
+" nnoremap <c-]> :CtrlPtjump<cr>
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -326,9 +344,9 @@ let g:gruvbox_contrast_dark = 'hard'
 " let g:gruvbox_improved_strings = 1
 
 " set background=light
-colorscheme gruvbox
+" colorscheme gruvbox
 " colorscheme solarized8_high
-set background=dark
+" set background=dark
 
 
 let g:seoul256_background = 233
@@ -343,9 +361,9 @@ let g:jellybeans_overrides = {
 
 
 let g:jellybeans_background_color="050505"
-" colorscheme jellybeans
-" hi NERDTreeFile guibg=none
-" hi gitcommitDiscarded guibg=none
+colorscheme jellybeans
+
+" hi gitcommitDiscardedType guibg=none
 " hi ColorColumn guibg=none
 
 " colorscheme jellyx
@@ -364,6 +382,10 @@ let g:jellybeans_background_color="050505"
 " colo srcery
 " colo base16-github
 " colo one
+" colo afterglow
+hi NERDTreeFile guibg=none
+hi gitcommitDiscarded guibg=none
+
 let g:deoplete#enable_at_startup = 1
 
 " au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
@@ -478,21 +500,14 @@ let g:tern#arguments = ["--persistent", "--no-port-file"]
 " autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 " let g:bookmark_location_list = 0
 " let g:bookmark_disable_ctrlp = 1
+" nmap <F2> :NERDTreeToggle<CR>
 
-nmap <leader><leader>f <Plug>CtrlSFCwordPath
-vmap <leader><leader>f <Plug>CtrlSFVwordPath
-
-nmap <F2> :NERDTreeToggle<CR>
-nmap <F3> <Plug>CtrlSFCwordPath
-vmap <F3> <Plug>CtrlSFVwordPath
-nmap <F4> <Plug>CtrlSFPrompt
 nmap <F7> :CtrlSFToggle<CR>
-nmap <F6> :Vaffle<CR>
+nmap <F6> :Explore<CR>
 
 noremap <leader><backspace> :nohl<CR>
 noremap <F9> :Gstatus<CR>
-tnoremap <F36> <C-\><C-N>
-
+tnoremap <F35> <C-\><C-N>
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <F5>p :let @+=expand("%").":".line('.')<cr>:echo "Copied file path to clipboard"<cr>
@@ -586,19 +601,34 @@ let g:neosnippet#scope_aliases['eruby'] = 'html,eruby'
 
 let g:gitgutter_terminal_reports_focus=0
 
-nnoremap <silent> <leader>lt :call localorie#translate()<CR>
-nnoremap <silent> <leader>le :call localorie#expand_key()<CR>
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['solargraph', 'stdio'],
+\}
+
+call deoplete#custom#var('omni', 'input_patterns', {
+    \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
+\})
+
+
+nmap <silent> <F24> :call LanguageClient_contextMenu()<CR>
+nmap <silent> <F12> :call LanguageClient#textDocument_definition()<CR>
+nmap <silent> <leader>lt :call localorie#translate()<CR>
+nmap <silent> <leader>le :call localorie#expand_key()<CR>
 vmap <Leader>ls :call I18nTranslateString()<CR>
 vmap <Leader>ld :call I18nDisplayTranslation()<CR>
-nmap <F8>o :Denite file_old<CR>
-nmap <F8>w :Vaffle %:h<CR>
-nmap <F8>f :Denite file_rec<CR>
-nmap <F8>t :DeniteCursorWord tag<CR>
-nmap <F8>d :Denite directory_rec<CR>
+
+nmap <silent> <F2> :DeniteProjectDir buffer<CR>
+nmap <silent> <F14> :DeniteProjectDir file_mru<CR>
+nmap <silent> <F4> :DeniteProjectDir file/rec<CR>
+nmap <silent> <F16> :DeniteProjectDir file/old<CR>
+nmap <silent> <F17> :ALEFix<CR>
+
+nmap <F3> <Plug>CtrlSFPrompt
+nmap <F15> <Plug>CtrlSFCwordPath
+vmap <F3> <Plug>CtrlSFVwordPath
+
 nmap <F8>m :Denite mark<CR>
 nmap <F8>y :Denite neoyank<CR>
-nmap <F8>u :Denite buffer<CR>
 nmap <F8>r :Denite register<CR>
-nmap <F8>e :Denite file_mru<CR>
 
-
+nmap <F26> :Commands<CR>
