@@ -1,6 +1,6 @@
 [user]
     email = maratamerov@gmail.com
-    name = amerov
+	name = amerov
 [push]
     default = current
 [color]
@@ -25,12 +25,14 @@
     autocrlf = input
     excludesfile = /home/amerov/.gitexcludes
 [merge]
-    tool = nvimdiff
+    tool = vimdiff
 
 [difftool]
     prompt = true
 [diff]
-    tool = nvimdiff
+    tool = vimdiff
     algorithm = patience
-[difftool "nvimdiff"]
-    cmd = "nvim -d -m -n \"$LOCAL\" \"$REMOTE\""
+[difftool "vimdiff"]
+    cmd = "vim -d -m -n \"$LOCAL\" \"$REMOTE\""
+[credential]
+	helper = cache

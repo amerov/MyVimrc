@@ -122,7 +122,7 @@ Plug 'osyo-manga/vim-brightest'
 " Plug 'qstrahl/vim-matchmaker'
 " Plug 'mhinz/vim-sayonara'
 " Plug 'Quramy/vim-js-pretty-template'
-Plug 'cocopon/vaffle.vim'
+" Plug 'cocopon/vaffle.vim'
 Plug 'kopischke/vim-fetch'
 
 " Plug 'c0r73x/neotags.nvim'
@@ -232,7 +232,6 @@ set list
 set visualbell
 " set completeopt-=preview
 
-
 " set synmaxcol=256
 " syntax sync minlines=256
 if has('spell')
@@ -270,7 +269,7 @@ autocmd BufRead,BufNewFile *.html.erb setlocal syn=eruby.html
 " autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
 " autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
 autocmd FileType ruby,yaml,Gemfile,rake,eruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
+autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
 let g:rails_no_syntax = 1
 
 let NERDTreeShowBookmarks=1
@@ -339,8 +338,8 @@ if has("termguicolors")
 endif
 
 let g:gruvbox_improved_warnings = 1
-let g:gruvbox_contrast_light = 'hard'
-let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_contrast_light = 'hard'
+" let g:gruvbox_contrast_dark = 'hard'
 " let g:gruvbox_improved_strings = 1
 
 " set background=light
@@ -348,20 +347,17 @@ let g:gruvbox_contrast_dark = 'hard'
 " colorscheme solarized8_high
 " set background=dark
 
-
-let g:seoul256_background = 233
-let g:seoul256_light_background = 256
-
-
 let g:jellybeans_overrides = {
 \    'RubySymbol': { 'guifg': '99ad6a', 'guibg': '' },
 \    'javascriptObjectLiteral': { 'guifg': '', 'guibg': '' },
-\    'javascriptObjectLabel': { 'guifg': '99ad6a', 'guibg': '' }
+\    'javascriptObjectLabel': { 'guifg': '99ad6a', 'guibg': '' },
+\    'htmlTagName': { 'guifg': 'cf6a4c' }
 \}
 
 
-let g:jellybeans_background_color="050505"
-colorscheme jellybeans
+" let g:jellybeans_background_color="050505"
+
+" colorscheme jellybeans
 
 " hi gitcommitDiscardedType guibg=none
 " hi ColorColumn guibg=none
@@ -377,12 +373,13 @@ colorscheme jellybeans
 " colorscheme lucius
 " colorscheme onehalflight
 " colorscheme onehalfdark
-" colo seoul256-light
-" colo seoul256
 " colo srcery
 " colo base16-github
-" colo one
+colo one
+" colo solarized8_flat
 " colo afterglow
+set background=light
+
 hi NERDTreeFile guibg=none
 hi gitcommitDiscarded guibg=none
 
@@ -502,8 +499,6 @@ let g:tern#arguments = ["--persistent", "--no-port-file"]
 " let g:bookmark_disable_ctrlp = 1
 " nmap <F2> :NERDTreeToggle<CR>
 
-nmap <F7> :CtrlSFToggle<CR>
-nmap <F6> :Explore<CR>
 
 noremap <leader><backspace> :nohl<CR>
 noremap <F9> :Gstatus<CR>
@@ -546,7 +541,7 @@ let g:vim_markdown_frontmatter = 1
 
 " autocmd BufWritePost * GitGutter
 "
-let g:matchup_matchparen_timeout = 400
+let g:matchup_matchparen_timeout = 1000
 
 let g:brightest#enable_on_CursorHold = 1
 let g:brightest#enable_on_CursorMoved = 0
@@ -630,5 +625,8 @@ vmap <F3> <Plug>CtrlSFVwordPath
 nmap <F8>m :Denite mark<CR>
 nmap <F8>y :Denite neoyank<CR>
 nmap <F8>r :Denite register<CR>
-
 nmap <F26> :Commands<CR>
+nmap <F6> :NERDTreeToggle<CR>
+
+nmap <F7> :CtrlSFToggle<CR>
+nmap <F18> :Explore<CR>
