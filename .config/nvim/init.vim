@@ -70,8 +70,8 @@ Plug 'tpope/vim-haml'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'slim-template/vim-slim'
-Plug 'ternjs/tern_for_vim'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'ternjs/tern_for_vim'
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 Plug 'sbdchd/neoformat'
 
@@ -301,7 +301,7 @@ let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#force_py_version = 3
 " let g:mustache_abbreviations = 1
 
-let g:tern_map_keys=1
+" let g:tern_map_keys=1
 
 let g:javascript_enable_domhtmlcss = 1
 
@@ -344,7 +344,8 @@ let g:gruvbox_improved_warnings = 1
 
 " set background=light
 " colorscheme gruvbox
-" colorscheme solarized8_high
+colorscheme solarized8_flat
+" colorscheme one
 " set background=dark
 
 let g:jellybeans_overrides = {
@@ -355,7 +356,7 @@ let g:jellybeans_overrides = {
 \}
 
 
-" let g:jellybeans_background_color="050505"
+" let g:jellybeans_background_color="101010"
 
 " colorscheme jellybeans
 
@@ -375,13 +376,13 @@ let g:jellybeans_overrides = {
 " colorscheme onehalfdark
 " colo srcery
 " colo base16-github
-colo one
+" colo one
 " colo solarized8_flat
 " colo afterglow
-set background=light
+" set background=light
 
 hi NERDTreeFile guibg=none
-hi gitcommitDiscarded guibg=none
+" hi gitcommitDiscarded guibg=none
 
 let g:deoplete#enable_at_startup = 1
 
@@ -439,11 +440,11 @@ set tags+=./TAGS
 
 " let g:deoplete#sources#ternjs#types = 1
 " let g:deoplete#sources#ternjs#docs = 1
-let g:deoplete#sources#ternjs#include_keywords = 1
+" let g:deoplete#sources#ternjs#include_keywords = 1
 
 " Use tern_for_vim.
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent", "--no-port-file"]
+" let g:tern#command = ["tern"]
+" let g:tern#arguments = ["--persistent", "--no-port-file"]
 
 " let g:bookmark_save_per_working_dir = 1
 " let g:bookmark_auto_save = 1
@@ -598,6 +599,7 @@ let g:gitgutter_terminal_reports_focus=0
 
 let g:LanguageClient_serverCommands = {
     \ 'ruby': ['solargraph', 'stdio'],
+    \ 'javascript': ['~/node_modules/javascript-typescript-langserver/lib/language-server-stdio.js'],
 \}
 
 call deoplete#custom#var('omni', 'input_patterns', {
@@ -630,3 +632,4 @@ nmap <F6> :NERDTreeToggle<CR>
 
 nmap <F7> :CtrlSFToggle<CR>
 nmap <F18> :Explore<CR>
+let g:LanguageClient_diagnosticsEnable=0
