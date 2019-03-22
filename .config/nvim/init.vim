@@ -69,6 +69,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-haml'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
+
 Plug 'slim-template/vim-slim'
 " Plug 'ternjs/tern_for_vim'
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
@@ -344,7 +345,7 @@ let g:gruvbox_improved_warnings = 1
 
 " set background=light
 " colorscheme gruvbox
-colorscheme solarized8_flat
+" colorscheme solarized8_flat
 " colorscheme one
 " set background=dark
 
@@ -356,9 +357,9 @@ let g:jellybeans_overrides = {
 \}
 
 
-" let g:jellybeans_background_color="101010"
+" let g:jellybeans_background_color="202020"
 
-" colorscheme jellybeans
+colorscheme jellybeans
 
 " hi gitcommitDiscardedType guibg=none
 " hi ColorColumn guibg=none
@@ -633,3 +634,5 @@ nmap <F6> :NERDTreeToggle<CR>
 nmap <F7> :CtrlSFToggle<CR>
 nmap <F18> :Explore<CR>
 let g:LanguageClient_diagnosticsEnable=0
+
+autocmd FileType scss set iskeyword+=-

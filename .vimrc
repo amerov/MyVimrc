@@ -1,8 +1,8 @@
 set nocompatible
 set magic
 set hidden
-set cursorline
 set noswapfile
+set nobackup
 set wildmenu
 set autoread
 set cindent
@@ -11,3 +11,7 @@ set smartcase
 set cmdheight=2
 set tabstop=4
 set shiftwidth=4
+
+if has('unnamedplus')
+	set clipboard=unnamedplus
+end
