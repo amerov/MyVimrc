@@ -2,6 +2,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'fishbullet/deoplete-ruby'
 
+" Plug 'mattn/sonictemplate-vim'
 
 " Plug 'roxma/nvim-completion-manager'
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " (optional) php completion via LanguageClient-neovim
@@ -9,11 +10,13 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-vinegar'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'chrisbra/NrrwRgn'
 Plug 'powerman/vim-plugin-ruscmd'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
+Plug 'liuchengxu/vista.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
@@ -34,7 +37,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-signify'
-Plug 'junegunn/gv.vim'
+" Plug 'junegunn/gv.vim'
+Plug 'rbong/vim-flog'
 " Plug 'gregsexton/gitv'
 Plug 'idanarye/vim-merginal'
 Plug 'tpope/vim-rvm'
@@ -58,7 +62,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'pangloss/vim-javascript'
 " Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/html5.vim'
-
+Plug 'posva/vim-vue'
 Plug '/tpope/vim-ragtag'
 
 " Plug 'othree/yajs.vim'
@@ -69,6 +73,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-haml'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
+Plug 'RRethy/vim-hexokinase'
 
 Plug 'slim-template/vim-slim'
 " Plug 'ternjs/tern_for_vim'
@@ -132,9 +137,9 @@ Plug 'kopischke/vim-fetch'
 " Plug 'reedes/vim-wordy'
 " Plug 'tweekmonster/braceless.vim'
 
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
+" Plug 'bling/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'liuchengxu/eleline.vim'
 Plug 'tpope/vim-dadbod'
 " Plug 'vimlab/split-term.vim'
 
@@ -151,11 +156,10 @@ Plug 'larsbs/vimterial_dark'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'elixir-editors/vim-elixir'
 " Plug 'ap/vim-css-color'
-Plug 'chrisbra/Colorizer'
 Plug 'rhysd/vim-grammarous'
 " Plug 'Shougo/deol.nvim'
 Plug 'Shougo/neoinclude.vim'
-Plug 'Shougo/context_filetype.vim'
+" Plug 'Shougo/context_filetype.vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'tpope/vim-unimpaired'
 Plug 'nelstrom/vim-visual-star-search'
@@ -170,6 +174,7 @@ Plug 'tweekmonster/fzf-filemru'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
+	\ 'vue': ['vls']
     \ }
 
 
@@ -231,6 +236,8 @@ set title
 set titlestring=VIM
 set list
 set visualbell
+set wildoptions=pum
+" set wildmode
 " set completeopt-=preview
 
 " set synmaxcol=256
@@ -327,8 +334,9 @@ autocmd FileType md setlocal spell
 autocmd FileType markdown setlocal spell
 
 " au FileType qf setlocal cursorline
-au BufRead,BufNewFile *.scss setlocal filetype=scss.css
-au FileType GV setlocal nolist
+" au BufRead,BufNewFile *.scss setlocal filetype=scss.css
+" au FileType GV setlocal nolist
+au FileType floggraph setlocal nolist
 
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
@@ -344,22 +352,23 @@ let g:gruvbox_improved_warnings = 1
 " let g:gruvbox_improved_strings = 1
 
 " set background=light
-" colorscheme gruvbox
+colorscheme gruvbox
 " colorscheme solarized8_flat
 " colorscheme one
 " set background=dark
 
 let g:jellybeans_overrides = {
-\    'RubySymbol': { 'guifg': '99ad6a', 'guibg': '' },
+\    'RubySymbol': { 'guifg': 'cf6a4c', 'guibg': '' },
+\    'RubyStringEscape': { 'guifg': 'cf6a4c', 'guibg': '' },
 \    'javascriptObjectLiteral': { 'guifg': '', 'guibg': '' },
 \    'javascriptObjectLabel': { 'guifg': '99ad6a', 'guibg': '' },
 \    'htmlTagName': { 'guifg': 'cf6a4c' }
 \}
 
 
-" let g:jellybeans_background_color="202020"
+" let g:jellybeans_background_color="000000"
 
-colorscheme jellybeans
+" colorscheme jellybeans
 
 " hi gitcommitDiscardedType guibg=none
 " hi ColorColumn guibg=none
@@ -383,12 +392,13 @@ colorscheme jellybeans
 " set background=light
 
 hi NERDTreeFile guibg=none
+hi NERDTreeFile guifg=none
 " hi gitcommitDiscarded guibg=none
 
 let g:deoplete#enable_at_startup = 1
 
-" au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
-" au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "<TAB>"
+au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
+au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "<TAB>"
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -504,6 +514,8 @@ set tags+=./TAGS
 
 noremap <leader><backspace> :nohl<CR>
 noremap <F9> :Gstatus<CR>
+
+noremap <F21> :Gblame<CR>
 tnoremap <F35> <C-\><C-N>
 
 " Copy current buffer path relative to root of VIM session to system clipboard
@@ -512,6 +524,9 @@ nnoremap <F5>p :let @+=expand("%").":".line('.')<cr>:echo "Copied file path to c
 nnoremap <F5>f :let @+=expand("%:t").":".line('.')<cr>:echo "Copied file name to clipboard"<cr>
 " Copy current buffer path without filename to system clipboard
 nnoremap <F5>d :let @+=expand("%:h").":".line('.')<cr>:echo "Copied file directory to clipboard"<cr>
+
+nmap <F5>g :Gbrowse!<CR>
+vmap <F5>g :Gbrowse!<CR>
 
 " nnoremap p p=`]
 
@@ -555,8 +570,11 @@ let g:brightest#highlight = {
 " autocmd CursorHold * GitGutter
 
 " call deoplete#custom#option({'auto_complete_delay': 400, 'on_insert_enter': v:false})
+call deoplete#custom#option({'auto_complete_delay': 500})
+" call deoplete#custom#option({'min_pattern_length': 3})
 
 call deoplete#custom#option('ignore_sources', {'_': ['tag']})
+" call deoplete#custom#option('sources', {'_': ['neosnippet']})
 
 " if strftime('%H') >= 7 && strftime('%H') < 19
 "   set background=light
@@ -636,3 +654,19 @@ nmap <F18> :Explore<CR>
 let g:LanguageClient_diagnosticsEnable=0
 
 autocmd FileType scss set iskeyword+=-
+autocmd FileType vue syntax sync fromstart
+let g:neosnippet#enable_completed_snippet = 1
+let g:vista#renderer#enable_icon = 0
+
+" function! NearestMethodOrFunction() abort
+"   return get(b:, 'vista_nearest_method_or_function', '')
+" endfunction
+
+" set statusline+=%{NearestMethodOrFunction()}
+
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc 
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
