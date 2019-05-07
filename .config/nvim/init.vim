@@ -137,9 +137,9 @@ Plug 'kopischke/vim-fetch'
 " Plug 'reedes/vim-wordy'
 " Plug 'tweekmonster/braceless.vim'
 
-" Plug 'bling/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-Plug 'liuchengxu/eleline.vim'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Plug 'liuchengxu/eleline.vim'
 Plug 'tpope/vim-dadbod'
 " Plug 'vimlab/split-term.vim'
 
@@ -237,6 +237,7 @@ set titlestring=VIM
 set list
 set visualbell
 set wildoptions=pum
+set relativenumber
 " set wildmode
 " set completeopt-=preview
 
@@ -352,8 +353,9 @@ let g:gruvbox_improved_warnings = 1
 " let g:gruvbox_improved_strings = 1
 
 " set background=light
-colorscheme gruvbox
+" colorscheme gruvbox
 " colorscheme solarized8_flat
+" colorscheme solarized8
 " colorscheme one
 " set background=dark
 
@@ -368,7 +370,7 @@ let g:jellybeans_overrides = {
 
 " let g:jellybeans_background_color="000000"
 
-" colorscheme jellybeans
+colorscheme jellybeans
 
 " hi gitcommitDiscardedType guibg=none
 " hi ColorColumn guibg=none
