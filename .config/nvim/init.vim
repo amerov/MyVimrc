@@ -7,6 +7,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'roxma/nvim-completion-manager'
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " (optional) php completion via LanguageClient-neovim
 
+" Plug 'osyo-manga/vim-brightest'
+Plug 'RRethy/vim-illuminate'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
@@ -93,7 +95,6 @@ Plug 'jonathanfilip/vim-lucius'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'roosta/vim-srcery'
 Plug 'romainl/Apprentice'
 Plug 'rakr/vim-one'
 Plug 'nightsense/snow'
@@ -102,6 +103,8 @@ Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'rakr/vim-two-firewatch'
 Plug 'reedes/vim-colors-pencil'
+Plug 'srcery-colors/srcery-vim'
+Plug 'aonemd/kuroi.vim'
 
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
@@ -124,7 +127,6 @@ Plug 'Konfekt/FastFold'
 
 Plug 'w0rp/ale'
 " Plug 'itchyny/vim-cursorword'
-Plug 'osyo-manga/vim-brightest'
 " Plug 'qstrahl/vim-matchmaker'
 " Plug 'mhinz/vim-sayonara'
 " Plug 'Quramy/vim-js-pretty-template'
@@ -237,7 +239,9 @@ set titlestring=VIM
 set list
 set visualbell
 set wildoptions=pum
-set relativenumber
+set splitbelow
+set splitright
+" set relativenumber
 " set wildmode
 " set completeopt-=preview
 
@@ -412,8 +416,6 @@ function! s:check_back_space() abort "{{{
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 
-set splitbelow
-set splitright
 
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
@@ -558,7 +560,7 @@ let g:vim_markdown_frontmatter = 1
 
 " let g:SignatureEnabledAtStartup = 0
 
-" autocmd BufWritePost * GitGutter
+autocmd BufWritePost * GitGutter
 "
 let g:matchup_matchparen_timeout = 1000
 
@@ -635,10 +637,8 @@ nmap <silent> <leader>le :call localorie#expand_key()<CR>
 vmap <Leader>ls :call I18nTranslateString()<CR>
 vmap <Leader>ld :call I18nDisplayTranslation()<CR>
 
-nmap <silent> <F2> :DeniteProjectDir buffer<CR>
-nmap <silent> <F14> :DeniteProjectDir file_mru<CR>
+nmap <silent> <F2> :DeniteProjectDir buffer file_mru<CR>
 nmap <silent> <F4> :DeniteProjectDir file/rec<CR>
-nmap <silent> <F16> :DeniteProjectDir file/old<CR>
 nmap <silent> <F17> :ALEFix<CR>
 
 nmap <F3> <Plug>CtrlSFPrompt
@@ -655,7 +655,7 @@ nmap <F7> :CtrlSFToggle<CR>
 nmap <F18> :Explore<CR>
 let g:LanguageClient_diagnosticsEnable=0
 
-autocmd FileType scss set iskeyword+=-
+autocmd FileType scss setl iskeyword+=-
 autocmd FileType vue syntax sync fromstart
 let g:neosnippet#enable_completed_snippet = 1
 let g:vista#renderer#enable_icon = 0
@@ -672,3 +672,26 @@ let g:vista#renderer#enable_icon = 0
 " you can add the following line to your vimrc 
 " autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
+" autocmd BufEnter .git/* setl readonly nomodifiable
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
+
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
+endfunction
+
+hi illuminatedWord cterm=underline gui=underline
