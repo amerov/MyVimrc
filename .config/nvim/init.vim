@@ -16,6 +16,7 @@ Plug 'tpope/vim-vinegar'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'chrisbra/NrrwRgn'
+Plug 'AndrewRadev/inline_edit.vim'
 Plug 'powerman/vim-plugin-ruscmd'
 " Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
@@ -33,6 +34,7 @@ Plug 'dyng/ctrlsf.vim'
 " Plug 'brooth/far.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+" Plug 'tyru/caw.vim'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-fugitive'
@@ -61,10 +63,11 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'davidhalter/jedi-vim'
 " Plug 'lepture/vim-jinja'
 " Plug 'tpope/vim-liquid'
-Plug 'pangloss/vim-javascript'
 " Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/html5.vim'
-Plug 'posva/vim-vue'
+Plug 'pangloss/vim-javascript'
+" Plug 'posva/vim-vue'
+Plug 'leafOfTree/vim-vue-plugin'
 Plug '/tpope/vim-ragtag'
 
 " Plug 'othree/yajs.vim'
@@ -159,9 +162,10 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'elixir-editors/vim-elixir'
 " Plug 'ap/vim-css-color'
 Plug 'rhysd/vim-grammarous'
+" Plug 'kamykn/spelunker.vim'
 " Plug 'Shougo/deol.nvim'
 Plug 'Shougo/neoinclude.vim'
-" Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/context_filetype.vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'tpope/vim-unimpaired'
 Plug 'nelstrom/vim-visual-star-search'
@@ -230,7 +234,7 @@ set wildignore+=*/.idea/*
 set wildignore+=*/coverage/*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
-set updatetime=400
+set updatetime=100
 " set inccommand=nosplit
 set incsearch
 set ttyfast
@@ -241,6 +245,7 @@ set visualbell
 set wildoptions=pum
 set splitbelow
 set splitright
+set signcolumn=yes
 " set relativenumber
 " set wildmode
 " set completeopt-=preview
@@ -359,7 +364,7 @@ let g:gruvbox_improved_warnings = 1
 " set background=light
 " colorscheme gruvbox
 " colorscheme solarized8_flat
-" colorscheme solarized8
+colorscheme solarized8
 " colorscheme one
 " set background=dark
 
@@ -368,13 +373,15 @@ let g:jellybeans_overrides = {
 \    'RubyStringEscape': { 'guifg': 'cf6a4c', 'guibg': '' },
 \    'javascriptObjectLiteral': { 'guifg': '', 'guibg': '' },
 \    'javascriptObjectLabel': { 'guifg': '99ad6a', 'guibg': '' },
-\    'htmlTagName': { 'guifg': 'cf6a4c' }
+\    'htmlTagName': { 'guifg': 'cf6a4c' },
+\    'DiffDelete': { 'guifg': '902020' },
+\    'jsThis': { 'guifg': 'cf6a4c' }
 \}
 
 
 " let g:jellybeans_background_color="000000"
 
-colorscheme jellybeans
+" colorscheme jellybeans
 
 " hi gitcommitDiscardedType guibg=none
 " hi ColorColumn guibg=none
@@ -393,7 +400,7 @@ colorscheme jellybeans
 " colo srcery
 " colo base16-github
 " colo one
-" colo solarized8_flat
+" colo solarized8
 " colo afterglow
 " set background=light
 
@@ -428,7 +435,7 @@ let g:ale_lint_on_save = 1
 " let g:yankring_replace_n_pkey = '<m-p>'
 " let g:yankring_replace_n_nkey = '<m-n>'
 
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop'] }
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop'], 'vue': ['vls'] }
 
 let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']}
 
@@ -560,7 +567,7 @@ let g:vim_markdown_frontmatter = 1
 
 " let g:SignatureEnabledAtStartup = 0
 
-autocmd BufWritePost * GitGutter
+" autocmd BufWritePost * GitGutter
 "
 let g:matchup_matchparen_timeout = 1000
 
@@ -637,7 +644,8 @@ nmap <silent> <leader>le :call localorie#expand_key()<CR>
 vmap <Leader>ls :call I18nTranslateString()<CR>
 vmap <Leader>ld :call I18nDisplayTranslation()<CR>
 
-nmap <silent> <F2> :DeniteProjectDir buffer file_mru<CR>
+nmap <silent> <F2> :DeniteProjectDir buffer<CR>
+nmap <silent> <F14> :DeniteProjectDir file_mru<CR>
 nmap <silent> <F4> :DeniteProjectDir file/rec<CR>
 nmap <silent> <F17> :ALEFix<CR>
 
@@ -653,10 +661,19 @@ nmap <F6> :NERDTreeToggle<CR>
 
 nmap <F7> :CtrlSFToggle<CR>
 nmap <F18> :Explore<CR>
+nmap <space>l :Buffers<CR>
+nmap <space>f :Files<CR>
+nmap <space>e :ProjectMru<CR>
+nmap <space>h :noh<CR>
+nmap <space>o :History<CR>
+nmap <space>m :Marks<CR>
+nmap <space>; :Commands<CR>
+nmap <space>. :Emmet 
+
 let g:LanguageClient_diagnosticsEnable=0
 
 autocmd FileType scss setl iskeyword+=-
-autocmd FileType vue syntax sync fromstart
+" autocmd FileType vue syntax sync fromstart
 let g:neosnippet#enable_completed_snippet = 1
 let g:vista#renderer#enable_icon = 0
 
@@ -695,3 +712,8 @@ function! s:denite_filter_my_settings() abort
 endfunction
 
 hi illuminatedWord cterm=underline gui=underline
+" autocmd CursorHold,CursorHoldI,BufWritePost * GitGutter
+let g:ale_disable_lsp=1
+let g:vim_vue_plugin_load_full_syntax=1
+let g:vim_vue_plugin_highlight_vue_attr=1
+" let g:gitgutter_override_sign_column_highlight = 0
