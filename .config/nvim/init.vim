@@ -54,6 +54,7 @@ Plug 'tpope/vim-rake'
 " Plug 'osyo-manga/vim-monster'
 " Plug 'tpope/vim-endwise'
 Plug 'cohama/lexima.vim'
+" Plug 'tmsvg/pear-tree'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'janko-m/vim-test'
 Plug 'stefanoverna/vim-i18n'
@@ -64,13 +65,16 @@ Plug 'davidhalter/jedi-vim'
 " Plug 'lepture/vim-jinja'
 " Plug 'tpope/vim-liquid'
 " Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/yajs.vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'jelera/vim-javascript-syntax'
+" Plug 'isRuslan/vim-es6'
 Plug 'othree/html5.vim'
-Plug 'pangloss/vim-javascript'
-" Plug 'posva/vim-vue'
-Plug 'leafOfTree/vim-vue-plugin'
+
 Plug '/tpope/vim-ragtag'
 
-" Plug 'othree/yajs.vim'
+Plug 'leafOfTree/vim-vue-plugin'
+" Plug 'posva/vim-vue'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
 " Plug 'Valloric/MatchTagAlways'
@@ -177,12 +181,14 @@ Plug 'tweekmonster/fzf-filemru'
 
 
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-	\ 'vue': ['vls']
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh'
+"     \ }
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
 
+Plug 'lighttiger2505/deoplete-vim-lsp'
 
 " Plug 'Shougo/vimfiler.vim'
 " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -364,7 +370,6 @@ let g:gruvbox_improved_warnings = 1
 " set background=light
 " colorscheme gruvbox
 " colorscheme solarized8_flat
-colorscheme solarized8
 " colorscheme one
 " set background=dark
 
@@ -399,15 +404,28 @@ let g:jellybeans_overrides = {
 " colorscheme onehalfdark
 " colo srcery
 " colo base16-github
-" colo one
+colo one
 " colo solarized8
 " colo afterglow
-" set background=light
+set background=light
 
 hi NERDTreeFile guibg=none
 hi NERDTreeFile guifg=none
 " hi gitcommitDiscarded guibg=none
 
+hi link javascriptObjectLabel cleared
+hi link javascriptObjectLiteral cleared
+hi link javascriptLabel cleared
+hi link javascriptArrayMethod cleared
+hi link javascriptDOMStorageProp cleared
+hi link javascriptPaymentShippingOptionProp cleared
+hi link javascriptProp cleared
+hi link javascriptMethod cleared
+hi link javascriptTemplateSubstitution cleared
+" hi link javascriptDOMFormProp cleared
+" hi link javascriptBOMNavigatorProp cleared
+" hi link javascriptBOMWindowMethod cleared
+" hi link javascriptIdentifierName Type
 let g:deoplete#enable_at_startup = 1
 
 au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
@@ -435,7 +453,7 @@ let g:ale_lint_on_save = 1
 " let g:yankring_replace_n_pkey = '<m-p>'
 " let g:yankring_replace_n_nkey = '<m-n>'
 
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby', 'rubocop'], 'vue': ['vls'] }
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'], 'vue': ['eslint'] }
 
 let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']}
 
@@ -620,6 +638,7 @@ let g:netrw_browsex_viewer="xdg-open"
 let g:neosnippet#scope_aliases = {}
 let g:neosnippet#scope_aliases['ruby'] = 'ruby,ruby-rails'
 let g:neosnippet#scope_aliases['eruby'] = 'html,eruby'
+let g:neosnippet#scope_aliases['eruby.html'] = 'html,eruby'
 
 " autocmd BufWritePost * GitGutter
 " autocmd BufLeave * GitGutter
@@ -627,18 +646,24 @@ let g:neosnippet#scope_aliases['eruby'] = 'html,eruby'
 
 let g:gitgutter_terminal_reports_focus=0
 
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['solargraph', 'stdio'],
-    \ 'javascript': ['~/node_modules/javascript-typescript-langserver/lib/language-server-stdio.js'],
-\}
+" let g:LanguageClient_serverCommands = {
+"     \ 'ruby': ['solargraph', 'stdio'],
+"     \ 'javascript': ['javascript-typescript-stdio']
+" \}
+
+
+" let g:LanguageClient_rootMarkers = {
+"       \ 'javascript': ['jsconfig.json']
+"       \ }
 
 call deoplete#custom#var('omni', 'input_patterns', {
     \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
 \})
 
 
-nmap <silent> <F24> :call LanguageClient_contextMenu()<CR>
-nmap <silent> <F12> :call LanguageClient#textDocument_definition()<CR>
+" nmap <silent> <F24> :call LanguageClient_contextMenu()<CR>
+" nmap <silent> <F12> :call LanguageClient#textDocument_definition()<CR>
+nmap <silent> <F12> :LspDefinition<CR>
 nmap <silent> <leader>lt :call localorie#translate()<CR>
 nmap <silent> <leader>le :call localorie#expand_key()<CR>
 vmap <Leader>ls :call I18nTranslateString()<CR>
@@ -647,32 +672,35 @@ vmap <Leader>ld :call I18nDisplayTranslation()<CR>
 nmap <silent> <F2> :DeniteProjectDir buffer<CR>
 nmap <silent> <F14> :DeniteProjectDir file_mru<CR>
 nmap <silent> <F4> :DeniteProjectDir file/rec<CR>
-nmap <silent> <F17> :ALEFix<CR>
+nmap ;af :ALEFix<CR>
+nmap ;at :ALEToggleBuffer<CR>
 
-nmap <F3> <Plug>CtrlSFPrompt
-nmap <F15> <Plug>CtrlSFCwordPath
-vmap <F3> <Plug>CtrlSFVwordPath
+nmap ;s <Plug>CtrlSFPrompt
+nmap ;w <Plug>CrlSFCwordPath
+vmap ;s <Plug>CtrlSFVwordPath
 
-nmap <F8>m :Denite mark<CR>
-nmap <F8>y :Denite neoyank<CR>
-nmap <F8>r :Denite register<CR>
-nmap <F26> :Commands<CR>
-nmap <F6> :NERDTreeToggle<CR>
+nmap ;y :Denite neoyank<CR>
+nmap ;r :Denite register<CR>
+nmap ;n :NERDTreeToggle<CR>
 
 nmap <F7> :CtrlSFToggle<CR>
 nmap <F18> :Explore<CR>
-nmap <space>l :Buffers<CR>
-nmap <space>f :Files<CR>
-nmap <space>e :ProjectMru<CR>
-nmap <space>h :noh<CR>
-nmap <space>o :History<CR>
-nmap <space>m :Marks<CR>
-nmap <space>; :Commands<CR>
-nmap <space>. :Emmet 
+nmap ;j :Buffers<CR>
+nmap ;f :Files<CR>
+nmap ;o :History<CR>
+nmap ;m :Marks<CR>
+nmap ;i :Commands<CR>
+nmap ;h :noh<CR>
+nmap ;gb :Gbleme<CR>
+nmap ;gl :Commits<CR>
+nmap ;gh :BCommits<CR>
+nmap ;l :BLines<CR>
+nmap ;/ :Lines<CR>
+nmap ;e :Emmet 
 
 let g:LanguageClient_diagnosticsEnable=0
 
-autocmd FileType scss setl iskeyword+=-
+" autocmd FileType scss setl iskeyword+=-
 " autocmd FileType vue syntax sync fromstart
 let g:neosnippet#enable_completed_snippet = 1
 let g:vista#renderer#enable_icon = 0
@@ -713,7 +741,30 @@ endfunction
 
 hi illuminatedWord cterm=underline gui=underline
 " autocmd CursorHold,CursorHoldI,BufWritePost * GitGutter
-let g:ale_disable_lsp=1
+" let g:ale_disable_lsp=1
 let g:vim_vue_plugin_load_full_syntax=1
 let g:vim_vue_plugin_highlight_vue_attr=1
 " let g:gitgutter_override_sign_column_highlight = 0
+" let g:ale_open_list = 1
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+
+
+au User lsp_setup call lsp#register_server({
+      \ 'name': 'javascript support using typescript-language-server',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+      \ 'whitelist': ['javascript', 'javascript.jsx'],
+      \ })
+
+if executable('solargraph')
+    " gem install solargraph
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+        \ 'initialization_options': {"diagnostics": "true"},
+        \ 'whitelist': ['ruby'],
+        \ })
+endif
+
+let g:lsp_diagnostics_enabled = 0    

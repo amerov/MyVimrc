@@ -11,7 +11,12 @@ set smartcase
 set cmdheight=2
 set tabstop=4
 set shiftwidth=4
+set termguicolors
 
 if has('unnamedplus')
 	set clipboard=unnamedplus
 end
+
+if !has('nvim')
+  set viminfo+=n~/.local/share/vim/viminfo
+endif

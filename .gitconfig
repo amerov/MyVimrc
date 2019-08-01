@@ -1,6 +1,6 @@
 [user]
     email = maratamerov@gmail.com
-	name = amerov
+    name = amerov
 [push]
     default = current
 [color]
@@ -35,4 +35,4 @@
 [difftool "vimdiff"]
     cmd = "vim -d -m -n \"$LOCAL\" \"$REMOTE\""
 [credential]
-	helper = cache
+    helper = cache
