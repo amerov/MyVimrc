@@ -65,11 +65,12 @@ Plug 'davidhalter/jedi-vim'
 " Plug 'lepture/vim-jinja'
 " Plug 'tpope/vim-liquid'
 " Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'othree/yajs.vim'
-" Plug 'pangloss/vim-javascript'
-" Plug 'jelera/vim-javascript-syntax'
+" Plug 'othree/yajs.vim'
+Plug 'pangloss/vim-javascript'
 " Plug 'isRuslan/vim-es6'
 Plug 'othree/html5.vim'
+
+" Plug 'jelera/vim-javascript-syntax'
 
 Plug '/tpope/vim-ragtag'
 
@@ -327,7 +328,7 @@ let g:jedi#force_py_version = 3
 
 " let g:tern_map_keys=1
 
-let g:javascript_enable_domhtmlcss = 1
+" let g:javascript_enable_domhtmlcss = 1
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -413,19 +414,20 @@ hi NERDTreeFile guibg=none
 hi NERDTreeFile guifg=none
 " hi gitcommitDiscarded guibg=none
 
-hi link javascriptObjectLabel cleared
-hi link javascriptObjectLiteral cleared
-hi link javascriptLabel cleared
-hi link javascriptArrayMethod cleared
-hi link javascriptDOMStorageProp cleared
-hi link javascriptPaymentShippingOptionProp cleared
-hi link javascriptProp cleared
-hi link javascriptMethod cleared
-hi link javascriptTemplateSubstitution cleared
+" hi link javascriptObjectLabel cleared
+" hi link javascriptObjectLiteral cleared
+" hi link javascriptLabel cleared
+" hi link javascriptArrayMethod cleared
+" hi link javascriptDOMStorageProp cleared
+" hi link javascriptPaymentShippingOptionProp cleared
+" hi link javascriptProp cleared
+" hi link javascriptMethod cleared
+" hi link javascriptTemplateSubstitution cleared
 " hi link javascriptDOMFormProp cleared
 " hi link javascriptBOMNavigatorProp cleared
 " hi link javascriptBOMWindowMethod cleared
 " hi link javascriptIdentifierName Type
+hi clear jsObjectValue
 let g:deoplete#enable_at_startup = 1
 
 au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
@@ -687,13 +689,14 @@ nmap <F7> :CtrlSFToggle<CR>
 nmap <F18> :Explore<CR>
 nmap ;j :Buffers<CR>
 nmap ;f :Files<CR>
-nmap ;o :History<CR>
+nmap <C-p> :History<CR>
 nmap ;m :Marks<CR>
 nmap ;i :Commands<CR>
 nmap ;h :noh<CR>
-nmap ;gb :Gbleme<CR>
+nmap ;gb :Gblame<CR>
 nmap ;gl :Commits<CR>
 nmap ;gh :BCommits<CR>
+nmap ;gs :Gstatus<CR>
 nmap ;l :BLines<CR>
 nmap ;/ :Lines<CR>
 nmap ;e :Emmet 
