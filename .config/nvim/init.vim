@@ -1,5 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'fishbullet/deoplete-ruby'
 
 " Plug 'mattn/sonictemplate-vim'
@@ -61,7 +61,7 @@ Plug 'stefanoverna/vim-i18n'
 Plug 'davydovanton/vim-html2slim'
 
 Plug 'jmcantrell/vim-virtualenv'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 " Plug 'lepture/vim-jinja'
 " Plug 'tpope/vim-liquid'
 " Plug 'othree/javascript-libraries-syntax.vim'
@@ -186,10 +186,15 @@ Plug 'tweekmonster/fzf-filemru'
 "     \ 'branch': 'next',
 "     \ 'do': 'bash install.sh'
 "     \ }
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-
-Plug 'lighttiger2505/deoplete-vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
+" Plug 'prabirshrestha/asyncomplete-neoinclude.vim'
+Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
+" Plug 'lighttiger2505/deoplete-vim-lsp'
 
 " Plug 'Shougo/vimfiler.vim'
 " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -291,10 +296,10 @@ let g:EasyMotion_leader_key = '<leader>'
 autocmd BufRead,BufNewFile *.html.erb setlocal syn=eruby.html
 
 " autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
-" autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
-" autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
+autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
+autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
 autocmd FileType ruby,yaml,Gemfile,rake,eruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
+" autocmd FileType ruby setlocal omnifunc=
 let g:rails_no_syntax = 1
 
 let NERDTreeShowBookmarks=1
@@ -322,8 +327,8 @@ let mapleader="\\"
 let g:indentLine_enabled = 0
 let g:vim_markdown_folding_disabled = 1
 
-let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#force_py_version = 3
+" let g:jedi#use_tabs_not_buffers = 1
+" let g:jedi#force_py_version = 3
 " let g:mustache_abbreviations = 1
 
 " let g:tern_map_keys=1
@@ -350,7 +355,8 @@ autocmd FileType gitcommit setlocal spell cursorline
 autocmd FileType md setlocal spell
 autocmd FileType markdown setlocal spell
 
-" au FileType qf setlocal cursorline
+au FileType fugitiveblame setlocal cursorline
+au FileType qf setlocal cursorline
 " au BufRead,BufNewFile *.scss setlocal filetype=scss.css
 " au FileType GV setlocal nolist
 au FileType floggraph setlocal nolist
@@ -428,20 +434,23 @@ hi NERDTreeFile guifg=none
 " hi link javascriptBOMWindowMethod cleared
 " hi link javascriptIdentifierName Type
 hi clear jsObjectValue
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
-au BufEnter * inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "<TAB>"
-au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "<TAB>"
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ deoplete#mappings#manual_complete()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ deoplete#mappings#manual_complete()
 
-function! s:check_back_space() abort "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+" inoremap <silent><expr> <S-TAB>
+"       \ pumvisible() ? "\<C-p>" :
+"       \ <SID>check_back_space() ? "\<S-TAB>" :
+"       \ deoplete#mappings#manual_complete()
+
+" function! s:check_back_space() abort "{{{
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction"}}}
 
 
 let g:ale_lint_on_text_changed = 0
@@ -455,7 +464,7 @@ let g:ale_lint_on_save = 1
 " let g:yankring_replace_n_pkey = '<m-p>'
 " let g:yankring_replace_n_nkey = '<m-n>'
 
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['ruby'], 'vue': ['eslint'] }
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop', 'ruby'], 'vue': ['eslint'] }
 
 let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']}
 
@@ -601,10 +610,10 @@ let g:brightest#highlight = {
 " autocmd CursorHold * GitGutter
 
 " call deoplete#custom#option({'auto_complete_delay': 400, 'on_insert_enter': v:false})
-call deoplete#custom#option({'auto_complete_delay': 500})
+" call deoplete#custom#option({'auto_complete_delay': 500})
 " call deoplete#custom#option({'min_pattern_length': 3})
 
-call deoplete#custom#option('ignore_sources', {'_': ['tag']})
+" call deoplete#custom#option('ignore_sources', {'_': ['tag']})
 " call deoplete#custom#option('sources', {'_': ['neosnippet']})
 
 " if strftime('%H') >= 7 && strftime('%H') < 19
@@ -658,9 +667,9 @@ let g:gitgutter_terminal_reports_focus=0
 "       \ 'javascript': ['jsconfig.json']
 "       \ }
 
-call deoplete#custom#var('omni', 'input_patterns', {
-    \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
-\})
+" call deoplete#custom#var('omni', 'input_patterns', {
+"     \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
+" \})
 
 
 " nmap <silent> <F24> :call LanguageClient_contextMenu()<CR>
@@ -744,7 +753,7 @@ endfunction
 
 hi illuminatedWord cterm=underline gui=underline
 " autocmd CursorHold,CursorHoldI,BufWritePost * GitGutter
-" let g:ale_disable_lsp=1
+let g:ale_disable_lsp=1
 let g:vim_vue_plugin_load_full_syntax=1
 let g:vim_vue_plugin_highlight_vue_attr=1
 " let g:gitgutter_override_sign_column_highlight = 0
@@ -752,22 +761,60 @@ let g:vim_vue_plugin_highlight_vue_attr=1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 
+if executable('typescript-language-server')
 
-au User lsp_setup call lsp#register_server({
+  au User lsp_setup call lsp#register_server({
       \ 'name': 'javascript support using typescript-language-server',
       \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
       \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
       \ 'whitelist': ['javascript', 'javascript.jsx'],
       \ })
+endif
 
 if executable('solargraph')
-    " gem install solargraph
     au User lsp_setup call lsp#register_server({
         \ 'name': 'solargraph',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
-        \ 'initialization_options': {"diagnostics": "true"},
+        \ 'initialization_options': {"diagnostics": "false"},
         \ 'whitelist': ['ruby'],
         \ })
 endif
 
-let g:lsp_diagnostics_enabled = 0    
+let g:lsp_diagnostics_enabled = 0
+" let g:lsp_preview_float = 0
+" let g:rubycomplete_rails = 1
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+set completeopt+=preview
+
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'blacklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
+" au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#neoinclude#get_source_options({
+"     \ 'name': 'neoinclude',
+"     \ 'whitelist': ['cpp'],
+"     \ 'refresh_pattern': '\(<\|"\|/\)$',
+"     \ 'completor': function('asyncomplete#sources#neoinclude#completor'),
+"     \ }))
+
+call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+    \ 'name': 'neosnippet',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+    \ }))
+
