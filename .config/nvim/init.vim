@@ -78,7 +78,6 @@ Plug 'leafOfTree/vim-vue-plugin'
 " Plug 'posva/vim-vue'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
-" Plug 'Valloric/MatchTagAlways'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-haml'
 Plug 'hail2u/vim-css3-syntax'
@@ -92,33 +91,24 @@ Plug 'slim-template/vim-slim'
 Plug 'sbdchd/neoformat'
 
 Plug 'lifepillar/vim-solarized8'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'andbar-ru/vim-unicon'
-Plug 'chriskempson/base16-vim'
 Plug 'ajh17/Spacegray.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'guns/jellyx.vim'
-Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'romainl/Apprentice'
 Plug 'rakr/vim-one'
 Plug 'nightsense/snow'
 Plug 'jacoborus/tender.vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'rakr/vim-two-firewatch'
-Plug 'reedes/vim-colors-pencil'
-Plug 'srcery-colors/srcery-vim'
 Plug 'aonemd/kuroi.vim'
 
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-speeddating'
 
-Plug 'Konfekt/FastFold'
+" Plug 'Konfekt/FastFold'
 " Plug 'szw/vim-tags'
 
 " Plug 'sickill/vim-pasta'
@@ -169,8 +159,8 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'rhysd/vim-grammarous'
 " Plug 'kamykn/spelunker.vim'
 " Plug 'Shougo/deol.nvim'
-Plug 'Shougo/neoinclude.vim'
-Plug 'Shougo/context_filetype.vim'
+" Plug 'Shougo/neoinclude.vim'
+" Plug 'Shougo/context_filetype.vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'tpope/vim-unimpaired'
 Plug 'nelstrom/vim-visual-star-search'
@@ -178,7 +168,7 @@ Plug 'tpope/vim-scriptease'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tweekmonster/fzf-filemru'
+" Plug 'tweekmonster/fzf-filemru'
 
 
 
@@ -261,6 +251,7 @@ set signcolumn=yes
 " set relativenumber
 " set wildmode
 " set completeopt-=preview
+set shortmess+=c
 
 " set synmaxcol=256
 " syntax sync minlines=256
@@ -710,7 +701,6 @@ nmap ;l :BLines<CR>
 nmap ;/ :Lines<CR>
 nmap ;e :Emmet 
 
-let g:LanguageClient_diagnosticsEnable=0
 
 " autocmd FileType scss setl iskeyword+=-
 " autocmd FileType vue syntax sync fromstart
@@ -783,10 +773,9 @@ endif
 let g:lsp_diagnostics_enabled = 0
 " let g:lsp_preview_float = 0
 " let g:rubycomplete_rails = 1
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-set completeopt+=preview
+" set completeopt+=preview
+
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
@@ -818,3 +807,20 @@ call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_opt
     \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
     \ }))
 
+let g:asyncomplete_auto_popup = 0
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ asyncomplete#force_refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" inoremap <expr> <C-y> pumvisible() ? asyncomplete#close_popup() : "\<C-y>"
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
