@@ -8,7 +8,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " (optional) php completion via LanguageClient-neovim
 
 " Plug 'osyo-manga/vim-brightest'
-Plug 'RRethy/vim-illuminate'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
@@ -17,6 +16,9 @@ Plug 'tpope/vim-vinegar'
 
 Plug 'chrisbra/NrrwRgn'
 Plug 'AndrewRadev/inline_edit.vim'
+Plug 'AndrewRadev/deleft.vim'
+Plug 'AndrewRadev/bufferize.vim'
+" Plug 'AndrewRadev/tagalong.vim'
 Plug 'powerman/vim-plugin-ruscmd'
 " Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
@@ -31,46 +33,32 @@ Plug 'andymass/vim-matchup'
 Plug 'DataWraith/auto_mkdir'
 Plug 'tpope/vim-eunuch'
 Plug 'dyng/ctrlsf.vim'
-" Plug 'brooth/far.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-" Plug 'tyru/caw.vim'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
-" Plug 'mhinz/vim-signify'
-" Plug 'junegunn/gv.vim'
 Plug 'rbong/vim-flog'
-" Plug 'gregsexton/gitv'
 Plug 'idanarye/vim-merginal'
 Plug 'tpope/vim-rvm'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'airblade/vim-localorie'
+Plug 'stefanoverna/vim-i18n'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
-" Plug 'osyo-manga/vim-monster'
-" Plug 'tpope/vim-endwise'
 Plug 'cohama/lexima.vim'
 " Plug 'tmsvg/pear-tree'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'janko-m/vim-test'
-Plug 'stefanoverna/vim-i18n'
-Plug 'davydovanton/vim-html2slim'
+" Plug 'davydovanton/vim-html2slim'
 
 Plug 'jmcantrell/vim-virtualenv'
-" Plug 'davidhalter/jedi-vim'
 " Plug 'lepture/vim-jinja'
 " Plug 'tpope/vim-liquid'
-" Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'othree/yajs.vim'
 Plug 'pangloss/vim-javascript'
-" Plug 'isRuslan/vim-es6'
 Plug 'othree/html5.vim'
-
-" Plug 'jelera/vim-javascript-syntax'
 
 Plug '/tpope/vim-ragtag'
 
@@ -85,8 +73,6 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'RRethy/vim-hexokinase'
 
 Plug 'slim-template/vim-slim'
-" Plug 'ternjs/tern_for_vim'
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 Plug 'sbdchd/neoformat'
 
@@ -108,94 +94,45 @@ Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-speeddating'
 
-" Plug 'Konfekt/FastFold'
-" Plug 'szw/vim-tags'
-
-" Plug 'sickill/vim-pasta'
-" Plug 'maxbrunsfeld/vim-yankstack'
-" Plug 'vim-scripts/YankRing.vim'
-
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'ivalkeen/vim-ctrlp-tjump'
-
-" Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 " Plug 'aliou/sql-heredoc.vim'
-
-" Plug 'MattesGroeger/vim-bookmarks'
-
 Plug 'w0rp/ale'
-" Plug 'itchyny/vim-cursorword'
-" Plug 'qstrahl/vim-matchmaker'
-" Plug 'mhinz/vim-sayonara'
-" Plug 'Quramy/vim-js-pretty-template'
-" Plug 'cocopon/vaffle.vim'
 Plug 'kopischke/vim-fetch'
-
-" Plug 'c0r73x/neotags.nvim'
-" Plug 'kassio/neoterm'
-" Plug 'osyo-manga/vim-over'
 " Plug 'reedes/vim-wordy'
 " Plug 'tweekmonster/braceless.vim'
-
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Plug 'liuchengxu/eleline.vim'
 Plug 'tpope/vim-dadbod'
-" Plug 'vimlab/split-term.vim'
-
 Plug 'simnalamburt/vim-mundo'
-
 Plug 'machakann/vim-highlightedyank'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/neomru.vim'
 " Plug 'devjoe/vim-codequery'
 " Plug 'kshenoy/vim-signature'
-
 Plug 'larsbs/vimterial_dark'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/switch.vim'
 Plug 'elixir-editors/vim-elixir'
-" Plug 'ap/vim-css-color'
 Plug 'rhysd/vim-grammarous'
 " Plug 'kamykn/spelunker.vim'
-" Plug 'Shougo/deol.nvim'
-" Plug 'Shougo/neoinclude.vim'
 " Plug 'Shougo/context_filetype.vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'tpope/vim-unimpaired'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'tpope/vim-scriptease'
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'tweekmonster/fzf-filemru'
-
-
-
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh'
-"     \ }
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-file.vim'
-" Plug 'prabirshrestha/asyncomplete-neoinclude.vim'
 Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
-" Plug 'lighttiger2505/deoplete-vim-lsp'
-
-" Plug 'Shougo/vimfiler.vim'
-" Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
-"
-
 Plug 'tyru/open-browser.vim'
+Plug 'itchyny/vim-cursorword'
 call plug#end()
-
-
-
-
 
 filetype indent on
 filetype plugin on
@@ -227,8 +164,8 @@ set smartcase
 set ignorecase
 set wildmenu
 set wildmode=longest:full,full
-
 set laststatus=2
+
 " set cmdheight=2
 set wildignore+=tags
 set wildignore+=*/tmp/*
@@ -236,8 +173,7 @@ set wildignore+=*/.idea/*
 set wildignore+=*/coverage/*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
-set updatetime=100
-" set inccommand=nosplit
+set updatetime=300
 set incsearch
 set ttyfast
 set title
@@ -249,8 +185,6 @@ set splitbelow
 set splitright
 set signcolumn=yes
 " set relativenumber
-" set wildmode
-" set completeopt-=preview
 set shortmess+=c
 
 " set synmaxcol=256
@@ -280,23 +214,14 @@ endif
 
 let g:EasyMotion_leader_key = '<leader>'
 
-" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-
 autocmd BufRead,BufNewFile *.html.erb setlocal syn=eruby.html
 
 " autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
 autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
 autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
 autocmd FileType ruby,yaml,Gemfile,rake,eruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
-" autocmd FileType ruby setlocal omnifunc=
-let g:rails_no_syntax = 1
 
-let NERDTreeShowBookmarks=1
-" let g:NERDTreeDirArrows=1
-" let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
-" set clipboard+=unnamedplus
+
 if has('clipboard')
   if has('unnamedplus')
     set clipboard=unnamedplus
@@ -304,10 +229,6 @@ if has('clipboard')
     set clipboard=unnamed
   endif
 endif
-
-" let g:ctrlp_working_path_mode = 'w'
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
-" nnoremap <c-]> :CtrlPtjump<cr>
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -318,14 +239,6 @@ let mapleader="\\"
 let g:indentLine_enabled = 0
 let g:vim_markdown_folding_disabled = 1
 
-" let g:jedi#use_tabs_not_buffers = 1
-" let g:jedi#force_py_version = 3
-" let g:mustache_abbreviations = 1
-
-" let g:tern_map_keys=1
-
-" let g:javascript_enable_domhtmlcss = 1
-
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
@@ -334,42 +247,29 @@ let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
 
 let g:startify_change_to_dir = 0
 let g:startify_session_persistence = 1
 
-" autocmd BufNewFile,BufRead *.slim setlocal ft=slim
 autocmd FileType gitcommit setlocal spell cursorline
 autocmd FileType md setlocal spell
 autocmd FileType markdown setlocal spell
-
 au FileType fugitiveblame setlocal cursorline
 au FileType qf setlocal cursorline
 " au BufRead,BufNewFile *.scss setlocal filetype=scss.css
-" au FileType GV setlocal nolist
-au FileType floggraph setlocal nolist
+au FileType floggraph setlocal nolist cursorline
 
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
-
 
 if has("termguicolors")
   set termguicolors
 endif
 
 let g:gruvbox_improved_warnings = 1
-" let g:gruvbox_contrast_light = 'hard'
-" let g:gruvbox_contrast_dark = 'hard'
-" let g:gruvbox_improved_strings = 1
 
-" set background=light
 " colorscheme gruvbox
-" colorscheme solarized8_flat
-" colorscheme one
-" set background=dark
 
 let g:jellybeans_overrides = {
 \    'RubySymbol': { 'guifg': 'cf6a4c', 'guibg': '' },
@@ -381,27 +281,15 @@ let g:jellybeans_overrides = {
 \    'jsThis': { 'guifg': 'cf6a4c' }
 \}
 
-
 " let g:jellybeans_background_color="000000"
-
 " colorscheme jellybeans
 
-" hi gitcommitDiscardedType guibg=none
-" hi ColorColumn guibg=none
-
 " colorscheme jellyx
-
-" set background=dark
 " colorscheme PaperColor
-
 " colorscheme spacegray
-
 " colorscheme tender
 " colorscheme lucius
-" colorscheme onehalflight
-" colorscheme onehalfdark
 " colo srcery
-" colo base16-github
 colo one
 " colo solarized8
 " colo afterglow
@@ -425,35 +313,10 @@ hi NERDTreeFile guifg=none
 " hi link javascriptBOMWindowMethod cleared
 " hi link javascriptIdentifierName Type
 hi clear jsObjectValue
-" let g:deoplete#enable_at_startup = 1
-
-
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ deoplete#mappings#manual_complete()
-
-" inoremap <silent><expr> <S-TAB>
-"       \ pumvisible() ? "\<C-p>" :
-"       \ <SID>check_back_space() ? "\<S-TAB>" :
-"       \ deoplete#mappings#manual_complete()
-
-" function! s:check_back_space() abort "{{{
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction"}}}
-
 
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
 
-" let g:pasta_paste_before_mapping = ',P'
-" let g:pasta_paste_after_mapping = ',p'
-
-" let g:yankring_enabled = 0
-" let g:yankring_clipboard_monitor = 0
-" let g:yankring_replace_n_pkey = '<m-p>'
-" let g:yankring_replace_n_nkey = '<m-n>'
 
 let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop', 'ruby'], 'vue': ['eslint'] }
 
@@ -479,75 +342,7 @@ endfunction
 
 set tags+=./TAGS
 
-
-" let g:deoplete#sources#ternjs#types = 1
-" let g:deoplete#sources#ternjs#docs = 1
-" let g:deoplete#sources#ternjs#include_keywords = 1
-
-" Use tern_for_vim.
-" let g:tern#command = ["tern"]
-" let g:tern#arguments = ["--persistent", "--no-port-file"]
-
-" let g:bookmark_save_per_working_dir = 1
-" let g:bookmark_auto_save = 1
-
-
-
-" function! g:BMWorkDirFileLocation()
-"     let filename = 'bookmarks'
-"     let location = ''
-"     if isdirectory('.git')
-"         " Current work dir is git's work tree
-"         let location = getcwd().'/.git'
-"     else
-"         " Look upwards (at parents) for a directory named '.git'
-"         let location = finddir('.git', '.;')
-"     endif
-"     if len(location) > 0
-"         return location.'/'.filename
-"     else
-"         return getcwd().'/.'.filename
-"     endif
-" endfunction
-
-" let g:bookmark_no_default_key_mappings = 1
-
-" function! BookmarkMapKeys()
-"     nmap mm :BookmarkToggle<CR>
-"     nmap mi :BookmarkAnnotate<CR>
-"     nmap mn :BookmarkNext<CR>
-"     nmap mp :BookmarkPrev<CR>
-"     nmap ma :BookmarkShowAll<CR>
-"     nmap mc :BookmarkClear<CR>
-"     nmap mx :BookmarkClearAll<CR>
-"     nmap mkk :BookmarkMoveUp
-"     nmap mjj :BookmarkMoveDown
-" endfunction
-
-" function! BookmarkUnmapKeys()
-"     unmap mm
-"     unmap mi
-"     unmap mn
-"     unmap mp
-"     unmap ma
-"     unmap mc
-"     unmap mx
-"     unmap mkk
-"     unmap mjj
-" endfunction
-
-" autocmd BufEnter * :call BookmarkMapKeys()
-" autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
-" let g:bookmark_location_list = 0
-" let g:bookmark_disable_ctrlp = 1
-" nmap <F2> :NERDTreeToggle<CR>
-
-
-noremap <leader><backspace> :nohl<CR>
 noremap <F9> :Gstatus<CR>
-
-noremap <F21> :Gblame<CR>
-tnoremap <F35> <C-\><C-N>
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <F5>p :let @+=expand("%").":".line('.')<cr>:echo "Copied file path to clipboard"<cr>
@@ -559,24 +354,12 @@ nnoremap <F5>d :let @+=expand("%:h").":".line('.')<cr>:echo "Copied file directo
 nmap <F5>g :Gbrowse!<CR>
 vmap <F5>g :Gbrowse!<CR>
 
-" nnoremap p p=`]
-
 let g:NERDTreeHijackNetrw = 0
 let g:jsx_ext_required = 1
-" let g:used_javascript_libs = 'underscore,jquery'
 let g:matchup_matchparen_deferred = 1
 let g:matchup_delim_noskips = 2
 
-" let g:signify_sign_change = '~'
-" let g:signify_realtime = 1
-
-" let g:airline_highlighting_cache = 1
-
 autocmd FileType ruby,eruby,slim setlocal keywordprg=:vs\|\:term\ ri
-
-" let g:signify_update_on_bufenter    = 1
-" let g:signify_update_on_focusgained = 1
-" let g:NERDTreeQuitOnOpen=1
 
 let g:NERDTreeWinPos = "right"
 
@@ -584,35 +367,13 @@ autocmd VimLeavePre * NERDTreeClose
 
 let NERDTreeIgnore=['tags']
 let g:vim_markdown_frontmatter = 1
-
-" let g:SignatureEnabledAtStartup = 0
-
-" autocmd BufWritePost * GitGutter
-"
 let g:matchup_matchparen_timeout = 1000
-
-let g:brightest#enable_on_CursorHold = 1
-let g:brightest#enable_on_CursorMoved = 0
-
-let g:brightest#highlight = {
-\   "group" : "BrightestUnderline"
-\}
-
-" autocmd CursorHold * GitGutter
-
-" call deoplete#custom#option({'auto_complete_delay': 400, 'on_insert_enter': v:false})
-" call deoplete#custom#option({'auto_complete_delay': 500})
-" call deoplete#custom#option({'min_pattern_length': 3})
-
-" call deoplete#custom#option('ignore_sources', {'_': ['tag']})
-" call deoplete#custom#option('sources', {'_': ['neosnippet']})
 
 " if strftime('%H') >= 7 && strftime('%H') < 19
 "   set background=light
 " else
 "   set background=dark
 " endif
-
 
 function XDisplayColor(color)
     let displaycommand = "display -size 300x300 xc:'" . a:color . "'"
@@ -626,7 +387,6 @@ function ShowHexColorUnderCursor()
     :call XDisplayColor('\#' . wordundercursor)
     return 1
 endfunction
-
 
 function! SynStack()
   if !exists("*synstack")
@@ -642,51 +402,19 @@ let g:neosnippet#scope_aliases['ruby'] = 'ruby,ruby-rails'
 let g:neosnippet#scope_aliases['eruby'] = 'html,eruby'
 let g:neosnippet#scope_aliases['eruby.html'] = 'html,eruby'
 
-" autocmd BufWritePost * GitGutter
-" autocmd BufLeave * GitGutter
-" au BufEnter * GitGutter
+" let g:gitgutter_terminal_reports_focus=0
 
-let g:gitgutter_terminal_reports_focus=0
-
-" let g:LanguageClient_serverCommands = {
-"     \ 'ruby': ['solargraph', 'stdio'],
-"     \ 'javascript': ['javascript-typescript-stdio']
-" \}
-
-
-" let g:LanguageClient_rootMarkers = {
-"       \ 'javascript': ['jsconfig.json']
-"       \ }
-
-" call deoplete#custom#var('omni', 'input_patterns', {
-"     \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
-" \})
-
-
-" nmap <silent> <F24> :call LanguageClient_contextMenu()<CR>
-" nmap <silent> <F12> :call LanguageClient#textDocument_definition()<CR>
 nmap <silent> <F12> :LspDefinition<CR>
-nmap <silent> <leader>lt :call localorie#translate()<CR>
-nmap <silent> <leader>le :call localorie#expand_key()<CR>
-vmap <Leader>ls :call I18nTranslateString()<CR>
-vmap <Leader>ld :call I18nDisplayTranslation()<CR>
 
-nmap <silent> <F2> :DeniteProjectDir buffer<CR>
-nmap <silent> <F14> :DeniteProjectDir file_mru<CR>
-nmap <silent> <F4> :DeniteProjectDir file/rec<CR>
+
 nmap ;af :ALEFix<CR>
 nmap ;at :ALEToggleBuffer<CR>
-
 nmap ;s <Plug>CtrlSFPrompt
-nmap ;w <Plug>CrlSFCwordPath
 vmap ;s <Plug>CtrlSFVwordPath
-
 nmap ;y :Denite neoyank<CR>
 nmap ;r :Denite register<CR>
 nmap ;n :NERDTreeToggle<CR>
-
 nmap <F7> :CtrlSFToggle<CR>
-nmap <F18> :Explore<CR>
 nmap ;j :Buffers<CR>
 nmap ;f :Files<CR>
 nmap <C-p> :History<CR>
@@ -697,10 +425,14 @@ nmap ;gb :Gblame<CR>
 nmap ;gl :Commits<CR>
 nmap ;gh :BCommits<CR>
 nmap ;gs :Gstatus<CR>
-nmap ;l :BLines<CR>
-nmap ;/ :Lines<CR>
-nmap ;e :Emmet 
+nmap ;gp :Gpull<CR>
+nmap ;gP :Gpush<CR>
+nmap ;gf :Gfetch<CR>
+nmap ;ga :Git add %<CR>
 
+nmap ;l :BLines<CR>
+nmap ;L :Lines<CR>
+nmap ;e :Emmet 
 
 " autocmd FileType scss setl iskeyword+=-
 " autocmd FileType vue syntax sync fromstart
@@ -719,7 +451,6 @@ let g:vista#renderer#enable_icon = 0
 " you can add the following line to your vimrc 
 " autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
-" autocmd BufEnter .git/* setl readonly nomodifiable
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> <CR>
@@ -741,8 +472,6 @@ function! s:denite_filter_my_settings() abort
   imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
 endfunction
 
-hi illuminatedWord cterm=underline gui=underline
-" autocmd CursorHold,CursorHoldI,BufWritePost * GitGutter
 let g:ale_disable_lsp=1
 let g:vim_vue_plugin_load_full_syntax=1
 let g:vim_vue_plugin_highlight_vue_attr=1
@@ -750,9 +479,7 @@ let g:vim_vue_plugin_highlight_vue_attr=1
 " let g:ale_open_list = 1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-
 if executable('typescript-language-server')
-
   au User lsp_setup call lsp#register_server({
       \ 'name': 'javascript support using typescript-language-server',
       \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
@@ -772,10 +499,7 @@ endif
 
 let g:lsp_diagnostics_enabled = 0
 " let g:lsp_preview_float = 0
-" let g:rubycomplete_rails = 1
 " set completeopt+=preview
-
-" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
@@ -793,13 +517,6 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \ 'priority': 10,
     \ 'completor': function('asyncomplete#sources#file#completor')
     \ }))
-
-" au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#neoinclude#get_source_options({
-"     \ 'name': 'neoinclude',
-"     \ 'whitelist': ['cpp'],
-"     \ 'refresh_pattern': '\(<\|"\|/\)$',
-"     \ 'completor': function('asyncomplete#sources#neoinclude#completor'),
-"     \ }))
 
 call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
     \ 'name': 'neosnippet',
@@ -819,8 +536,7 @@ inoremap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ asyncomplete#force_refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" inoremap <expr> <C-y> pumvisible() ? asyncomplete#close_popup() : "\<C-y>"
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+let g:cursorword = 0
+let g:lsp_auto_enable = 0
+au BufEnter * GitGutterAll
+let g:netrw_altfile = 1
