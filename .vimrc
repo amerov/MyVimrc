@@ -14,9 +14,10 @@ set shiftwidth=4
 set termguicolors
 
 if has('unnamedplus')
-	set clipboard=unnamedplus
+  set clipboard=unnamedplus
 end
 
 if !has('nvim')
   set viminfo+=n~/.local/share/vim/viminfo
 endif
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz

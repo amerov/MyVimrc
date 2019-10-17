@@ -31,12 +31,12 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-sleuth'
 Plug 'andymass/vim-matchup'
 Plug 'DataWraith/auto_mkdir'
+
 Plug 'tpope/vim-eunuch'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
@@ -70,7 +70,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-haml'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'RRethy/vim-hexokinase'
+" Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 Plug 'slim-template/vim-slim'
 
@@ -123,15 +123,17 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'tpope/vim-scriptease'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete-buffer.vim'
-Plug 'prabirshrestha/asyncomplete-file.vim'
-Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Plug 'prabirshrestha/asyncomplete-buffer.vim'
+" Plug 'prabirshrestha/asyncomplete-file.vim'
+" Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
+" Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tyru/open-browser.vim'
-Plug 'itchyny/vim-cursorword'
+Plug 'mcchrish/nnn.vim'
 call plug#end()
 
 filetype indent on
@@ -158,7 +160,7 @@ set showmode
 set showmatch
 set autoread
 set autowrite
-set showfulltag
+" set showfulltag
 set noswapfile
 set smartcase
 set ignorecase
@@ -175,6 +177,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
 set updatetime=300
 set incsearch
+" set inccommand
 set ttyfast
 set title
 set titlestring=VIM
@@ -186,7 +189,9 @@ set splitright
 set signcolumn=yes
 " set relativenumber
 set shortmess+=c
-
+set nobackup
+set nowritebackup
+set cmdheight=2
 " set synmaxcol=256
 " syntax sync minlines=256
 if has('spell')
@@ -219,20 +224,20 @@ autocmd BufRead,BufNewFile *.html.erb setlocal syn=eruby.html
 " autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
 autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
 autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
-autocmd FileType ruby,yaml,Gemfile,rake,eruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType ruby,yaml,Gemfile,rake,eruby,nerdtree setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
+set clipboard=unnamedplus
+" if has('clipboard')
+"   if has('unnamedplus')
+"     set clipboard=unnamedplus
+"   else
+"     set clipboard=unnamed
+"   endif
+" endif
 
-if has('clipboard')
-  if has('unnamedplus')
-    set clipboard=unnamedplus
-  else
-    set clipboard=unnamed
-  endif
-endif
-
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 let mapleader="\\"
 
@@ -256,6 +261,7 @@ autocmd FileType gitcommit setlocal spell cursorline
 autocmd FileType md setlocal spell
 autocmd FileType markdown setlocal spell
 au FileType fugitiveblame setlocal cursorline
+au FileType fugitive setlocal cursorline
 au FileType qf setlocal cursorline
 " au BufRead,BufNewFile *.scss setlocal filetype=scss.css
 au FileType floggraph setlocal nolist cursorline
@@ -268,8 +274,6 @@ if has("termguicolors")
 endif
 
 let g:gruvbox_improved_warnings = 1
-
-" colorscheme gruvbox
 
 let g:jellybeans_overrides = {
 \    'RubySymbol': { 'guifg': 'cf6a4c', 'guibg': '' },
@@ -284,17 +288,18 @@ let g:jellybeans_overrides = {
 " let g:jellybeans_background_color="000000"
 " colorscheme jellybeans
 
+colorscheme gruvbox
 " colorscheme jellyx
 " colorscheme PaperColor
 " colorscheme spacegray
 " colorscheme tender
 " colorscheme lucius
 " colo srcery
-colo one
+" colo one
+" set background=light
 " colo solarized8
 " colo afterglow
-set background=light
-
+" colo kuroi
 hi NERDTreeFile guibg=none
 hi NERDTreeFile guifg=none
 " hi gitcommitDiscarded guibg=none
@@ -404,35 +409,42 @@ let g:neosnippet#scope_aliases['eruby.html'] = 'html,eruby'
 
 " let g:gitgutter_terminal_reports_focus=0
 
-nmap <silent> <F12> :LspDefinition<CR>
+" nmap <silent> <F12> :LspDefinition<CR>
 
+nnoremap <space>af :ALEFix<CR>
+nnoremap <space>at :ALEToggleBuffer<CR>
+nmap <space>f <Plug>CtrlSFPrompt
+vmap <space>f <Plug>CtrlSFVwordPath
+nnoremap <space>y :Denite neoyank<CR>
+nnoremap <space>r :Denite register<CR>
+nnoremap <space>n :NERDTreeToggle<CR>
+nnoremap <space>N :NERDTreeFind<CR>
+nnoremap <F7> :CtrlSFToggle<CR>
+nnoremap <space>j :Buffers<CR>
+nnoremap <space>o :Files<CR>
+nnoremap <C-p> :History<CR>
+nnoremap <space>m :Marks<CR>
+nnoremap <space>; :Commands<CR>
+nnoremap <space>h :noh<CR>
+nnoremap <space>gb :Gblame<CR>
+nnoremap <space>gl :Commits<CR>
+nnoremap <space>gh :BCommits<CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gp :Gpull<CR>
+nnoremap <space>gP :Gpush<CR>
+nnoremap <space>gf :Gfetch<CR>
+nnoremap <space>ga :Git add %<CR>
+nnoremap <space>p p=`]
+nnoremap <space>l :BLines<CR>
+nnoremap <space>L :Lines<CR>
+nnoremap <space>e :Emmet 
 
-nmap ;af :ALEFix<CR>
-nmap ;at :ALEToggleBuffer<CR>
-nmap ;s <Plug>CtrlSFPrompt
-vmap ;s <Plug>CtrlSFVwordPath
-nmap ;y :Denite neoyank<CR>
-nmap ;r :Denite register<CR>
-nmap ;n :NERDTreeToggle<CR>
-nmap <F7> :CtrlSFToggle<CR>
-nmap ;j :Buffers<CR>
-nmap ;f :Files<CR>
-nmap <C-p> :History<CR>
-nmap ;m :Marks<CR>
-nmap ;i :Commands<CR>
-nmap ;h :noh<CR>
-nmap ;gb :Gblame<CR>
-nmap ;gl :Commits<CR>
-nmap ;gh :BCommits<CR>
-nmap ;gs :Gstatus<CR>
-nmap ;gp :Gpull<CR>
-nmap ;gP :Gpush<CR>
-nmap ;gf :Gfetch<CR>
-nmap ;ga :Git add %<CR>
+nnoremap <space>d "_d
+vnoremap <space>d "_d
 
-nmap ;l :BLines<CR>
-nmap ;L :Lines<CR>
-nmap ;e :Emmet 
+nnoremap <space>s :w<CR>
+nnoremap <space>w :w<CR>
+nnoremap <space>q :wq<CR>
 
 " autocmd FileType scss setl iskeyword+=-
 " autocmd FileType vue syntax sync fromstart
@@ -479,64 +491,142 @@ let g:vim_vue_plugin_highlight_vue_attr=1
 " let g:ale_open_list = 1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-if executable('typescript-language-server')
-  au User lsp_setup call lsp#register_server({
-      \ 'name': 'javascript support using typescript-language-server',
-      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
-      \ 'whitelist': ['javascript', 'javascript.jsx'],
-      \ })
-endif
+" if executable('typescript-language-server')
+"   au User lsp_setup call lsp#register_server({
+"       \ 'name': 'javascript support using typescript-language-server',
+"       \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+"       \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+"       \ 'whitelist': ['javascript', 'javascript.jsx'],
+"       \ })
+" endif
 
-if executable('solargraph')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'solargraph',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
-        \ 'initialization_options': {"diagnostics": "false"},
-        \ 'whitelist': ['ruby'],
-        \ })
-endif
+" if executable('solargraph')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'solargraph',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+"         \ 'initialization_options': {"diagnostics": "false"},
+"         \ 'whitelist': ['ruby'],
+"         \ })
+" endif
 
-let g:lsp_diagnostics_enabled = 0
+" let g:lsp_diagnostics_enabled = 0
 " let g:lsp_preview_float = 0
 " set completeopt+=preview
 
-call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \ 'name': 'buffer',
-    \ 'whitelist': ['*'],
-    \ 'blacklist': ['go'],
-    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ 'config': {
-    \    'max_buffer_size': 5000000,
-    \  },
-    \ }))
+" call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+"     \ 'name': 'buffer',
+"     \ 'whitelist': ['*'],
+"     \ 'blacklist': ['go'],
+"     \ 'completor': function('asyncomplete#sources#buffer#completor'),
+"     \ 'config': {
+"     \    'max_buffer_size': 5000000,
+"     \  },
+"     \ }))
 
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-    \ 'name': 'file',
-    \ 'whitelist': ['*'],
-    \ 'priority': 10,
-    \ 'completor': function('asyncomplete#sources#file#completor')
-    \ }))
+" au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+"     \ 'name': 'file',
+"     \ 'whitelist': ['*'],
+"     \ 'priority': 10,
+"     \ 'completor': function('asyncomplete#sources#file#completor')
+"     \ }))
 
-call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-    \ 'name': 'neosnippet',
-    \ 'whitelist': ['*'],
-    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-    \ }))
+" call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+"     \ 'name': 'neosnippet',
+"     \ 'whitelist': ['*'],
+"     \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+"     \ }))
 
-let g:asyncomplete_auto_popup = 0
+" au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
+"     \ 'name': 'necosyntax',
+"     \ 'whitelist': ['*'],
+"     \ 'completor': function('asyncomplete#sources#necosyntax#completor'),
+"     \ }))
+" let g:asyncomplete_auto_popup = 1
 
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+" function! s:check_back_space() abort
+"     let col = col('.') - 1
+"     return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction
 
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ asyncomplete#force_refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-let g:cursorword = 0
-let g:lsp_auto_enable = 0
+" inoremap <silent><expr> <TAB>
+"   \ pumvisible() ? "\<C-n>" :
+"   \ <SID>check_back_space() ? "\<TAB>" :
+"   \ asyncomplete#force_refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" let g:lsp_auto_enable = 0
 au BufEnter * GitGutterAll
 let g:netrw_altfile = 1
+
+autocmd FileType nerdtree setlocal wrap
+let g:matchup_matchparen_offscreen = { 'method': 'popup' }
+let g:nnn#set_default_mappings = 0
+
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit' }
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> <F12> <Plug>(coc-definition)
+nmap <silent> <F24> <Plug>(coc-type-definition)
+nmap <silent> <F36> <Plug>(coc-references)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+nmap <F6> <Plug>(coc-rename)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+command! -nargs=0 Format :call CocAction('format')
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)

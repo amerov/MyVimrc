@@ -19,7 +19,8 @@
     "node",
     "promise",
     "standard",
-    "html"
+    "html",
+    "vue"
   ],
 
   "extends": "eslint:recommended",
