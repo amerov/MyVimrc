@@ -437,15 +437,11 @@ nnoremap <space>ga :Git add %<CR>
 nnoremap <space>p p=`]
 nnoremap <space>l :BLines<CR>
 nnoremap <space>L :Lines<CR>
-nnoremap <space>e :Emmet 
-
+" nnoremap <space>e :Emmet 
 nnoremap <space>d "_d
 vnoremap <space>d "_d
-
-nnoremap <space>s :w<CR>
 nnoremap <space>w :w<CR>
-nnoremap <space>q :wq<CR>
-
+imap <C-l> <Esc>:w<CR>
 " autocmd FileType scss setl iskeyword+=-
 " autocmd FileType vue syntax sync fromstart
 let g:neosnippet#enable_completed_snippet = 1
@@ -617,16 +613,18 @@ augroup end
 command! -nargs=0 Format :call CocAction('format')
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-
+" imap <C-l> <Plug>(coc-snippets-expand)
 " Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-
+" vmap <C-j> <Plug>(coc-snippets-select)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-j>'
-
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+let g:ctrlsf_extra_backend_args = {
+    \ 'ag': '--hidden --ignore=.git/'
+    \ }
+
