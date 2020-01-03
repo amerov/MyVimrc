@@ -66,7 +66,7 @@ Plug 'leafOfTree/vim-vue-plugin'
 " Plug 'posva/vim-vue'
 Plug 'mxw/vim-jsx'
 Plug 'kchmck/vim-coffee-script'
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-haml'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
@@ -77,6 +77,7 @@ Plug 'slim-template/vim-slim'
 Plug 'sbdchd/neoformat'
 
 Plug 'lifepillar/vim-solarized8'
+Plug 'liuchengxu/space-vim-theme'
 Plug 'andbar-ru/vim-unicon'
 Plug 'ajh17/Spacegray.vim'
 Plug 'nanotech/jellybeans.vim'
@@ -87,9 +88,11 @@ Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'rakr/vim-one'
 Plug 'nightsense/snow'
+Plug 'dracula/vim'
+Plug 'alessandroyorba/alduin'
 Plug 'jacoborus/tender.vim'
 Plug 'aonemd/kuroi.vim'
-
+Plug 'crusoexia/vim-monokai'
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-speeddating'
@@ -157,7 +160,7 @@ set ruler
 set modeline
 set showcmd
 set showmode
-set showmatch
+" set showmatch
 set autoread
 set autowrite
 " set showfulltag
@@ -191,7 +194,7 @@ set signcolumn=yes
 set shortmess+=c
 set nobackup
 set nowritebackup
-set cmdheight=2
+set cmdheight=1
 " set synmaxcol=256
 " syntax sync minlines=256
 if has('spell')
@@ -287,19 +290,20 @@ let g:jellybeans_overrides = {
 
 " let g:jellybeans_background_color="000000"
 " colorscheme jellybeans
-
-colorscheme gruvbox
+" colo dracula
+" colorscheme gruvbox
 " colorscheme jellyx
 " colorscheme PaperColor
 " colorscheme spacegray
 " colorscheme tender
 " colorscheme lucius
-" colo srcery
 " colo one
-" set background=light
-" colo solarized8
+set background=light
+colo solarized8
 " colo afterglow
-" colo kuroi
+" colo snow
+" colo afterglow
+" colo monokai
 hi NERDTreeFile guibg=none
 hi NERDTreeFile guifg=none
 " hi gitcommitDiscarded guibg=none
@@ -321,8 +325,9 @@ hi clear jsObjectValue
 
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
-
-
+let g:ale_echo_delay = 200
+" let g:ale_set_highlights = 0
+let g:ale_ruby_rubocop_executable = 'bundle'
 let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop', 'ruby'], 'vue': ['eslint'] }
 
 let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']}
@@ -372,7 +377,7 @@ autocmd VimLeavePre * NERDTreeClose
 
 let NERDTreeIgnore=['tags']
 let g:vim_markdown_frontmatter = 1
-let g:matchup_matchparen_timeout = 1000
+let g:matchup_matchparen_timeout = 500
 
 " if strftime('%H') >= 7 && strftime('%H') < 19
 "   set background=light
@@ -411,8 +416,6 @@ let g:neosnippet#scope_aliases['eruby.html'] = 'html,eruby'
 
 " nmap <silent> <F12> :LspDefinition<CR>
 
-nnoremap <space>af :ALEFix<CR>
-nnoremap <space>at :ALEToggleBuffer<CR>
 nmap <space>f <Plug>CtrlSFPrompt
 vmap <space>f <Plug>CtrlSFVwordPath
 nnoremap <space>y :Denite neoyank<CR>
@@ -421,19 +424,12 @@ nnoremap <space>n :NERDTreeToggle<CR>
 nnoremap <space>N :NERDTreeFind<CR>
 nnoremap <F7> :CtrlSFToggle<CR>
 nnoremap <space>j :Buffers<CR>
+nnoremap <space>k :BTags<CR>
 nnoremap <space>o :Files<CR>
 nnoremap <C-p> :History<CR>
 nnoremap <space>m :Marks<CR>
 nnoremap <space>; :Commands<CR>
 nnoremap <space>h :noh<CR>
-nnoremap <space>gb :Gblame<CR>
-nnoremap <space>gl :Commits<CR>
-nnoremap <space>gh :BCommits<CR>
-nnoremap <space>gs :Gstatus<CR>
-nnoremap <space>gp :Gpull<CR>
-nnoremap <space>gP :Gpush<CR>
-nnoremap <space>gf :Gfetch<CR>
-nnoremap <space>ga :Git add %<CR>
 nnoremap <space>p p=`]
 nnoremap <space>l :BLines<CR>
 nnoremap <space>L :Lines<CR>
@@ -442,6 +438,7 @@ nnoremap <space>d "_d
 vnoremap <space>d "_d
 nnoremap <space>w :w<CR>
 imap <C-l> <Esc>:w<CR>
+nnoremap <M-b> :Gblame<CR>
 " autocmd FileType scss setl iskeyword+=-
 " autocmd FileType vue syntax sync fromstart
 let g:neosnippet#enable_completed_snippet = 1
@@ -580,16 +577,17 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <F8> <Plug>(coc-diagnostic-prev)
+nmap <silent> <F20> <Plug>(coc-diagnostic-next)
 
 nmap <silent> <F12> <Plug>(coc-definition)
 nmap <silent> <F24> <Plug>(coc-type-definition)
-nmap <silent> <F36> <Plug>(coc-references)
+
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -612,17 +610,12 @@ augroup mygroup
 augroup end
 command! -nargs=0 Format :call CocAction('format')
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-" Use <C-l> for trigger snippet expand.
-" imap <C-l> <Plug>(coc-snippets-expand)
-" Use <C-j> for select text for visual placeholder of snippet.
-" vmap <C-j> <Plug>(coc-snippets-select)
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
 
-" Use <C-j> for both expand and jump (make expand higher priority.)
-" imap <C-j> <Plug>(coc-snippets-expand-jump)
+imap <C-k> <Plug>(coc-snippets-expand-jump)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+" let g:coc_snippet_prev = '<c-k>'
 
 let g:ctrlsf_extra_backend_args = {
     \ 'ag': '--hidden --ignore=.git/'
