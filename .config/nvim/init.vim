@@ -8,7 +8,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " (optional) php completion via LanguageClient-neovim
 
 " Plug 'osyo-manga/vim-brightest'
-Plug 'Lokaltog/vim-easymotion'
+" Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
@@ -60,7 +60,7 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 
-Plug '/tpope/vim-ragtag'
+Plug 'tpope/vim-ragtag'
 
 Plug 'leafOfTree/vim-vue-plugin'
 " Plug 'posva/vim-vue'
@@ -89,10 +89,14 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'rakr/vim-one'
 Plug 'nightsense/snow'
 Plug 'dracula/vim'
+
 Plug 'alessandroyorba/alduin'
 Plug 'jacoborus/tender.vim'
 Plug 'aonemd/kuroi.vim'
 Plug 'crusoexia/vim-monokai'
+Plug 'fxn/vim-monochrome'
+Plug 'axvr/photon.vim'
+Plug 'bluz71/vim-moonfly-colors'
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-speeddating'
@@ -126,6 +130,7 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'tpope/vim-scriptease'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Plug 'liuchengxu/vim-clap'
 " Plug 'prabirshrestha/asyncomplete.vim'
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
@@ -149,7 +154,7 @@ set softtabstop=4
 set expandtab
 set hidden
 set magic
-set number
+" set number
 set autoindent
 set smartindent
 set smarttab
@@ -172,7 +177,7 @@ set wildmode=longest:full,full
 set laststatus=2
 
 " set cmdheight=2
-set wildignore+=tags
+set wildignore+=/tags
 set wildignore+=*/tmp/*
 set wildignore+=*/.idea/*
 set wildignore+=*/coverage/*
@@ -190,7 +195,7 @@ set wildoptions=pum
 set splitbelow
 set splitright
 set signcolumn=yes
-" set relativenumber
+set relativenumber
 set shortmess+=c
 set nobackup
 set nowritebackup
@@ -220,7 +225,7 @@ if has("persistent_undo")
     set undofile
 endif
 
-let g:EasyMotion_leader_key = '<leader>'
+" let g:EasyMotion_leader_key = '<leader>'
 
 autocmd BufRead,BufNewFile *.html.erb setlocal syn=eruby.html
 
@@ -303,7 +308,9 @@ colo solarized8
 " colo afterglow
 " colo snow
 " colo afterglow
-" colo monokai
+" colo kuroi
+" colo monochrome
+" colo photon
 hi NERDTreeFile guibg=none
 hi NERDTreeFile guifg=none
 " hi gitcommitDiscarded guibg=none
@@ -407,10 +414,10 @@ endfunc
 
 let g:netrw_browsex_viewer="xdg-open"
 
-let g:neosnippet#scope_aliases = {}
-let g:neosnippet#scope_aliases['ruby'] = 'ruby,ruby-rails'
-let g:neosnippet#scope_aliases['eruby'] = 'html,eruby'
-let g:neosnippet#scope_aliases['eruby.html'] = 'html,eruby'
+" let g:neosnippet#scope_aliases = {}
+" let g:neosnippet#scope_aliases['ruby'] = 'ruby,ruby-rails'
+" let g:neosnippet#scope_aliases['eruby'] = 'html,eruby'
+" let g:neosnippet#scope_aliases['eruby.html'] = 'html,eruby'
 
 " let g:gitgutter_terminal_reports_focus=0
 
@@ -423,10 +430,11 @@ nnoremap <space>r :Denite register<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
 nnoremap <space>N :NERDTreeFind<CR>
 nnoremap <F7> :CtrlSFToggle<CR>
-nnoremap <space>j :Buffers<CR>
+nnoremap <space>b :Buffers<CR>
+nnoremap <space>, :Buffers<CR>
 nnoremap <space>k :BTags<CR>
 nnoremap <space>o :Files<CR>
-nnoremap <C-p> :History<CR>
+nnoremap <space>j :History<CR>
 nnoremap <space>m :Marks<CR>
 nnoremap <space>; :Commands<CR>
 nnoremap <space>h :noh<CR>
@@ -438,10 +446,11 @@ nnoremap <space>d "_d
 vnoremap <space>d "_d
 nnoremap <space>w :w<CR>
 imap <C-l> <Esc>:w<CR>
-nnoremap <M-b> :Gblame<CR>
+nnoremap <space>gb :Gblame<CR>
+nnoremap <space>gs :Gstatus<CR>
 " autocmd FileType scss setl iskeyword+=-
 " autocmd FileType vue syntax sync fromstart
-let g:neosnippet#enable_completed_snippet = 1
+" let g:neosnippet#enable_completed_snippet = 1
 let g:vista#renderer#enable_icon = 0
 
 " function! NearestMethodOrFunction() abort
@@ -480,6 +489,8 @@ endfunction
 let g:ale_disable_lsp=1
 let g:vim_vue_plugin_load_full_syntax=1
 let g:vim_vue_plugin_highlight_vue_attr=1
+let g:vim_vue_plugin_use_sass=1
+" let g:vim_vue_plugin_use_foldexpr=1
 " let g:gitgutter_override_sign_column_highlight = 0
 " let g:ale_open_list = 1
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -548,7 +559,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " let g:lsp_auto_enable = 0
-au BufEnter * GitGutterAll
+" au BufEnter * GitGutterAll
 let g:netrw_altfile = 1
 
 autocmd FileType nerdtree setlocal wrap
@@ -599,7 +610,7 @@ function! s:show_documentation()
 endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-nmap <F6> <Plug>(coc-rename)
+" nmap <F6> <Plug>(coc-rename)
 
 augroup mygroup
   autocmd!
@@ -620,4 +631,3 @@ imap <C-k> <Plug>(coc-snippets-expand-jump)
 let g:ctrlsf_extra_backend_args = {
     \ 'ag': '--hidden --ignore=.git/'
     \ }
-
