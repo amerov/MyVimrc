@@ -1,31 +1,18 @@
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'fishbullet/deoplete-ruby'
-
-" Plug 'mattn/sonictemplate-vim'
-
-" Plug 'roxma/nvim-completion-manager'
-" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " (optional) php completion via LanguageClient-neovim
-
-" Plug 'osyo-manga/vim-brightest'
-" Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
+Plug 'lambdalisue/fern.vim'
 Plug 'tpope/vim-vinegar'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-
 Plug 'chrisbra/NrrwRgn'
 Plug 'AndrewRadev/inline_edit.vim'
 Plug 'AndrewRadev/deleft.vim'
 Plug 'AndrewRadev/bufferize.vim'
 " Plug 'AndrewRadev/tagalong.vim'
 Plug 'powerman/vim-plugin-ruscmd'
-" Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
-" Plug 'ntpeters/vim-better-whitespace'
 Plug 'thinca/vim-quickrun'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-sleuth'
@@ -41,12 +28,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'rbong/vim-flog'
-Plug 'idanarye/vim-merginal'
-Plug 'tpope/vim-rvm'
+" Plug 'idanarye/vim-merginal'
+" Plug 'tpope/vim-rvm'
 Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'airblade/vim-localorie'
-Plug 'stefanoverna/vim-i18n'
+" Plug 'tpope/vim-rails'
+" Plug 'airblade/vim-localorie'
+" Plug 'stefanoverna/vim-i18n'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 Plug 'cohama/lexima.vim'
@@ -54,7 +41,7 @@ Plug 'cohama/lexima.vim'
 Plug 'janko-m/vim-test'
 " Plug 'davydovanton/vim-html2slim'
 
-Plug 'jmcantrell/vim-virtualenv'
+" Plug 'jmcantrell/vim-virtualenv'
 " Plug 'lepture/vim-jinja'
 " Plug 'tpope/vim-liquid'
 Plug 'pangloss/vim-javascript'
@@ -64,8 +51,8 @@ Plug 'tpope/vim-ragtag'
 
 Plug 'leafOfTree/vim-vue-plugin'
 " Plug 'posva/vim-vue'
-Plug 'mxw/vim-jsx'
-Plug 'kchmck/vim-coffee-script'
+" Plug 'mxw/vim-jsx'
+" Plug 'kchmck/vim-coffee-script'
 " Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-haml'
 Plug 'hail2u/vim-css3-syntax'
@@ -74,33 +61,30 @@ Plug 'cakebaker/scss-syntax.vim'
 
 Plug 'slim-template/vim-slim'
 
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 
 Plug 'lifepillar/vim-solarized8'
-Plug 'liuchengxu/space-vim-theme'
 Plug 'andbar-ru/vim-unicon'
 Plug 'ajh17/Spacegray.vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'guns/jellyx.vim'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'morhetz/gruvbox'
+Plug 'srcery-colors/srcery-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'rakr/vim-one'
 Plug 'nightsense/snow'
 Plug 'dracula/vim'
-
-Plug 'alessandroyorba/alduin'
+Plug 'cocopon/iceberg.vim'
+Plug 'sainnhe/edge'
 Plug 'jacoborus/tender.vim'
 Plug 'aonemd/kuroi.vim'
 Plug 'crusoexia/vim-monokai'
 Plug 'fxn/vim-monochrome'
 Plug 'axvr/photon.vim'
-Plug 'bluz71/vim-moonfly-colors'
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-speeddating'
-
 " Plug 'aliou/sql-heredoc.vim'
 Plug 'w0rp/ale'
 Plug 'kopischke/vim-fetch'
@@ -112,12 +96,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-dadbod'
 Plug 'simnalamburt/vim-mundo'
 Plug 'machakann/vim-highlightedyank'
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/neoyank.vim'
-Plug 'Shougo/neomru.vim'
+" Plug 'Shougo/denite.nvim'
+" Plug 'Shougo/neoyank.vim'
+" Plug 'Shougo/neomru.vim'
 " Plug 'devjoe/vim-codequery'
 " Plug 'kshenoy/vim-signature'
-Plug 'larsbs/vimterial_dark'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
 Plug 'elixir-editors/vim-elixir'
@@ -141,7 +124,7 @@ Plug 'junegunn/fzf.vim'
 " Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tyru/open-browser.vim'
-Plug 'mcchrish/nnn.vim'
+" Plug 'mcchrish/nnn.vim'
 call plug#end()
 
 filetype indent on
@@ -164,7 +147,7 @@ set ruler
 " set cursorline
 set modeline
 set showcmd
-set showmode
+set noshowmode
 " set showmatch
 set autoread
 set autowrite
@@ -183,12 +166,12 @@ set wildignore+=*/.idea/*
 set wildignore+=*/coverage/*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
-set updatetime=300
+set updatetime=100
 set incsearch
-" set inccommand
+set inccommand=split
 set ttyfast
 set title
-set titlestring=VIM
+set titlestring=vim
 set list
 set visualbell
 set wildoptions=pum
@@ -200,6 +183,11 @@ set shortmess+=c
 set nobackup
 set nowritebackup
 set cmdheight=1
+set path+=**
+
+" Disable commenting on new line
+autocmd FileType * setlocal formatoptions-=c formatoptions -=r formatoptions-=o
+
 " set synmaxcol=256
 " syntax sync minlines=256
 if has('spell')
@@ -232,7 +220,7 @@ autocmd BufRead,BufNewFile *.html.erb setlocal syn=eruby.html
 " autocmd BufRead,BufNewFile *.html.erb setlocal filetype=eruby.html
 autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('=')} = "<%= \r %>"
 autocmd BufRead,BufNewFile *.erb let b:surround_{char2nr('-')} = "<% \r %>"
-autocmd FileType ruby,yaml,Gemfile,rake,eruby,nerdtree setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType ruby,yaml,Gemfile,rake,eruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 set clipboard=unnamedplus
 " if has('clipboard')
@@ -247,7 +235,7 @@ set clipboard=unnamedplus
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-let mapleader="\\"
+let mapleader=" "
 
 let g:indentLine_enabled = 0
 let g:vim_markdown_folding_disabled = 1
@@ -274,8 +262,8 @@ au FileType qf setlocal cursorline
 " au BufRead,BufNewFile *.scss setlocal filetype=scss.css
 au FileType floggraph setlocal nolist cursorline
 
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
+" let g:NERDTreeDirArrowExpandable = '+'
+" let g:NERDTreeDirArrowCollapsible = '-'
 
 if has("termguicolors")
   set termguicolors
@@ -293,26 +281,29 @@ let g:jellybeans_overrides = {
 \    'jsThis': { 'guifg': 'cf6a4c' }
 \}
 
+" set background=light
+
 " let g:jellybeans_background_color="000000"
 " colorscheme jellybeans
 " colo dracula
 " colorscheme gruvbox
+" colo nord
 " colorscheme jellyx
 " colorscheme PaperColor
 " colorscheme spacegray
 " colorscheme tender
 " colorscheme lucius
 " colo one
-set background=light
 colo solarized8
 " colo afterglow
 " colo snow
 " colo afterglow
 " colo kuroi
 " colo monochrome
+" colo monokai
 " colo photon
-hi NERDTreeFile guibg=none
-hi NERDTreeFile guifg=none
+" hi NERDTreeFile guibg=none
+" hi NERDTreeFile guifg=none
 " hi gitcommitDiscarded guibg=none
 
 " hi link javascriptObjectLabel cleared
@@ -329,6 +320,10 @@ hi NERDTreeFile guifg=none
 " hi link javascriptBOMWindowMethod cleared
 " hi link javascriptIdentifierName Type
 hi clear jsObjectValue
+hi link rubyResponse cleared
+hi link rubyRoute cleared
+hi link rubyMacro cleared
+hi link rubyCurlyBlock cleared
 
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
@@ -359,30 +354,26 @@ endfunction
 
 set tags+=./TAGS
 
-noremap <F9> :Gstatus<CR>
-
-" Copy current buffer path relative to root of VIM session to system clipboard
-nnoremap <F5>p :let @+=expand("%").":".line('.')<cr>:echo "Copied file path to clipboard"<cr>
+" Copy current buffer path relative to root of VIM  session to system clipboard
+map <leader>yp :let @+=expand("%").":".line('.')<cr>:echo "Copied file path to clipboard"<cr>
 " Copy current filename to system clipboard
-nnoremap <F5>f :let @+=expand("%:t").":".line('.')<cr>:echo "Copied file name to clipboard"<cr>
+map <leader>yf :let @+=expand("%:t").":".line('.')<cr>:echo "Copied file name to clipboard"<cr>
 " Copy current buffer path without filename to system clipboard
-nnoremap <F5>d :let @+=expand("%:h").":".line('.')<cr>:echo "Copied file directory to clipboard"<cr>
+map <leader>yd :let @+=expand("%:h").":".line('.')<cr>:echo "Copied file directory to clipboard"<cr>
 
-nmap <F5>g :Gbrowse!<CR>
-vmap <F5>g :Gbrowse!<CR>
 
-let g:NERDTreeHijackNetrw = 0
+" let g:NERDTreeHijackNetrw = 0
 let g:jsx_ext_required = 1
 let g:matchup_matchparen_deferred = 1
 let g:matchup_delim_noskips = 2
 
 autocmd FileType ruby,eruby,slim setlocal keywordprg=:vs\|\:term\ ri
 
-let g:NERDTreeWinPos = "right"
+" let g:NERDTreeWinPos = "right"
 
-autocmd VimLeavePre * NERDTreeClose
+" autocmd vimLeavePre * NERDTreeClose
 
-let NERDTreeIgnore=['tags']
+" let NERDTreeIgnore=['tags']
 let g:vim_markdown_frontmatter = 1
 let g:matchup_matchparen_timeout = 500
 
@@ -423,36 +414,36 @@ let g:netrw_browsex_viewer="xdg-open"
 
 " nmap <silent> <F12> :LspDefinition<CR>
 
-nmap <space>f <Plug>CtrlSFPrompt
-vmap <space>f <Plug>CtrlSFVwordPath
-nnoremap <space>y :Denite neoyank<CR>
-nnoremap <space>r :Denite register<CR>
-nnoremap <space>n :NERDTreeToggle<CR>
-nnoremap <space>N :NERDTreeFind<CR>
-nnoremap <F7> :CtrlSFToggle<CR>
-nnoremap <space>b :Buffers<CR>
-nnoremap <space>, :Buffers<CR>
-nnoremap <space>k :BTags<CR>
-nnoremap <space>o :Files<CR>
-nnoremap <space>j :History<CR>
-nnoremap <space>m :Marks<CR>
-nnoremap <space>; :Commands<CR>
-nnoremap <space>h :noh<CR>
-nnoremap <space>p p=`]
-nnoremap <space>l :BLines<CR>
-nnoremap <space>L :Lines<CR>
-" nnoremap <space>e :Emmet 
-nnoremap <space>d "_d
-vnoremap <space>d "_d
-nnoremap <space>w :w<CR>
+nmap <leader>f <Plug>CtrlSFPrompt
+vmap <leader>f <Plug>CtrlSFVwordPath
+" nnoremap <space>y :Denite neoyank<CR>
+" nnoremap <space>r :Denite register<CR>
+" nnoremap <space>n :NERDTreeToggle<CR>
+" nnoremap <space>N :NERDTreeFind<CR>
+map <leader>x :CtrlSFToggle<CR>
+map <leader>u :Buffers<CR>
+map <leader>t :BTags<CR>
+map <leader>o :Files<CR>
+map <leader>r :History<CR>
+map <leader>m :Marks<CR>
+map <leader>; :Commands<CR>
+map <leader>p p=`]
+map <leader>l :BLines<CR>
+map <leader>L :Lines<CR>
+map <leader>s :w<CR>
 imap <C-l> <Esc>:w<CR>
-nnoremap <space>gb :Gblame<CR>
-nnoremap <space>gs :Gstatus<CR>
+map <leader>gb :Gblame<CR>
+map <leader>gg :Gstatus<CR>
+" map <leader>ts :setlocal spell!<CR>
+map <leader>H :noh<CR>
+nmap <leader>yg :Gbrowse!<CR>
+vmap <leader>yg :Gbrowse!<CR>
 " autocmd FileType scss setl iskeyword+=-
 " autocmd FileType vue syntax sync fromstart
 " let g:neosnippet#enable_completed_snippet = 1
 let g:vista#renderer#enable_icon = 0
 
+let g:one_allow_italics = 1
 " function! NearestMethodOrFunction() abort
 "   return get(b:, 'vista_nearest_method_or_function', '')
 " endfunction
@@ -463,28 +454,28 @@ let g:vista#renderer#enable_icon = 0
 "
 " If you want to show the nearest function in your statusline automatically,
 " you can add the following line to your vimrc 
-" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" autocmd vimEnter * call vista#RunForNearestMethodOrFunction()
 
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> d
-  \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-  \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> q
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> i
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <Space>
-  \ denite#do_map('toggle_select').'j'
-endfunction
+" autocmd FileType denite call s:denite_my_settings()
+" function! s:denite_my_settings() abort
+"   nnoremap <silent><buffer><expr> <CR>
+"   \ denite#do_map('do_action')
+"   nnoremap <silent><buffer><expr> d
+"   \ denite#do_map('do_action', 'delete')
+"   nnoremap <silent><buffer><expr> p
+"   \ denite#do_map('do_action', 'preview')
+"   nnoremap <silent><buffer><expr> q
+"   \ denite#do_map('quit')
+"   nnoremap <silent><buffer><expr> i
+"   \ denite#do_map('open_filter_buffer')
+"   nnoremap <silent><buffer><expr> <Space>
+"   \ denite#do_map('toggle_select').'j'
+" endfunction
 
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-function! s:denite_filter_my_settings() abort
-  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
-endfunction
+" autocmd FileType denite-filter call s:denite_filter_my_settings()
+" function! s:denite_filter_my_settings() abort
+"   imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
+" endfunction
 
 let g:ale_disable_lsp=1
 let g:vim_vue_plugin_load_full_syntax=1
@@ -562,7 +553,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 " au BufEnter * GitGutterAll
 let g:netrw_altfile = 1
 
-autocmd FileType nerdtree setlocal wrap
+" autocmd FileType nerdtree setlocal wrap
 let g:matchup_matchparen_offscreen = { 'method': 'popup' }
 let g:nnn#set_default_mappings = 0
 
@@ -589,17 +580,19 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
+" Or use `complete_info` if your VIM  support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> <F8> <Plug>(coc-diagnostic-prev)
-nmap <silent> <F20> <Plug>(coc-diagnostic-next)
+" map <silent> <leader>[ <Plug>(coc-diagnostic-prev)
+" map <silent> <leader>] <Plug>(coc-diagnostic-next)
 
-nmap <silent> <F12> <Plug>(coc-definition)
-nmap <silent> <F24> <Plug>(coc-type-definition)
+" map <silent> <leader>od <Plug>(coc-definition)
+" map <silent> <leader>ot <Plug>(coc-type-definition)
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" map <silent> <leader>ok :call <SID>show_documentation()<CR>
+
+" map <leader>e :CocCommand explorer<CR>
+map <leader>e :Fern . -drawer -toggle<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -623,11 +616,15 @@ command! -nargs=0 Format :call CocAction('format')
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 imap <C-k> <Plug>(coc-snippets-expand-jump)
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" Use <C-j> for jump to next placeholder, it's default of coc.nVIM 
 " let g:coc_snippet_next = '<c-j>'
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+" Use <C-k> for jump to previous placeholder, it's default of coc.nVIM 
 " let g:coc_snippet_prev = '<c-k>'
 
 let g:ctrlsf_extra_backend_args = {
-    \ 'ag': '--hidden --ignore=.git/'
+    \ 'ag': '--hidden', 'rg': '--hidden --ignore-file ~/.ignore --ignore-vcs'
     \ }
+
+
+autocmd BufWritePost * GitGutter
+

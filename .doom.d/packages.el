@@ -55,3 +55,4 @@
 (package! nvm)
 (package! evil-matchit)
 (package! evil-rails)
+(package! reverse-im)
