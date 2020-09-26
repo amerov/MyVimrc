@@ -1,12 +1,17 @@
 call plug#begin('~/.local/share/nvim/plugged')
+" Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'honza/vim-snippets'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'junegunn/vim-easy-align'
-" Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'lambdalisue/fern.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'chrisbra/NrrwRgn'
 Plug 'AndrewRadev/inline_edit.vim'
 Plug 'AndrewRadev/deleft.vim'
 Plug 'AndrewRadev/bufferize.vim'
+Plug 'AndrewRadev/sideways.vim'
 " Plug 'AndrewRadev/tagalong.vim'
 Plug 'powerman/vim-plugin-ruscmd'
 Plug 'liuchengxu/vista.vim'
@@ -16,14 +21,13 @@ Plug 'tpope/vim-abolish'
 Plug 'thinca/vim-quickrun'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-sleuth'
-Plug 'andymass/vim-matchup'
 Plug 'DataWraith/auto_mkdir'
 
 Plug 'tpope/vim-eunuch'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'honza/vim-snippets'
+
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
@@ -58,7 +62,6 @@ Plug 'tpope/vim-haml'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 " Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-
 Plug 'slim-template/vim-slim'
 
 " Plug 'sbdchd/neoformat'
@@ -73,15 +76,11 @@ Plug 'morhetz/gruvbox'
 Plug 'srcery-colors/srcery-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'rakr/vim-one'
-Plug 'nightsense/snow'
 Plug 'dracula/vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'sainnhe/edge'
-Plug 'jacoborus/tender.vim'
 Plug 'aonemd/kuroi.vim'
 Plug 'crusoexia/vim-monokai'
 Plug 'fxn/vim-monochrome'
-Plug 'axvr/photon.vim'
+
 Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-speeddating'
@@ -89,9 +88,11 @@ Plug 'tpope/vim-speeddating'
 Plug 'w0rp/ale'
 Plug 'kopischke/vim-fetch'
 " Plug 'reedes/vim-wordy'
+" Plug 'dominikduda/vim_current_word'
 " Plug 'tweekmonster/braceless.vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'andymass/vim-matchup'
 " Plug 'liuchengxu/eleline.vim'
 Plug 'tpope/vim-dadbod'
 Plug 'simnalamburt/vim-mundo'
@@ -122,13 +123,16 @@ Plug 'junegunn/fzf.vim'
 " Plug 'prabirshrestha/asyncomplete-file.vim'
 " Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
 " Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tyru/open-browser.vim'
 " Plug 'mcchrish/nnn.vim'
+Plug 'pechorin/any-jump.vim'
+Plug 'junegunn/vim-peekaboo'
 call plug#end()
 
 filetype indent on
 filetype plugin on
+set nobackup
+set nowritebackup
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -137,7 +141,7 @@ set softtabstop=4
 set expandtab
 set hidden
 set magic
-" set number
+set number
 set autoindent
 set smartindent
 set smarttab
@@ -152,7 +156,7 @@ set noshowmode
 set autoread
 set autowrite
 " set showfulltag
-set noswapfile
+" set noswapfile
 set smartcase
 set ignorecase
 set wildmenu
@@ -166,10 +170,10 @@ set wildignore+=*/.idea/*
 set wildignore+=*/coverage/*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set lazyredraw
-set updatetime=100
+set updatetime=200
 set incsearch
 set inccommand=split
-set ttyfast
+" set ttyfast
 set title
 set titlestring=vim
 set list
@@ -177,14 +181,18 @@ set visualbell
 set wildoptions=pum
 set splitbelow
 set splitright
-set signcolumn=yes
-set relativenumber
-set shortmess+=c
-set nobackup
-set nowritebackup
+" set relativenumber
+set shortmess=aFc
 set cmdheight=1
 set path+=**
 
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+" set showbreak=↪
 " Disable commenting on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions -=r formatoptions-=o
 
@@ -262,8 +270,8 @@ au FileType qf setlocal cursorline
 " au BufRead,BufNewFile *.scss setlocal filetype=scss.css
 au FileType floggraph setlocal nolist cursorline
 
-" let g:NERDTreeDirArrowExpandable = '+'
-" let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
 
 if has("termguicolors")
   set termguicolors
@@ -281,27 +289,22 @@ let g:jellybeans_overrides = {
 \    'jsThis': { 'guifg': 'cf6a4c' }
 \}
 
-" set background=light
+set background=light
 
 " let g:jellybeans_background_color="000000"
 " colorscheme jellybeans
 " colo dracula
 " colorscheme gruvbox
-" colo nord
-" colorscheme jellyx
 " colorscheme PaperColor
 " colorscheme spacegray
-" colorscheme tender
 " colorscheme lucius
 " colo one
 colo solarized8
-" colo afterglow
 " colo snow
 " colo afterglow
 " colo kuroi
 " colo monochrome
 " colo monokai
-" colo photon
 " hi NERDTreeFile guibg=none
 " hi NERDTreeFile guifg=none
 " hi gitcommitDiscarded guibg=none
@@ -327,14 +330,14 @@ hi link rubyCurlyBlock cleared
 
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
-let g:ale_echo_delay = 200
+let g:ale_echo_delay = 250
 " let g:ale_set_highlights = 0
 let g:ale_ruby_rubocop_executable = 'bundle'
 let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop', 'ruby'], 'vue': ['eslint'] }
 
 let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']}
 
-let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
+let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'], 'vue': ['eslint'] }
 
 autocmd FileType eruby.html let b:ale_linters = {'html': []}
 
@@ -354,7 +357,7 @@ endfunction
 
 set tags+=./TAGS
 
-" Copy current buffer path relative to root of VIM  session to system clipboard
+" Copy current buffer path relative to root of VIM session to system clipboard
 map <leader>yp :let @+=expand("%").":".line('.')<cr>:echo "Copied file path to clipboard"<cr>
 " Copy current filename to system clipboard
 map <leader>yf :let @+=expand("%:t").":".line('.')<cr>:echo "Copied file name to clipboard"<cr>
@@ -362,20 +365,21 @@ map <leader>yf :let @+=expand("%:t").":".line('.')<cr>:echo "Copied file name to
 map <leader>yd :let @+=expand("%:h").":".line('.')<cr>:echo "Copied file directory to clipboard"<cr>
 
 
-" let g:NERDTreeHijackNetrw = 0
+let g:NERDTreeHijackNetrw = 0
 let g:jsx_ext_required = 1
 let g:matchup_matchparen_deferred = 1
 let g:matchup_delim_noskips = 2
+let g:matchup_matchparen_timeout = 250
+let g:matchup_matchparen_offscreen = { 'method': 'popup' }
 
 autocmd FileType ruby,eruby,slim setlocal keywordprg=:vs\|\:term\ ri
 
-" let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "right"
 
 " autocmd vimLeavePre * NERDTreeClose
 
-" let NERDTreeIgnore=['tags']
+let NERDTreeIgnore=['tags']
 let g:vim_markdown_frontmatter = 1
-let g:matchup_matchparen_timeout = 500
 
 " if strftime('%H') >= 7 && strftime('%H') < 19
 "   set background=light
@@ -438,6 +442,7 @@ map <leader>gg :Gstatus<CR>
 map <leader>H :noh<CR>
 nmap <leader>yg :Gbrowse!<CR>
 vmap <leader>yg :Gbrowse!<CR>
+map <leader>vh :!html-validate "%:."<CR>
 " autocmd FileType scss setl iskeyword+=-
 " autocmd FileType vue syntax sync fromstart
 " let g:neosnippet#enable_completed_snippet = 1
@@ -554,7 +559,6 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:netrw_altfile = 1
 
 " autocmd FileType nerdtree setlocal wrap
-let g:matchup_matchparen_offscreen = { 'method': 'popup' }
 let g:nnn#set_default_mappings = 0
 
 let g:nnn#action = {
@@ -592,17 +596,23 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " map <silent> <leader>ok :call <SID>show_documentation()<CR>
 
 " map <leader>e :CocCommand explorer<CR>
-map <leader>e :Fern . -drawer -toggle<CR>
+" map <leader>e :Fern . -drawer -toggle -keep<CR>
+" map <leader>E :Fern . -drawer -reveal=% -keep<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
+nmap <silent> <F2> <Plug>(coc-diagnostic-next)
+nmap <silent> <F4> <Plug>(coc-definition)
+nmap <silent> <F3> call CocAction('doHover')
+
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
+
+autocmd CursorHold *  call CocActionAsync('highlight')
 " nmap <F6> <Plug>(coc-rename)
 
 augroup mygroup
@@ -626,5 +636,12 @@ let g:ctrlsf_extra_backend_args = {
     \ }
 
 
-autocmd BufWritePost * GitGutter
+" autocmd BufWritePost * GitGutter
+" let g:vim_current_word#highlight_delay = 300
+if &background ==# 'light'
+  let $BAT_THEME='Solarized (light)'
+endif
 
+
+nnoremap <silent> <a-h> :SidewaysLeft<cr>
+nnoremap <silent> <a-l> :SidewaysRight<cr>

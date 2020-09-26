@@ -12,18 +12,16 @@
     lo = log --no-merges --oneline
     p = pull -v
     s = status
-    co = commit -v
-    ca = commit --amend
     ch = checkout
     b = branch
     sdiff = diff --staged
-    cdiff = diff --cached
 [rerere]
     enabled = true
     autoupdate = true
 [core]
     autocrlf = input
     excludesfile = /home/amerov/.gitexcludes
+    pager = delta
 [merge]
     tool = vimdiff
 
@@ -36,3 +34,11 @@
     cmd = "vim -d -m -n \"$LOCAL\" \"$REMOTE\""
 [credential]
     helper = cache
+[pull]
+    rebase = false
+
+[delta]
+    # syntax-theme = GitHub
+    line-numbers = true
+[interactive]
+    diffFilter = delta --color-only

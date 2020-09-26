@@ -52,9 +52,9 @@ set splitbelow
 let mapleader = " "
 
 
-colo solarized8
+" colo solarized8
 " set background=light
-" colo monokai
+colo monokai
 " if has('unnamedplus')
   " set clipboard=unnamedplus
 " end
