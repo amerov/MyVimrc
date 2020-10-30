@@ -51,8 +51,8 @@
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
 
-(package! exec-path-from-shell)
-(package! nvm)
+;; (package! exec-path-from-shell)
+;; (package! nvm)
 (package! evil-matchit)
 (package! evil-rails)
 (package! reverse-im)

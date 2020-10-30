@@ -110,6 +110,13 @@
 (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
+(add-hook 'ruby-mode-hook
+	  (lambda ()
+	    (setq-local flycheck-command-wrapper-function
+			(lambda (command) (append '("bundle" "exec") command)))))
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

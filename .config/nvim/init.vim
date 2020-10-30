@@ -13,7 +13,7 @@ Plug 'AndrewRadev/deleft.vim'
 Plug 'AndrewRadev/bufferize.vim'
 Plug 'AndrewRadev/sideways.vim'
 " Plug 'AndrewRadev/tagalong.vim'
-Plug 'powerman/vim-plugin-ruscmd'
+" Plug 'powerman/vim-plugin-ruscmd'
 Plug 'liuchengxu/vista.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
@@ -26,8 +26,9 @@ Plug 'DataWraith/auto_mkdir'
 Plug 'tpope/vim-eunuch'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-
+" Plug 'tpope/vim-commentary'
+" Plug 'preservim/nerdcommenter'
+Plug 'tyru/caw.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
@@ -107,7 +108,6 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'rhysd/vim-grammarous'
 " Plug 'kamykn/spelunker.vim'
-" Plug 'Shougo/context_filetype.vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'tpope/vim-unimpaired'
 Plug 'nelstrom/vim-visual-star-search'
@@ -115,18 +115,13 @@ Plug 'tpope/vim-scriptease'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Plug 'liuchengxu/vim-clap'
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" Plug 'prabirshrestha/asyncomplete-buffer.vim'
-" Plug 'prabirshrestha/asyncomplete-file.vim'
-" Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
-" Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
 Plug 'tyru/open-browser.vim'
-" Plug 'mcchrish/nnn.vim'
 Plug 'pechorin/any-jump.vim'
 Plug 'junegunn/vim-peekaboo'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'voldikss/vim-floaterm'
+Plug 'Asheq/close-buffers.vim'
+Plug 'Shougo/context_filetype.vim'
 call plug#end()
 
 filetype indent on
@@ -181,7 +176,7 @@ set visualbell
 set wildoptions=pum
 set splitbelow
 set splitright
-" set relativenumber
+set relativenumber
 set shortmess=aFc
 set cmdheight=1
 set path+=**
@@ -289,17 +284,17 @@ let g:jellybeans_overrides = {
 \    'jsThis': { 'guifg': 'cf6a4c' }
 \}
 
-set background=light
+" set background=light
 
 " let g:jellybeans_background_color="000000"
 " colorscheme jellybeans
 " colo dracula
-" colorscheme gruvbox
+colorscheme gruvbox
 " colorscheme PaperColor
 " colorscheme spacegray
 " colorscheme lucius
 " colo one
-colo solarized8
+" colo solarized8
 " colo snow
 " colo afterglow
 " colo kuroi
@@ -327,6 +322,7 @@ hi link rubyResponse cleared
 hi link rubyRoute cleared
 hi link rubyMacro cleared
 hi link rubyCurlyBlock cleared
+hi link rubyAccess rubyMethodName
 
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
@@ -407,6 +403,10 @@ function! SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+function! ValidateHtml()
+  :!html-validate "%:."
+endfunction
+
 let g:netrw_browsex_viewer="xdg-open"
 
 " let g:neosnippet#scope_aliases = {}
@@ -416,14 +416,8 @@ let g:netrw_browsex_viewer="xdg-open"
 
 " let g:gitgutter_terminal_reports_focus=0
 
-" nmap <silent> <F12> :LspDefinition<CR>
-
 nmap <leader>f <Plug>CtrlSFPrompt
 vmap <leader>f <Plug>CtrlSFVwordPath
-" nnoremap <space>y :Denite neoyank<CR>
-" nnoremap <space>r :Denite register<CR>
-" nnoremap <space>n :NERDTreeToggle<CR>
-" nnoremap <space>N :NERDTreeFind<CR>
 map <leader>x :CtrlSFToggle<CR>
 map <leader>u :Buffers<CR>
 map <leader>t :BTags<CR>
@@ -442,7 +436,16 @@ map <leader>gg :Gstatus<CR>
 map <leader>H :noh<CR>
 nmap <leader>yg :Gbrowse!<CR>
 vmap <leader>yg :Gbrowse!<CR>
-map <leader>vh :!html-validate "%:."<CR>
+nmap <silent> <F2> <Plug>(coc-diagnostic-next)
+nmap <silent> <F4> <Plug>(coc-definition)
+nnoremap <silent> <a-h> :SidewaysLeft<cr>
+nnoremap <silent> <a-l> :SidewaysRight<cr>
+nnoremap <silent> <leader>e :FloatermNew nnn<cr>
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F12>'
+
 " autocmd FileType scss setl iskeyword+=-
 " autocmd FileType vue syntax sync fromstart
 " let g:neosnippet#enable_completed_snippet = 1
@@ -559,12 +562,6 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:netrw_altfile = 1
 
 " autocmd FileType nerdtree setlocal wrap
-let g:nnn#set_default_mappings = 0
-
-let g:nnn#action = {
-      \ '<c-t>': 'tab split',
-      \ '<c-x>': 'split',
-      \ '<c-v>': 'vsplit' }
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -600,10 +597,6 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " map <leader>E :Fern . -drawer -reveal=% -keep<CR>
 
 
-nmap <silent> <F2> <Plug>(coc-diagnostic-next)
-nmap <silent> <F4> <Plug>(coc-definition)
-nmap <silent> <F3> call CocAction('doHover')
-
 " function! s:show_documentation()
 "   if (index(['vim','help'], &filetype) >= 0)
 "     execute 'h '.expand('<cword>')
@@ -612,7 +605,7 @@ nmap <silent> <F3> call CocAction('doHover')
 "   endif
 " endfunction
 
-autocmd CursorHold *  call CocActionAsync('highlight')
+autocmd CursorHold * call CocActionAsync('highlight')
 " nmap <F6> <Plug>(coc-rename)
 
 augroup mygroup
@@ -642,6 +635,5 @@ if &background ==# 'light'
   let $BAT_THEME='Solarized (light)'
 endif
 
-
-nnoremap <silent> <a-h> :SidewaysLeft<cr>
-nnoremap <silent> <a-l> :SidewaysRight<cr>
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+" set guifont="Source Code Variable:h10"
